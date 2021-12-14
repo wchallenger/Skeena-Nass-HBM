@@ -21,7 +21,7 @@ model{
   
   #Likelilhood
   for (i in 1:ndata) {
-     lnRS_pred[i] <- a[stock[i]] + b[stock[i]]*Spawn[i]
+     lnRS_pred[i] <- a[stock[i]] - b[stock[i]]*Spawn[i]
      lnRS_obs[i] ~ dnorm(lnRS_pred[i], tau[stock[i]])
   }
   
