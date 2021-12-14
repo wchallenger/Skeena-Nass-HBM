@@ -1,3 +1,4 @@
+rm(list=ls())
 library(tidyverse)
 library(openxlsx)
 library(rjags)
@@ -21,7 +22,7 @@ smax <- read.xlsx(wb, "Meta")
 
 
 
-# Fit JAGS ----------------------------------------------------------------
+# Prepare JAGS Data ----------------------------------------------------------------
 
 
 
@@ -36,17 +37,40 @@ jags.dat <- list(
 )
 
 
+# OPTION A: Fit Stepwise ------------------------------------------------------------
+
+ptm = proc.time()
+
 jags.m <- jags.model( file = mod.file, data=jags.dat,  n.chains=3, n.adapt=1000)
 update(jags.m, n.iter=10000) 
 
-parms <-  c("a", "b", "CC")
+parms <-  c("a", "b", "CC", "Smsy", "Umsy")
 samps <- coda.samples(jags.m, parms, n.iter = 20000, thin = 10 )
 
-# Gelman diagnostic
+(endtime = proc.time()-ptm)
+
+
+# Option B:  Parallel Processing ---------------------------------------------------------------
+
+library(R2jags) 
+library(modeest)    
+
+ptm = proc.time()
+jagsfit.p <- jags.parallel(data=jags.dat,  parameters.to.save=parms, n.thin=10,
+                           n.iter=100000, model.file= mod.file, n.burnin = 5000, n.chains=6)
+(endtime = proc.time()-ptm)
+
+samps <- as.mcmc(jagsfit.p)
+
+
+# Diagnostics -------------------------------------------------------------
+
+# Gelman and Rubin's convergence diagnostic
 gelman.diag(samps, multivariate = TRUE)
 
-# Trace plots and lags
-mcmcplot(samps, parms = "CC")
+# Posterior densities, trace plots and auto-correlation diagnostics
+# Showing only dervied variables
+mcmcplot(samps, parms = c("CC","Smsy", "Umsy"))
 
 
 # Summaries Stats -------------------------
@@ -74,23 +98,8 @@ est <- cbind(
 
 
 est %>% filter(Parm == "CC")
+est %>% filter(Parm == "Smsy")
+est %>% filter(Parm == "Umsy")
 
 
-# Using Parrelle=al Processing ---------------------------------------------------------------
-
-
-library(R2jags) 
-library(modeest)    
-ptm = proc.time()
-jagsfit.p <- jags.parallel(data=jags.dat,  parameters.to.save=parms, n.thin=10,
-                           n.iter=100000, model.file= mod.file,n.burnin = 5000, n.chains=6)
-endtime = proc.time()-ptm
-
-samps2 <- as.mcmc(jagsfit.p)
-x <- summary(samps2)
-# reorganize estimates for queries
-est2 <- cbind(
-  as.data.frame(x$statistics),
-  as.data.frame(x$quantiles)
-)
 
