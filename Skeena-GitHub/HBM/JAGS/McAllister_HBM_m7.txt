@@ -1,0 +1,63 @@
+#Uses all data points
+#Applies improved priors for intercept and Smax prior for slope
+#Gamma prior on likelihood precision
+#Hierarchical on intercept
+#computes msy reference points
+#Common shared year effect is estimated each year for the stocks
+model{ 
+  #prior on the common shared year effect
+  for(i in 1:Nyear){
+    TE[i]~dnorm(0,tauT)
+  }
+  tauT <- 1/(Tse*Tse) #Tse is the SD in year effects
+  Tse~dlnorm(lmse,tause) #hyper prior on SD in year effects
+  lmse <- log(0.8) #prior median for SD TE is 0.8
+  tause <- 1/(0.7*0.7)  #prior precision in SD of TE
+  #
+  for (i in 1:ndata){ # loop over all observations all stocks 
+    lnRSobs[i] ~ dnorm(lnRS[i], tau[CU[i]]) # calc. prob of ea. data pt 
+    lnRS[i] <- intercept[CU[i]] - slope[CU[i]] * Spawn[i] + TE[year[i]] 
+    # predict ea. obs. lnRS
+    # rep[i] ~ dnorm(lnRS[i], tau[CU[i]]) # sim. ea. data pt from posterior 
+    #pvalue[i] <-step(rep[i] - lnRSobs[i])
+  }
+  
+  #SET PRIORS for parameters for each time block
+  for (i in 1:Nstocks) {
+    lns[i]<- log(1/prSmax[i])
+    taus[i] <- 1/(prCV[i]*prCV[i]) 
+    proba[i] <- step(intercept[i]) 
+    # step function: prob =1 if intercept >= 0
+    probb[i] <-step(slope[i]) # prob =1 if slope < 0 for Ricker function
+    slope[i] ~ dlnorm(lns[i],taus[i]) # prior density function for the slope
+    slopex[i] ~ dlnorm(lns[i],taus[i]) 
+    # save prior dens. func. for the slope 
+    
+    #intercept[i] ~ dlnorm(lni,taui)
+    intercept[i] ~ dnorm(intercmn,interctau)
+    # prior density function for the intercept
+    # save prior density function for intercept
+    #interceptx[i] ~ dlnorm(lni,taui)
+    interceptx[i] ~ dnorm(intercmn,interctau)
+    
+    tau[i]~dgamma(0.01, 0.01)   
+    #prior density for prec. for prob. of data
+    se[i] <- 1/sqrt(tau[i]) #calc. the standard error from the precision
+    CC[i] <- intercept[i]/slope[i]  # compute intercept by stock
+    Smsy[i] <- CC[i]*(0.5-0.07*intercept[i])   #compute Smsy by stock
+    Umsy[i] <- 0.5*intercept[i] *(1 - 0.07*intercept[i])
+    
+  }
+  slopemn <- mean(slope[1:17])
+  interceptmn<-mean(intercept[1:17])
+  intercmn~dlnorm(lni, taui) #hyperprior for cross stock mean intercept
+  lni <- log(1) 
+  taui <- 1/(0.9*0.9)
+  intercsd~dlnorm(lisdm, tauisd) #hyperprior for cross stock sd intercept 
+  interctau <- 1/(intercsd*intercsd)
+  lisdm<- log(0.8) #natural log of prior mean for cross stock SD(intercept)
+  tauisd <- 1/(0.9*0.9) #prior precision in cross stock prior SD(intercept)
+  
+  #lns<- log(1/500000)
+  #taus <- 1/(0.9*0.9) 
+}

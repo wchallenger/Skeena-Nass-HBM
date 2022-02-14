@@ -1,0 +1,32 @@
+
+model{
+  # Hyper Priors
+  mu_a ~ dnorm(0.5,1.0E-6) # Originally specified by Korman
+  tau_a ~ dgamma(0.5,0.5)  # Originally specified by Korman
+
+  # Priors
+  for (j in 1:nstock) {
+    # stock-specific alpha parameter
+    a[j] ~ dlnorm(mu_a,tau_a)   # log normalprior originally specified by Korman
+
+    # stock-specific beta parameter
+    b[j] ~ dlnorm(prmub[j],prtaub[j]) # log normal originally specified by Korman
+
+    # Residual error precision - 2013 publication code error corrected
+    sd[j] ~ dunif(0.05,10)
+    tau[j]<- 1/(sd[j]*sd[j])
+  }
+
+  #Likelilhood
+  for (i in 1:ndata) {
+     lnRS_pred[i] <- a[stock[i]] - b[stock[i]]*Spawn[i]
+     lnRS_obs[i] ~ dnorm(lnRS_pred[i], tau[stock[i]])
+  }
+
+  # Derived Prameters
+  for (s in 1:nstock) {
+    CC[s] <- a[s]/b[s]
+    Smsy[s] <- CC[s]*(0.5-0.07*a[s])   # Maximum sustainable Yield Smsy by stock
+    Umsy[s] <- 0.5*a[s] *(1 - 0.07*a[s]) # Need to confirm definition, copied from McAllister_HBM_m8.txt
+  }
+}

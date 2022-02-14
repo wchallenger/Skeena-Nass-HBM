@@ -1,0 +1,3 @@
+Stock,Variable,Estimate,Lower,Upper,IntervalType,Reference
+NassAgg,EscGoal,200000,NA,NA,NA,Bocking et al. (2002)
+SkeenaAgg,EscGoal,900000,NA,NA,NA,Ricker and Smith (1975)
