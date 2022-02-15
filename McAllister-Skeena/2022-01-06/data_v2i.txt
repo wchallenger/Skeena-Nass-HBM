@@ -1,0 +1,23 @@
+#Data
+#prior sigma=2 for Babine + a few other stocks
+#prCV works as sigma in lognormal and CV in normal prior pdf
+prSmax[]	prCV[]
+23437	0.3
+817	2
+361649	2
+361649	2
+361649	2
+40532	0.3
+361649	2
+4125	0.3
+20531	0.3
+36984	0.3
+35916	0.3
+6279	0.3
+191362	2
+1764	0.3
+361649	2
+423	0.3
+2775	0.3
+29090	0.3
+END

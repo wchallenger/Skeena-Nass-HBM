@@ -1,0 +1,1 @@
+list(ndata=683, Nstocks=18, Nyear=55)
