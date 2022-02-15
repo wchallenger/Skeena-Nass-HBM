@@ -1,9 +1,6 @@
 
 
 
-
-
-
 # PREP: Smax --------------------------------------------------------------
 
 # Late meta data
@@ -12,6 +9,11 @@ lake.meta <- read.csv(file.path(data.dir, "LakeInfo_Main_WithSR_Smax.csv")) %>% 
 
 source(file.path(script.dir, smax.script))
 
+
+message("WARNING: Using Mcalliser smax")
+smax.old <-  smax.dat
+smax.dat <- cbind(smax.alt, smax.old %>% select(ID, Basin,Stock))
+if (names(runs)[r] == "McAllister m29") smax.dat$prCV <- 2
 
 # PREP: SR Data ----------------------------------------------------
 # Stock Recruit Data
@@ -69,7 +71,7 @@ if (str_detect(mod.file, "^KormanEnglish")) {
   parms <-  c("a", "b",  "CC", "Smsy", "Umsy")
   jags.settings <- list(
     n.thin = 10,
-    n.iter=100000,
+    n.iter =100000,
     n.burnin = 20000
   )
 
@@ -85,17 +87,46 @@ if (str_detect(mod.file, "^KormanEnglish")) {
     prCV = smax.dat$prCV
   )
 
-  if (str_extract(basename(mod.file), "_m[:digit:]") %in% paste0("_m", 7:8)){
+  if (str_extract(basename(mod.file), "_m[:digit:]+") %in% paste0("_m", c(7:8, 23:24, 25, 28))){
     jags.dat$year = sr.dat$year
     jags.dat$Nyear = max(sr.dat$year)
   }
-
+ # Include Smax - maximum value
+  if (str_extract(basename(mod.file), "_m[:digit:]+") %in% paste0("_m", c(23:24, 26:28))) {
+    jags.dat$Smaxmax = smax.dat$Smaxmax
+  }
   parms <-  c("intercept", "slope", "intercmn", "intercsd", "CC", "Smsy", "Umsy")
 }
 
 
-# Run JAGS (Parallel Processing) ---------------------------------------------------------------
 
+# DEV: Fit Stepwise ------------------------------------------------------------
+# The first option lets you hand fit each step from compiling, burn-in, to 
+# sampling from the posterior.  This can be useful for debugging.
+# ptm = proc.time()
+# 
+jags.m <- jags.model(
+  file = file.path(jags.dir, mod.file),
+  data=jags.dat,
+  n.chains=2,
+  n.adapt=1000
+)
+# # Burnin
+# update(jags.m, n.iter=10000) 
+# 
+#
+# samps <- coda.samples(jags.m, parms, n.iter = 20000, thin = 10 )
+# 
+# (endtime = proc.time()-ptm)
+
+
+
+
+# Run JAGS (Parallel Processing) ------------------------------------------
+# n.thin = mcmc.set$thin,
+# n.iter = mcmc.set$iter,
+# n.burnin = mcmc.set$burnin,
+# n.chains = mcmc.set$chains
 
 
 ptm = proc.time()

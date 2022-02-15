@@ -1,0 +1,74 @@
+# HBM January 1, 2022
+# Model estimates slope, intercept and se by stock
+# Uses all data points
+# lognormal prior for intercept and normal for Smax
+# Maximum cutoff for Smax based on 5x prior mean
+# Korman and English prior on tau, hyperpriors on intercept
+# Uniform prior on sigma in likelihood - corrected from K+E 2013
+# Hierarchical on Ricker a only,normal prior on Smax
+# Not Hierarchical on sigma in likelihood
+# computes msy reference points
+# Common shared year effect is estimated each year for the stocks
+model{ 
+#prior on the common shared year effect
+  for(i in 1:Nyear){
+       TE[i]~dnorm(0,tauT)
+       for(j in 1:Nstocks){ #a parameter by year for each stock
+            ay[j,i]<-intercept[j] + TE[i]
+       }
+  }
+  tauT <- 1/(Tse*Tse) #Tse is the SD in year effects
+  Tse~dlnorm(lmse,tause) #hyper prior on SD in year effects
+  lmse <- log(0.8) #prior median for SD TE is 0.8
+  tause <- 1/(0.7*0.7)  #prior precision in SD of TE
+  #
+  for (i in 1:ndata){ # loop over all observations all stocks 
+      lnRSobs[i] ~ dnorm(lnRS[i], tau[CU[i]]) # calc. prob of ea. data pt 
+      lnRS[i] <- intercept[CU[i]] - slope[CU[i]] * Spawn[i] + TE[year[i]] 
+     # predict ea. obs. lnRS
+   }
+  #SET PRIORS for parameters for each stock
+  for (i in 1:Nstocks) {
+     ms[i]<- prSmax[i]/10000 #prior median on Smax
+     msmax[i] <-  Smaxmax[i]/10000 #prior maximum on Smax
+    # prior precision on Ricker b
+    taus[i] <- 1/(prCV[i]*prCV[i]*ms[i]*ms[i]) 
+  # step function: prob =1 if intercept >= 0 
+     proba[i] <- step(intercept[i]) 
+     probb[i] <-step(slope[i]) # prob =1 if slope < 0 for Ricker function
+  # prior density function for the Ricker b parameter
+     Smaxr[i] ~ dnorm(ms[i],taus[i])  I(0.01, msmax[i])
+   #  Smaxxr[i] ~ dnorm(ms[i],taus[i]) I(0.01, msmax[i])
+     Smax[i] <- Smaxr[i]*10000
+  ##   Smaxx[i] <- Smaxxr[i]*10000
+  # save prior dens. func. for the slope 
+  intercept[i] ~ dlnorm(lmu_a,tau_a) #HBM prior on Ricker a parameter
+  interceptx[i] ~ dlnorm(lmu_a,tau_a)
+  slope[i] <- 1/(Smax[i]) #calculate Smax from the Ricker b
+       se[i]~dunif(0.05,10)  #prior on likelihood function sigma
+      tau[i]<-pow(se[i],-2)	#computation of tau corrected from K+E
+     CC[i] <- intercept[i]/slope[i]  # compute intercept by stock
+     Smsy[i] <- CC[i]*(0.5-0.07*intercept[i])   #compute Smsy by stock
+     Rmsy[i] <- Smsy[i]*exp(intercept[i]-slope[i]*Smsy[i])
+     msy[i]<- Rmsy[i]-Smsy[i]
+     Umsy[i] <- msy[i]/Rmsy[i]
+  #   Umsy[i] <- 0.5*intercept[i] *(1 - 0.07*intercept[i]) #Umsy by stock
+     af10[i] <- mean(ay[i,(Nyear-9):Nyear]) #average productivity last 10 yr
+     CCf10[i] <- af10[i]/slope[i]  # compute CC last 10yr by stock
+     Smsyf10[i] <- CCf10[i]*(0.5-0.07*af10[i])   #Smsy final 10 yr by stock
+    # Umsyf10[i] <- 0.5*af10[i] *(1 - 0.07*af10[i]) #Umsy final 10 yr by stock
+    Rmsyf10[i] <- Smsyf10[i]*exp(af10[i]-slope[i]*Smsyf10[i])
+     msyf10[i] <- Rmsyf10[i]-Smsyf10[i]
+     Umsyf10[i] <- msyf10[i]/Rmsyf10[i]
+  }
+  SumSmsy<-sum(Smsy[1:Nstocks]) #sum of Smsy across stocks
+  SumSmsyf10<-sum(Smsyf10[1:Nstocks]) #Smsy sum last 10 years
+  slopemn <- mean(slope[1:Nstocks])
+  interceptmn<-mean(intercept[1:Nstocks])
+  sd_a<-pow(tau_a,-0.5)
+  lmu_a~dnorm(0.5,1.0E-6) #hyperprior mean for log median of Ricker a parameter
+  mu_a<-exp(lmu_a)            #same hyper priors as in Korman and English (2013)
+  tau_a~dgamma(0.5,0.5)
+  cv_a <- sd_a/mu_a
+  #interceptnew ~ dlnorm(lmu_a,tau_a)
+}
