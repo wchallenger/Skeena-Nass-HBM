@@ -1,3 +1,4 @@
+library(scales)
 est <- rbind(
   readRDS("HBM/result_HBM_McAllister_m24.rds"),
   readRDS("HBM/result_HBM_McAllister_m25.rds"),
@@ -8,8 +9,7 @@ est <- rbind(
  ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
-
-
+est <-   rbind(est, readRDS("HBM/result_HBM_KormanEnglish.rds") %>% mutate(Type="K&E"))
 
 p <-   est %>%
   filter(Parm == "Smsy") %>%
@@ -65,16 +65,16 @@ library(gridExtra)
 #   ))
 
 
-p %+% filter(est, Parm %in% c("a", "intercept") ) + theme(legend.position = 'none',axis.title.y = element_blank()) + labs(x = expression(alpha), title = "A) Productivity")
-p %+% filter(est, Parm %in% c("b", "slope") )+ theme(axis.title.y = element_blank())+labs(x = expression(beta), title = "B) Density-dependency")
-p  + theme(legend.position = 'top') + theme(axis.title.y = element_blank())+ labs(  title = "C) Spawning Stock Size at Maximum Sustainable Yield")
+p %+% filter(est, Parm %in% c("a", "intercept") ) + theme(legend.position = 'right',axis.title.y = element_blank()) + labs(x = expression(alpha), title = "A) Productivity", fill="Run", color="Run")
+p %+% filter(est, Parm %in% c("b", "slope") )+ theme(axis.title.y = element_blank())+labs(x = expression(beta), title = "B) Density-dependency", fill="Run", color="Run")
+p  + theme(legend.position = 'right') + theme(axis.title.y = element_blank())+ labs(  title = "C) Spawning Stock Size at Maximum Sustainable Yield", fill="Run", color="Run")
 
 
 
 
 
 # Gottfried Estimates -----------------------------------------------------
-
+library(openxlsx)
 read.xlsx(
   xlsxFile = "/Users/wchallenger/OneDrive - LGL Limited/Projects/Fisheries/Skeena-Nass-SX/Meetings/2021/2021-12-14/TWG_Dec14_PrelimOutputs.xlsx",
   sheet = "TAB 1 - AltSRDataSets"
@@ -96,7 +96,7 @@ x <- left_join(
   filter(!is.na(Smsy))%>%
   filter(Type != "Rev1")
 #filter(str_detect(Type, "McAl")) 
-
+library(ggrepel)
 ggplot(x, aes(x=Smsy, y=Mean)) + 
   geom_errorbar(aes(ymin = `2.5%`, ymax=`97.5%`, color=Type), width=0) +
   geom_point(aes(shape=Type, color=Type), size=2) +
@@ -108,12 +108,15 @@ ggplot(x, aes(x=Smsy, y=Mean)) +
   scale_y_continuous(labels = comma)+
   theme(
     legend.key.width = unit(2, "lines"),
-    legend.title = element_blank(),
-    legend.justification =  c(1,1), 
-    legend.position =  c(1,1),
+    legend.position = "right",
+    # legend.title = element_blank(),
+    # legend.justification =  c(1,1), 
+    # legend.position =  c(1,1),
     legend.box.margin = margin(1,1,1,1, unit = "pt")
   ) +
   labs(
     y = expression(paste(S[MSY], " Estimated by HBM model")),
-    x = expression(paste(S[MSY], " - Gottfried Preliminary (Main Data, All Yrs)"))
+    x = expression(paste(S[MSY], " - Gottfried Preliminary (Main Data, All Yrs)")),
+    color = "Run",
+    shape = "Run"
   )
