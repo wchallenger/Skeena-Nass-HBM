@@ -46,7 +46,7 @@ sr.dat <-  left_join(
     by = "Stock"
   ) %>%
   rename(Spawn = Spn) %>%
-  select(Stock, CU,Spawn, lnRSobs, year) %>%
+  select(Stock, CU,Spawn, lnRSobs, year, Year) %>%
   arrange(CU, year)
 
 # Check to ensure all the Smax database and SR database match.
@@ -103,7 +103,7 @@ if (str_detect(mod.file, "^KormanEnglish")) {
   if (mod.ver %in% paste0("m", c(23:24, 26:28))) {
     jags.dat$Smaxmax = smax.dat$Smaxmax
   }
-  parms <-  c("intercept", "slope", "intercmn", "intercsd", "CC", "Smsy", "Umsy")
+  parms <-  c("intercept", "slope", "se",  "CC", "Smsy", "Smax")
   
   if (mod.ver %in%  paste0("m",c(7:8, 23:24, 25, 28))) {
     parms = c(parms, "TE")
@@ -190,28 +190,59 @@ if (exists('diagnostics')) {
 x <- summary(samps)
 
 # reorganize estimates for queries
-est <- cbind(
-  as.data.frame(x$statistics),
-  as.data.frame(x$quantiles)
-) %>%
+# est <- cbind(
+#   as.data.frame(x$statistics),
+#   as.data.frame(x$quantiles)
+# ) %>%
+#   rownames_to_column("Node") %>%
+#   mutate(
+#     Parm = str_replace(Node, "\\[[[:digit:],]+\\]", ""),
+#     StkID = as.numeric(str_replace(str_extract(Node, "\\[[:digit:]+"), "\\[", ""))
+#   )%>%
+#   left_join(
+#     x =.,
+#     y = smax.dat %>% select(ID, Stock),
+#     by = c("StkID" = "ID")
+#   ) %>%
+#   arrange(Parm, StkID) %>%
+#   select( StkID, Stock, Node, Parm, Mean, SD, `Time-series SE`, `2.5%`, `50%`, `97.5%`) %>%
+#   mutate(
+#     CV = SD/Mean,
+#     Model = str_replace(mod.file, "\\.txt", ""),
+#     Run = run.name,
+#     Description = description
+#   )
+
+est <- MCMCsummary(samps, probs = c(0.025, 0.25, 0.5, 0.75, 0.975)) %>%
   rownames_to_column("Node") %>%
+  as_tibble %>%
   mutate(
     Parm = str_replace(Node, "\\[[[:digit:],]+\\]", ""),
-    StkID = as.numeric(str_replace(str_extract(Node, "\\[[:digit:]+"), "\\[", ""))
-  )%>%
+    Idx = as.numeric(str_replace(str_extract(Node, "\\[[:digit:]+"), "\\[", "")),
+    StkIdx = ifelse(Parm %in% c("CC", "intercept", "slope", "se", "Smax") | str_detect(Parm, "msy"), Idx, NA),
+    YrIdx = ifelse(Parm %in% "TE", Idx, NA)
+  ) %>% 
+
   left_join(
     x =.,
     y = smax.dat %>% select(ID, Stock),
-    by = c("StkID" = "ID")
+    by = c("StkIdx" = "ID")
   ) %>%
-  arrange(Parm, StkID) %>%
-  select( StkID, Stock, Node, Parm, Mean, SD, `Time-series SE`, `2.5%`, `50%`, `97.5%`) %>%
+  # Left join Year
+  left_join(
+    x =.,
+    y = sr.dat %>% select(year, Year) %>% unique,
+    by = c("YrIdx" = "year")
+  ) %>% 
+  arrange(Parm, StkIdx) %>%
+  select(Node,Parm, Stock, Year,  mean:n.eff) %>%
   mutate(
-    CV = SD/Mean,
+    CV = sd/mean,
     Model = str_replace(mod.file, "\\.txt", ""),
     Run = run.name,
     Description = description
   )
+
 
 
 
@@ -225,9 +256,17 @@ est <- cbind(
 
 # Derived Parameters
 est %>% filter(Parm == "CC")
+est %>% filter(Parm == "TE")
 est %>% filter(Parm == "Smsy")
 est %>% filter(Parm == "Umsy")
 
 # Save  R data object
-saveRDS(est, file = file.path(save.dir, out.file))
+results.obj <- list(
+  sr.data = sr.dat,
+  smax.data = smax.dat,
+  fit = jagsfit.p, 
+  estimates = est, 
+  samples = samps
+)
+saveRDS(results.obj, file = file.path(save.dir, out.file))
 
