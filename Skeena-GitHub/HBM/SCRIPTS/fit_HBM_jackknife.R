@@ -1,4 +1,4 @@
-# Used for jacknife fitting
+# Used for jackknife fitting
 
 mod.ver <- str_extract(basename(mod.file), "m[:digit:]+")
 # Prepare JAGS Data -------------------------------------------------------
