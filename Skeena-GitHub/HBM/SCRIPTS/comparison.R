@@ -1,11 +1,14 @@
 library(scales)
+
+ver <- "2022-03-02"
+
 est <- rbind(
-  readRDS("HBM/result_HBM_McAllister_m24.rds"),
-  readRDS("HBM/result_HBM_McAllister_m25.rds"),
-  readRDS("HBM/result_HBM_McAllister_m26.rds"),
-  readRDS("HBM/result_HBM_McAllister_m27.rds"),
-  readRDS("HBM/result_HBM_McAllister_m28.rds"),
-  readRDS("HBM/result_HBM_McAllister_m29.rds")
+  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_McAllister_m24.rds"))$estimates,
+  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_McAllister_m25.rds"))$estimates,
+  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_McAllister_m26.rds"))$estimates,
+  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_McAllister_m27.rds"))$estimates,
+  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_McAllister_m28.rds"))$estimates,
+  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_McAllister_m29.rds"))$estimates
  ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
