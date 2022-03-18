@@ -37,10 +37,12 @@ model{
      probb[i] <-step(slope[i]) # prob =1 if slope < 0 for Ricker function
   # prior density function for the Ricker b parameter
      slope[i] ~ dlnorm(ms[i],taus[i])  I(msmin[i], )
-     slopex[i] ~ dlnorm(ms[i],taus[i]) I(msmin[i], )
+     slope_x[i] ~ dlnorm(ms[i],taus[i]) I(msmin[i], )
   # save prior dens. func. for the slope 
   intercept[i] ~ dlnorm(lmu_a,tau_a) #HBM prior on Ricker a parameter
-  interceptx[i] ~ dlnorm(lmu_a,tau_a)
+  intercept_c[i] <- intercept[i] + ((se[i]*se[i]) / 2)   # bias corrected version, does not enter the likelihood
+  intercept_x[i] ~ dlnorm(lmu_a,tau_a)
+  
   Smax[i] <- 1/slope[i] #calculate Smax from the Ricker b
        se[i]~dunif(0.05,10)  #prior on likelihood function sigma
       tau[i]<-pow(se[i],-2)	#computation of tau corrected from K+E
@@ -60,6 +62,7 @@ model{
   }
   SumSmsy<-sum(Smsy[1:Nstocks]) #sum of Smsy across stocks
   SumSmsyf10<-sum(Smsyf10[1:Nstocks]) #Smsy sum last 10 years
+  # @TODO - first period before last 10 years
   slopemn <- mean(slope[1:Nstocks])
   interceptmn<-mean(intercept[1:Nstocks])
   sd_a<-pow(tau_a,-0.5)
@@ -67,5 +70,9 @@ model{
   mu_a<-exp(lmu_a)            #same hyper priors as in Korman and English (2013)
   tau_a~dgamma(0.5,0.5)
   cv_a <- sd_a/mu_a
-  #interceptnew ~ dlnorm(lmu_a,tau_a)
+  
+  # non updated node monitoring
+  intercept_hyper ~ dlnorm(lmu_a,tau_a)
+  
+  tau_a_x ~ dgamma(0.5,0.5)
 }
