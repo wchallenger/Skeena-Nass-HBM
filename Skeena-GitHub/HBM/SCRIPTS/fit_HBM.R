@@ -6,6 +6,8 @@
 #   chains = 6
 # )
 
+sr.scale <- 1
+# sr.scale <- 1e6
 
 mod.ver <- str_extract(basename(mod.file), "m[:digit:]+")
 run.ver <- str_extract(basename(run.name), "m[:digit:]+")
@@ -22,6 +24,12 @@ message("WARNING: Using Mcalliser smax")
 smax.old <-  smax.dat
 smax.dat <- cbind(smax.alt, smax.old %>% select(ID, Basin,Stock))
 if (names(runs)[r] == "McAllister m29") smax.dat$prCV <- 2
+
+
+smax.dat <- smax.dat %>% mutate(
+  prSmax = prSmax/sr.scale,
+  Smaxmax = Smaxmax/sr.scale
+)
 
 # PREP: SR Data ----------------------------------------------------
 # Stock Recruit Data
@@ -45,7 +53,8 @@ sr.dat <-  left_join(
     y = smax.dat %>% select(ID, Stock) %>% rename(CU = ID),
     by = "Stock"
   ) %>%
-  rename(Spawn = Spn) %>%
+  # rename(Spawn = Spn) %>%
+  mutate(Spawn = Spn / sr.scale) %>%
   select(Stock, CU,Spawn, lnRSobs, year, Year) %>%
   arrange(CU, year)
 
@@ -103,7 +112,7 @@ if (str_detect(mod.file, "^KormanEnglish")) {
   if (mod.ver %in% paste0("m", c(23:24, 26:28))) {
     jags.dat$Smaxmax = smax.dat$Smaxmax
   }
-  parms <-  c("intercept", "slope", "se",  "CC", "Smsy", "Smax")
+  parms <-  c("tau_a", "tau_a_x", "intercept", "intercept_x", "intercept_c", "slope", "slope_x", "se",  "CC", "Smsy", "Smax")
   
   if (mod.ver %in%  paste0("m",c(7:8, 23:24, 25, 28))) {
     parms = c(parms, "TE")
@@ -187,8 +196,8 @@ if (exists('diagnostics')) {
 }
 # Summaries Statistics ------------------------------------------------
 
-x <- summary(samps)
-
+# x <- summary(samps)
+# 
 # reorganize estimates for queries
 # est <- cbind(
 #   as.data.frame(x$statistics),
@@ -219,7 +228,7 @@ est <- MCMCsummary(samps, probs = c(0.025, 0.25, 0.5, 0.75, 0.975)) %>%
   mutate(
     Parm = str_replace(Node, "\\[[[:digit:],]+\\]", ""),
     Idx = as.numeric(str_replace(str_extract(Node, "\\[[:digit:]+"), "\\[", "")),
-    StkIdx = ifelse(Parm %in% c("CC", "intercept", "slope", "se", "Smax") | str_detect(Parm, "msy"), Idx, NA),
+    StkIdx = ifelse(Parm %in% c("CC", "intercept", "intercept.c", "slope", "se", "Smax") | str_detect(Parm, "msy"), Idx, NA),
     YrIdx = ifelse(Parm %in% "TE", Idx, NA)
   ) %>% 
 
