@@ -15,9 +15,9 @@ base.dir <- "."  # assumed working directory is set to project root.
 data.dir <- file.path(base.dir, "DATA")
 script.dir <- file.path(base.dir, "HBM", "SCRIPTS")
 jags.dir <- file.path(base.dir, "HBM", "JAGS")
-save.dir <- file.path(base.dir, "HBM")
+save.dir <- file.path(base.dir, "HBM", "RESULTS", Sys.Date())
 
-
+if (!dir.exists(save.dir)) dir.create(save.dir)
 
 # WORKAROUND --------------------------------------------------------------
 
@@ -40,7 +40,7 @@ runs[['KormanEnglish']] <- list(
   description ="Korman and English with Dec 14 Smax priors",
   out.file = "result_HBM_KormanEnglish.rds"
 )
-# 
+#
 # # McAllister 2021 model without year effects
 # runs[['McAllister M6']] <- list(
 #   mod.file = "McAllister_HBM_m6.txt",
@@ -79,7 +79,7 @@ runs[['McAllister m23']] <- list(
 )
 
 
-# Run m24 ------------------------------------------------------------ 
+# Run m24 ------------------------------------------------------------
 # McAllister 2021 model with year effects
 runs[['McAllister m24']] <- list(
   mod.file = "McAllister_HBM_m24.txt",
