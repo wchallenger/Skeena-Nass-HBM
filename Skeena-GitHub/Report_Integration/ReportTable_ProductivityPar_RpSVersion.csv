@@ -1,0 +1,514 @@
+"Stock","Model","ReportLabel","ReportSeq","YrIdx","Year","SpnLabel","Spn","Median","Mean","p10","p25","p75","p90","SpnSeq"
+"Alastair","AlastairAR198","AR198",6,NA,NA,"AtMinObs",983,4.9,5.4,3.1,3.8,6.3,8.1,1
+"Alastair","AlastairAR1AllYr","AR1",4,NA,NA,"AtMinObs",983,4,4.1,3.1,3.5,4.6,5.1,1
+"Alastair","AlastairAR1AllYrUP","AR1u",5,NA,NA,"AtMinObs",983,4,4,3.1,3.5,4.5,5,1
+"Alastair","AlastairBasic98","BR98",3,NA,NA,"AtMinObs",983,4.9,5.2,3.1,3.8,6.2,7.8,1
+"Alastair","AlastairBasicAllYr","BR",1,NA,NA,"AtMinObs",983,3.8,3.8,3,3.3,4.2,4.7,1
+"Alastair","AlastairBasicAllYrUP","BRu",2,NA,NA,"AtMinObs",983,3.7,3.8,3,3.3,4.2,4.7,1
+"Alastair","AlastairKalman98","KF98",9,16,2013,"AtMinObs",983,2.6,3.2,0.6,1.1,4.4,6.4,1
+"Alastair","AlastairKalman98","KF98",9,11,2008,"AtMinObs",983,6.7,9,3.5,4.6,10.8,18.4,1
+"Alastair","AlastairKalmanAllYr","KF",7,7,1966,"AtMinObs",983,1.7,1.9,0.9,1.2,2.5,3.2,1
+"Alastair","AlastairKalmanAllYr","KF",7,49,2008,"AtMinObs",983,8.5,9.8,4.4,5.9,12.2,17.1,1
+"Alastair","AlastairKalmanAllYrUP","KFu",8,7,1966,"AtMinObs",983,1.7,1.9,0.9,1.2,2.6,3.3,1
+"Alastair","AlastairKalmanAllYrUP","KFu",8,49,2008,"AtMinObs",983,8.2,9.8,4.4,5.7,12.3,17.6,1
+"Alastair","AlastairAR198","AR198",6,NA,NA,"At100",100,5.1,5.6,3.2,4,6.6,8.5,2
+"Alastair","AlastairAR1AllYr","AR1",4,NA,NA,"At100",100,4.2,4.3,3.2,3.6,4.8,5.4,2
+"Alastair","AlastairAR1AllYrUP","AR1u",5,NA,NA,"At100",100,4.1,4.2,3.2,3.6,4.7,5.3,2
+"Alastair","AlastairBasic98","BR98",3,NA,NA,"At100",100,5,5.5,3.2,3.9,6.5,8.2,2
+"Alastair","AlastairBasicAllYr","BR",1,NA,NA,"At100",100,3.9,4,3.1,3.5,4.4,5,2
+"Alastair","AlastairBasicAllYrUP","BRu",2,NA,NA,"At100",100,3.9,4,3.1,3.4,4.4,4.9,2
+"Alastair","AlastairKalman98","KF98",9,16,2013,"At100",100,2.7,3.3,0.6,1.2,4.6,6.7,2
+"Alastair","AlastairKalman98","KF98",9,11,2008,"At100",100,7,9.3,3.6,4.8,11.3,19.1,2
+"Alastair","AlastairKalmanAllYr","KF",7,7,1966,"At100",100,1.7,2,0.9,1.2,2.6,3.4,2
+"Alastair","AlastairKalmanAllYr","KF",7,49,2008,"At100",100,8.8,10.2,4.6,6.1,12.7,17.9,2
+"Alastair","AlastairKalmanAllYrUP","KFu",8,7,1966,"At100",100,1.8,2,1,1.2,2.7,3.5,2
+"Alastair","AlastairKalmanAllYrUP","KFu",8,49,2008,"At100",100,8.6,10.2,4.5,6,12.8,18.4,2
+"Alastair","AlastairAR198","AR198",6,NA,NA,"At1k",1000,4.9,5.3,3.1,3.8,6.3,8,3
+"Alastair","AlastairAR1AllYr","AR1",4,NA,NA,"At1k",1000,4,4.1,3.1,3.5,4.6,5.1,3
+"Alastair","AlastairAR1AllYrUP","AR1u",5,NA,NA,"At1k",1000,4,4,3.1,3.5,4.5,5,3
+"Alastair","AlastairBasic98","BR98",3,NA,NA,"At1k",1000,4.9,5.2,3.1,3.8,6.2,7.8,3
+"Alastair","AlastairBasicAllYr","BR",1,NA,NA,"At1k",1000,3.7,3.8,3,3.3,4.2,4.7,3
+"Alastair","AlastairBasicAllYrUP","BRu",2,NA,NA,"At1k",1000,3.7,3.8,3,3.3,4.2,4.7,3
+"Alastair","AlastairKalman98","KF98",9,16,2013,"At1k",1000,2.6,3.2,0.6,1.1,4.4,6.4,3
+"Alastair","AlastairKalman98","KF98",9,11,2008,"At1k",1000,6.7,9,3.5,4.6,10.8,18.3,3
+"Alastair","AlastairKalmanAllYr","KF",7,7,1966,"At1k",1000,1.7,1.9,0.9,1.2,2.5,3.2,3
+"Alastair","AlastairKalmanAllYr","KF",7,49,2008,"At1k",1000,8.5,9.8,4.4,5.9,12.2,17.1,3
+"Alastair","AlastairKalmanAllYrUP","KFu",8,7,1966,"At1k",1000,1.7,1.9,0.9,1.2,2.6,3.3,3
+"Alastair","AlastairKalmanAllYrUP","KFu",8,49,2008,"At1k",1000,8.2,9.8,4.4,5.7,12.3,17.6,3
+"Asitka","AsitkaBasic98","BR98",2,NA,NA,"AtMinObs",88,3.6,4,2,2.6,4.8,6.3,1
+"Asitka","AsitkaBasicAllYr","BR",1,NA,NA,"AtMinObs",2,3.4,3.6,2.2,2.7,4.3,5.3,1
+"Asitka","AsitkaBasic98","BR98",2,NA,NA,"At100",100,3.6,3.9,2,2.6,4.8,6.2,2
+"Asitka","AsitkaBasicAllYr","BR",1,NA,NA,"At100",100,3.2,3.4,2,2.6,4,4.9,2
+"Asitka","AsitkaBasic98","BR98",2,NA,NA,"At1k",1000,1.9,2,1.3,1.6,2.4,2.9,3
+"Asitka","AsitkaBasicAllYr","BR",1,NA,NA,"At1k",1000,1.8,1.8,1.3,1.5,2.1,2.5,3
+"Babine Early Wild","BabEWAR198","AR198",4,NA,NA,"AtMinObs",6980,1.2,1.2,1,1.1,1.3,1.5,1
+"Babine Early Wild","BabEWAR1AllYr","AR1",3,NA,NA,"AtMinObs",6980,2.8,2.9,2.2,2.5,3.3,3.8,1
+"Babine Early Wild","BabEWBasic98","BR98",2,NA,NA,"AtMinObs",6980,1.2,1.3,0.9,1,1.5,1.8,1
+"Babine Early Wild","BabEWBasicAllYr","BR",1,NA,NA,"AtMinObs",6980,2.7,2.8,2.1,2.4,3.1,3.5,1
+"Babine Early Wild","BabEWKalman98","KF98",6,16,2013,"AtMinObs",6980,1.1,1.2,0.7,0.9,1.4,1.8,1
+"Babine Early Wild","BabEWKalman98","KF98",6,1,1998,"AtMinObs",6980,1.4,1.6,0.8,1.1,1.8,2.5,1
+"Babine Early Wild","BabEWKalmanAllYr","KF",5,54,2013,"AtMinObs",6980,1.5,1.5,0.9,1.1,1.8,2.3,1
+"Babine Early Wild","BabEWKalmanAllYr","KF",5,6,1965,"AtMinObs",6980,4.3,4.5,2.9,3.5,5.3,6.5,1
+"Babine Early Wild","BabEWAR198","AR198",4,NA,NA,"At100",100,1.2,1.3,1,1.1,1.4,1.6,2
+"Babine Early Wild","BabEWAR1AllYr","AR1",3,NA,NA,"At100",100,3.1,3.2,2.3,2.6,3.6,4.2,2
+"Babine Early Wild","BabEWBasic98","BR98",2,NA,NA,"At100",100,1.3,1.4,0.9,1.1,1.6,1.9,2
+"Babine Early Wild","BabEWBasicAllYr","BR",1,NA,NA,"At100",100,3,3,2.2,2.5,3.4,3.9,2
+"Babine Early Wild","BabEWKalman98","KF98",6,16,2013,"At100",100,1.2,1.2,0.7,0.9,1.5,1.9,2
+"Babine Early Wild","BabEWKalman98","KF98",6,1,1998,"At100",100,1.4,1.7,0.9,1.1,1.9,2.6,2
+"Babine Early Wild","BabEWKalmanAllYr","KF",5,54,2013,"At100",100,1.6,1.7,1,1.2,2,2.5,2
+"Babine Early Wild","BabEWKalmanAllYr","KF",5,6,1965,"At100",100,4.7,5,3.1,3.8,5.8,7.1,2
+"Babine Early Wild","BabEWAR198","AR198",4,NA,NA,"At1k",1000,1.2,1.3,1,1.1,1.4,1.6,3
+"Babine Early Wild","BabEWAR1AllYr","AR1",3,NA,NA,"At1k",1000,3,3.1,2.3,2.6,3.6,4.1,3
+"Babine Early Wild","BabEWBasic98","BR98",2,NA,NA,"At1k",1000,1.3,1.4,0.9,1.1,1.6,1.9,3
+"Babine Early Wild","BabEWBasicAllYr","BR",1,NA,NA,"At1k",1000,2.9,3,2.2,2.5,3.4,3.9,3
+"Babine Early Wild","BabEWKalman98","KF98",6,16,2013,"At1k",1000,1.2,1.2,0.7,0.9,1.5,1.9,3
+"Babine Early Wild","BabEWKalman98","KF98",6,1,1998,"At1k",1000,1.4,1.6,0.9,1.1,1.9,2.6,3
+"Babine Early Wild","BabEWKalmanAllYr","KF",5,54,2013,"At1k",1000,1.6,1.7,1,1.2,2,2.4,3
+"Babine Early Wild","BabEWKalmanAllYr","KF",5,6,1965,"At1k",1000,4.7,4.9,3.1,3.7,5.8,7,3
+"Babine Late Wild","BabLWAR198","AR198",4,NA,NA,"AtMinObs",39602,1.5,1.6,1.3,1.4,1.7,1.9,1
+"Babine Late Wild","BabLWAR1AllYr","AR1",3,NA,NA,"AtMinObs",39602,3.1,3.2,2.3,2.6,3.6,4.1,1
+"Babine Late Wild","BabLWBasic98","BR98",2,NA,NA,"AtMinObs",39602,1.6,1.7,1.2,1.4,2,2.3,1
+"Babine Late Wild","BabLWBasicAllYr","BR",1,NA,NA,"AtMinObs",39602,2.9,3,2.3,2.5,3.4,3.8,1
+"Babine Late Wild","BabLWKalman98","KF98",6,11,2008,"AtMinObs",39602,1.6,1.7,1,1.3,1.9,2.3,1
+"Babine Late Wild","BabLWKalman98","KF98",6,1,1998,"AtMinObs",39602,1.8,2,1.2,1.4,2.3,3.1,1
+"Babine Late Wild","BabLWKalmanAllYr","KF",5,54,2013,"AtMinObs",39602,1.9,1.9,1.2,1.5,2.3,2.8,1
+"Babine Late Wild","BabLWKalmanAllYr","KF",5,4,1963,"AtMinObs",39602,5.5,5.9,3.5,4.3,7.1,8.9,1
+"Babine Late Wild","BabLWAR198","AR198",4,NA,NA,"At100",100,1.6,1.7,1.3,1.4,1.8,2.1,2
+"Babine Late Wild","BabLWAR1AllYr","AR1",3,NA,NA,"At100",100,3.3,3.5,2.4,2.8,4,4.6,2
+"Babine Late Wild","BabLWBasic98","BR98",2,NA,NA,"At100",100,1.8,1.9,1.3,1.5,2.2,2.7,2
+"Babine Late Wild","BabLWBasicAllYr","BR",1,NA,NA,"At100",100,3.1,3.2,2.4,2.7,3.7,4.2,2
+"Babine Late Wild","BabLWKalman98","KF98",6,11,2008,"At100",100,1.7,1.8,1.1,1.4,2.1,2.6,2
+"Babine Late Wild","BabLWKalman98","KF98",6,1,1998,"At100",100,1.9,2.2,1.2,1.5,2.6,3.5,2
+"Babine Late Wild","BabLWKalmanAllYr","KF",5,54,2013,"At100",100,2.1,2.2,1.4,1.7,2.6,3.2,2
+"Babine Late Wild","BabLWKalmanAllYr","KF",5,4,1963,"At100",100,6.2,6.7,3.8,4.8,8.1,10.3,2
+"Babine Late Wild","BabLWAR198","AR198",4,NA,NA,"At1k",1000,1.6,1.7,1.3,1.4,1.8,2.1,3
+"Babine Late Wild","BabLWAR1AllYr","AR1",3,NA,NA,"At1k",1000,3.3,3.5,2.4,2.8,3.9,4.6,3
+"Babine Late Wild","BabLWBasic98","BR98",2,NA,NA,"At1k",1000,1.8,1.9,1.3,1.5,2.2,2.7,3
+"Babine Late Wild","BabLWBasicAllYr","BR",1,NA,NA,"At1k",1000,3.1,3.2,2.4,2.7,3.7,4.2,3
+"Babine Late Wild","BabLWKalman98","KF98",6,11,2008,"At1k",1000,1.7,1.8,1.1,1.4,2.1,2.6,3
+"Babine Late Wild","BabLWKalman98","KF98",6,1,1998,"At1k",1000,1.9,2.2,1.2,1.5,2.6,3.5,3
+"Babine Late Wild","BabLWKalmanAllYr","KF",5,54,2013,"At1k",1000,2.1,2.2,1.4,1.7,2.6,3.2,3
+"Babine Late Wild","BabLWKalmanAllYr","KF",5,4,1963,"At1k",1000,6.2,6.7,3.8,4.7,8,10.3,3
+"Babine Mid Wild","BabMWAR198","AR198",4,NA,NA,"AtMinObs",2720,3,3.3,1.5,2.1,4.1,5.4,1
+"Babine Mid Wild","BabMWAR1AllYr","AR1",3,NA,NA,"AtMinObs",2720,3.9,4,3.1,3.5,4.4,5,1
+"Babine Mid Wild","BabMWBasic98","BR98",2,NA,NA,"AtMinObs",2720,2.8,3.2,1.5,2,3.9,5.1,1
+"Babine Mid Wild","BabMWBasicAllYr","BR",1,NA,NA,"AtMinObs",2720,3.9,3.9,3,3.4,4.4,4.9,1
+"Babine Mid Wild","BabMWKalman98","KF98",6,16,2013,"AtMinObs",2720,2.2,2.6,0.8,1.4,3.3,4.8,1
+"Babine Mid Wild","BabMWKalman98","KF98",6,1,1998,"AtMinObs",2720,3.6,5,1.6,2.3,5.6,9.4,1
+"Babine Mid Wild","BabMWKalmanAllYr","KF",5,55,2014,"AtMinObs",2720,3.3,3.4,2.1,2.7,4.1,4.9,1
+"Babine Mid Wild","BabMWKalmanAllYr","KF",5,4,1963,"AtMinObs",2720,4.3,4.6,3,3.6,5.3,6.4,1
+"Babine Mid Wild","BabMWAR198","AR198",4,NA,NA,"At100",100,3.2,3.7,1.6,2.3,4.5,6.1,2
+"Babine Mid Wild","BabMWAR1AllYr","AR1",3,NA,NA,"At100",100,4.3,4.4,3.3,3.8,4.9,5.6,2
+"Babine Mid Wild","BabMWBasic98","BR98",2,NA,NA,"At100",100,3,3.5,1.6,2.1,4.3,5.8,2
+"Babine Mid Wild","BabMWBasicAllYr","BR",1,NA,NA,"At100",100,4.2,4.3,3.3,3.7,4.9,5.5,2
+"Babine Mid Wild","BabMWKalman98","KF98",6,16,2013,"At100",100,2.4,2.8,0.8,1.4,3.7,5.4,2
+"Babine Mid Wild","BabMWKalman98","KF98",6,1,1998,"At100",100,3.8,5.5,1.7,2.5,6.1,10.3,2
+"Babine Mid Wild","BabMWKalmanAllYr","KF",5,55,2014,"At100",100,3.6,3.8,2.3,2.9,4.5,5.4,2
+"Babine Mid Wild","BabMWKalmanAllYr","KF",5,4,1963,"At100",100,4.8,5.1,3.3,3.9,5.8,7.1,2
+"Babine Mid Wild","BabMWAR198","AR198",4,NA,NA,"At1k",1000,3.2,3.6,1.6,2.2,4.4,5.8,3
+"Babine Mid Wild","BabMWAR1AllYr","AR1",3,NA,NA,"At1k",1000,4.1,4.2,3.2,3.7,4.7,5.4,3
+"Babine Mid Wild","BabMWBasic98","BR98",2,NA,NA,"At1k",1000,2.9,3.4,1.6,2.1,4.2,5.5,3
+"Babine Mid Wild","BabMWBasicAllYr","BR",1,NA,NA,"At1k",1000,4.1,4.2,3.2,3.6,4.7,5.3,3
+"Babine Mid Wild","BabMWKalman98","KF98",6,16,2013,"At1k",1000,2.3,2.8,0.8,1.4,3.5,5.2,3
+"Babine Mid Wild","BabMWKalman98","KF98",6,1,1998,"At1k",1000,3.7,5.3,1.7,2.4,5.9,10,3
+"Babine Mid Wild","BabMWKalmanAllYr","KF",5,55,2014,"At1k",1000,3.5,3.7,2.2,2.8,4.4,5.2,3
+"Babine Mid Wild","BabMWKalmanAllYr","KF",5,4,1963,"At1k",1000,4.6,4.9,3.2,3.8,5.6,6.9,3
+"Bear","BearAR198","AR98",5,NA,NA,"AtMinObs",316,7.2,7.6,5,6,8.8,10.4,1
+"Bear","BearAR1AllYr","AR1",4,NA,NA,"AtMinObs",316,7.3,7.5,5.7,6.5,8.3,9.3,1
+"Bear","BearAR1AllYrUP","AR1u",6,NA,NA,"AtMinObs",316,7.3,7.4,5.7,6.4,8.3,9.3,1
+"Bear","BearBasic98","BR98",2,NA,NA,"AtMinObs",316,7.4,7.6,5.2,6.1,8.8,10.4,1
+"Bear","BearBasicAllYr","BR",1,NA,NA,"AtMinObs",200,6.9,7,5.6,6.2,7.7,8.5,1
+"Bear","BearBasicAllYrUP","BRu",3,NA,NA,"AtMinObs",200,6.9,7,5.7,6.2,7.7,8.5,1
+"Bear","BearKalman98","KF98",8,4,2001,"AtMinObs",316,5.4,5.6,2.7,4,7,8.7,1
+"Bear","BearKalman98","KF98",8,10,2007,"AtMinObs",316,9.1,10.4,6,7.3,12,16.4,1
+"Bear","BearKalmanAllYr","KF",7,17,2000,"AtMinObs",316,6.3,6.4,4.3,5.2,7.5,8.6,1
+"Bear","BearKalmanAllYr","KF",7,31,2014,"AtMinObs",316,9.5,10.4,6.4,7.7,12.1,15.2,1
+"Bear","BearKalmanAllYrUP","KFu",9,18,2001,"AtMinObs",316,6.3,6.4,4.2,5.2,7.5,8.7,1
+"Bear","BearKalmanAllYrUP","KFu",9,31,2014,"AtMinObs",316,9.5,10.4,6.4,7.7,12.1,15.4,1
+"Bear","BearAR198","AR98",5,NA,NA,"At100",100,7.5,7.8,5.2,6.2,9.1,10.8,2
+"Bear","BearAR1AllYr","AR1",4,NA,NA,"At100",100,7.6,7.7,5.9,6.7,8.7,9.7,2
+"Bear","BearAR1AllYrUP","AR1u",6,NA,NA,"At100",100,7.5,7.7,5.8,6.6,8.6,9.6,2
+"Bear","BearBasic98","BR98",2,NA,NA,"At100",100,7.6,7.9,5.3,6.3,9.1,10.8,2
+"Bear","BearBasicAllYr","BR",1,NA,NA,"At100",100,7.1,7.1,5.7,6.3,7.8,8.7,2
+"Bear","BearBasicAllYrUP","BRu",3,NA,NA,"At100",100,7.1,7.2,5.7,6.3,7.9,8.7,2
+"Bear","BearKalman98","KF98",8,4,2001,"At100",100,5.6,5.8,2.7,4.1,7.3,9,2
+"Bear","BearKalman98","KF98",8,10,2007,"At100",100,9.4,10.8,6.2,7.5,12.4,17,2
+"Bear","BearKalmanAllYr","KF",7,17,2000,"At100",100,6.5,6.6,4.4,5.4,7.8,8.9,2
+"Bear","BearKalmanAllYr","KF",7,31,2014,"At100",100,9.8,10.8,6.7,8,12.6,15.8,2
+"Bear","BearKalmanAllYrUP","KFu",9,18,2001,"At100",100,6.6,6.7,4.3,5.4,7.8,9.1,2
+"Bear","BearKalmanAllYrUP","KFu",9,31,2014,"At100",100,9.9,10.8,6.7,8,12.6,16,2
+"Bear","BearAR198","AR98",5,NA,NA,"At1k",1000,6.5,6.8,4.6,5.4,7.8,9.2,3
+"Bear","BearAR1AllYr","AR1",4,NA,NA,"At1k",1000,6.5,6.7,5.2,5.8,7.4,8.2,3
+"Bear","BearAR1AllYrUP","AR1u",6,NA,NA,"At1k",1000,6.5,6.6,5.1,5.8,7.3,8.2,3
+"Bear","BearBasic98","BR98",2,NA,NA,"At1k",1000,6.6,6.8,4.7,5.6,7.8,9.1,3
+"Bear","BearBasicAllYr","BR",1,NA,NA,"At1k",1000,6,6.1,4.9,5.4,6.6,7.3,3
+"Bear","BearBasicAllYrUP","BRu",3,NA,NA,"At1k",1000,6,6.1,5,5.4,6.6,7.3,3
+"Bear","BearKalman98","KF98",8,4,2001,"At1k",1000,4.9,5,2.4,3.6,6.3,7.7,3
+"Bear","BearKalman98","KF98",8,10,2007,"At1k",1000,8.1,9.3,5.5,6.6,10.6,14.6,3
+"Bear","BearKalmanAllYr","KF",7,17,2000,"At1k",1000,5.6,5.7,3.8,4.7,6.6,7.5,3
+"Bear","BearKalmanAllYr","KF",7,31,2014,"At1k",1000,8.4,9.2,5.8,6.9,10.7,13.4,3
+"Bear","BearKalmanAllYrUP","KFu",9,18,2001,"At1k",1000,5.6,5.7,3.8,4.7,6.7,7.6,3
+"Bear","BearKalmanAllYrUP","KFu",9,31,2014,"At1k",1000,8.4,9.2,5.8,6.9,10.7,13.5,3
+"Damdochax","DamdochaxAR197","AR97",5,NA,NA,"AtMinObs",462,5.8,5.8,4.6,5.2,6.3,6.9,1
+"Damdochax","DamdochaxAR1AllYr","AR1",4,NA,NA,"AtMinObs",462,6.2,6.3,4.9,5.5,7,7.8,1
+"Damdochax","DamdochaxAR1AllYrUP","AR1u",6,NA,NA,"AtMinObs",462,5.8,5.9,4.4,5,6.7,7.6,1
+"Damdochax","DamdochaxBasic97","BR97",2,NA,NA,"AtMinObs",462,5.5,5.6,4.4,4.9,6.1,6.8,1
+"Damdochax","DamdochaxBasicAllYr","BR",1,NA,NA,"AtMinObs",462,6.1,6.2,5,5.5,6.7,7.4,1
+"Damdochax","DamdochaxBasicAllYrUP","BRu",3,NA,NA,"AtMinObs",462,5.6,5.7,4.4,4.9,6.3,7,1
+"Damdochax","DamdochaxKalman97","KF97",8,1,1997,"AtMinObs",462,4.4,4.5,2.5,3.4,5.5,6.5,1
+"Damdochax","DamdochaxKalman97","KF97",8,6,2002,"AtMinObs",462,5.9,6.5,4.4,5.1,7.1,9.3,1
+"Damdochax","DamdochaxKalmanAllYr","KF",7,16,1997,"AtMinObs",462,3,3.2,2,2.4,3.8,4.6,1
+"Damdochax","DamdochaxKalmanAllYr","KF",7,3,1984,"AtMinObs",462,18.5,19.2,11.7,14.7,23,27.4,1
+"Damdochax","DamdochaxKalmanAllYrUP","KFu",9,16,1997,"AtMinObs",462,3,3.2,2,2.4,3.8,4.6,1
+"Damdochax","DamdochaxKalmanAllYrUP","KFu",9,3,1984,"AtMinObs",462,18.2,19,11.5,14.5,22.9,27.3,1
+"Damdochax","DamdochaxAR197","AR97",5,NA,NA,"At100",100,6.6,6.6,5.1,5.8,7.3,8,2
+"Damdochax","DamdochaxAR1AllYr","AR1",4,NA,NA,"At100",100,6.6,6.7,5.2,5.8,7.5,8.4,2
+"Damdochax","DamdochaxAR1AllYrUP","AR1u",6,NA,NA,"At100",100,6.1,6.3,4.6,5.3,7.1,8.1,2
+"Damdochax","DamdochaxBasic97","BR97",2,NA,NA,"At100",100,6.2,6.3,4.8,5.4,7,7.9,2
+"Damdochax","DamdochaxBasicAllYr","BR",1,NA,NA,"At100",100,6.4,6.6,5.3,5.8,7.1,7.9,2
+"Damdochax","DamdochaxBasicAllYrUP","BRu",3,NA,NA,"At100",100,5.8,6,4.6,5.2,6.6,7.4,2
+"Damdochax","DamdochaxKalman97","KF97",8,1,1997,"At100",100,5,5.1,2.7,3.7,6.2,7.4,2
+"Damdochax","DamdochaxKalman97","KF97",8,6,2002,"At100",100,6.7,7.3,4.9,5.7,8.1,10.4,2
+"Damdochax","DamdochaxKalmanAllYr","KF",7,16,1997,"At100",100,3.3,3.5,2.2,2.6,4.1,5,2
+"Damdochax","DamdochaxKalmanAllYr","KF",7,3,1984,"At100",100,19.9,20.7,12.5,15.7,24.8,29.6,2
+"Damdochax","DamdochaxKalmanAllYrUP","KFu",9,16,1997,"At100",100,3.3,3.4,2.1,2.6,4.1,5,2
+"Damdochax","DamdochaxKalmanAllYrUP","KFu",9,3,1984,"At100",100,19.6,20.5,12.2,15.5,24.7,29.5,2
+"Damdochax","DamdochaxAR197","AR97",5,NA,NA,"At1k",1000,4.8,4.8,4,4.4,5.1,5.5,3
+"Damdochax","DamdochaxAR1AllYr","AR1",4,NA,NA,"At1k",1000,5.7,5.7,4.5,5,6.4,7,3
+"Damdochax","DamdochaxAR1AllYrUP","AR1u",6,NA,NA,"At1k",1000,5.3,5.4,4.1,4.7,6.1,6.9,3
+"Damdochax","DamdochaxBasic97","BR97",2,NA,NA,"At1k",1000,4.6,4.6,3.8,4.1,5.1,5.6,3
+"Damdochax","DamdochaxBasicAllYr","BR",1,NA,NA,"At1k",1000,5.5,5.6,4.6,5,6.1,6.7,3
+"Damdochax","DamdochaxBasicAllYrUP","BRu",3,NA,NA,"At1k",1000,5.2,5.2,4.2,4.6,5.8,6.3,3
+"Damdochax","DamdochaxKalman97","KF97",8,1,1997,"At1k",1000,3.8,3.8,2.2,2.9,4.6,5.3,3
+"Damdochax","DamdochaxKalman97","KF97",8,6,2002,"At1k",1000,5,5.5,3.8,4.3,6,7.9,3
+"Damdochax","DamdochaxKalmanAllYr","KF",7,16,1997,"At1k",1000,2.7,2.9,1.8,2.2,3.4,4.2,3
+"Damdochax","DamdochaxKalmanAllYr","KF",7,3,1984,"At1k",1000,16.6,17.2,10.6,13.2,20.6,24.4,3
+"Damdochax","DamdochaxKalmanAllYrUP","KFu",9,16,1997,"At1k",1000,2.7,2.9,1.8,2.2,3.4,4.1,3
+"Damdochax","DamdochaxKalmanAllYrUP","KFu",9,3,1984,"At1k",1000,16.4,17.1,10.4,13,20.5,24.4,3
+"Fulton","FultonAR1AllYr","AR1",2,NA,NA,"AtMinObs",104023,6.5,6.8,4.2,5.1,8.1,10.1,1
+"Fulton","FultonBasicAllYr","BR",1,NA,NA,"AtMinObs",104023,6,6.3,4,4.8,7.4,8.9,1
+"Fulton","FultonKalmanAllYr","KF",3,44,2013,"AtMinObs",104023,4.6,5,2.7,3.5,6.1,7.8,1
+"Fulton","FultonKalmanAllYr","KF",3,16,1985,"AtMinObs",104023,6.4,6.8,4.3,5.1,8.1,9.7,1
+"Fulton","FultonAR1AllYr","AR1",2,NA,NA,"At100",100,9,10.3,4.9,6.5,12.6,17.1,2
+"Fulton","FultonBasicAllYr","BR",1,NA,NA,"At100",100,8.1,9,4.7,5.9,10.9,14.3,2
+"Fulton","FultonKalmanAllYr","KF",3,44,2013,"At100",100,6,6.9,3.1,4.2,8.7,11.8,2
+"Fulton","FultonKalmanAllYr","KF",3,16,1985,"At100",100,8.3,9.3,4.9,6.1,11.4,14.8,2
+"Fulton","FultonAR1AllYr","AR1",2,NA,NA,"At1k",1000,9,10.2,4.9,6.5,12.5,17,3
+"Fulton","FultonBasicAllYr","BR",1,NA,NA,"At1k",1000,8.1,9,4.7,5.9,10.9,14.3,3
+"Fulton","FultonKalmanAllYr","KF",3,44,2013,"At1k",1000,6,6.9,3.1,4.2,8.7,11.7,3
+"Fulton","FultonKalmanAllYr","KF",3,16,1985,"At1k",1000,8.3,9.3,4.9,6.1,11.4,14.7,3
+"Johnston","JohnstonBasicAllYr","BR",1,NA,NA,"AtMinObs",280,2,2.2,1.5,1.7,2.4,3,1
+"Johnston","JohnstonBasicAllYrUP","BRu",3,NA,NA,"AtMinObs",280,1.3,1.5,1,1.1,1.7,2.2,1
+"Johnston","JohnstonBasicAllYr","BR",1,NA,NA,"At100",100,2,2.2,1.5,1.7,2.5,3.1,2
+"Johnston","JohnstonBasicAllYrUP","BRu",3,NA,NA,"At100",100,1.3,1.5,1,1.1,1.7,2.2,2
+"Johnston","JohnstonBasicAllYr","BR",1,NA,NA,"At1k",1000,1.8,2,1.4,1.6,2.2,2.8,3
+"Johnston","JohnstonBasicAllYrUP","BRu",3,NA,NA,"At1k",1000,1.3,1.4,0.9,1.1,1.6,2,3
+"Kitsumkalum","KitsumkalumAR190","AR190",6,NA,NA,"AtMinObs",6535,4,4,3.3,3.6,4.3,4.7,1
+"Kitsumkalum","KitsumkalumAR1AllYr","AR1",3,NA,NA,"AtMinObs",669,3.7,3.7,3,3.3,4,4.4,1
+"Kitsumkalum","KitsumkalumBasic90","BR90",5,NA,NA,"AtMinObs",6535,4.4,4.4,3.8,4.1,4.8,5.1,1
+"Kitsumkalum","KitsumkalumBasicAllYr","BR",1,NA,NA,"AtMinObs",669,3.6,3.6,3,3.3,3.9,4.2,1
+"Kitsumkalum","KitsumkalumBasicAllYrNoInfill","BRni",2,NA,NA,"AtMinObs",669,3.5,3.5,2.9,3.1,3.9,4.2,1
+"Kitsumkalum","KitsumkalumKalman90","KF90",7,12,2001,"AtMinObs",6535,3,3.2,2.1,2.4,3.9,4.6,1
+"Kitsumkalum","KitsumkalumKalman90","KF90",7,1,1990,"AtMinObs",6535,6.2,6.3,4.3,5,7.5,8.4,1
+"Kitsumkalum","KitsumkalumKalmanAllYr","KF",4,18,1977,"AtMinObs",669,0.5,0.5,0.4,0.4,0.6,0.6,1
+"Kitsumkalum","KitsumkalumKalmanAllYr","KF",4,29,1988,"AtMinObs",669,14.8,14.8,12,13.4,16.1,17.4,1
+"Kitsumkalum","KitsumkalumAR190","AR190",6,NA,NA,"At100",100,5.2,5.3,4.2,4.7,5.9,6.5,2
+"Kitsumkalum","KitsumkalumAR1AllYr","AR1",3,NA,NA,"At100",100,3.7,3.8,3.1,3.3,4.1,4.5,2
+"Kitsumkalum","KitsumkalumBasic90","BR90",5,NA,NA,"At100",100,6.1,6.1,5.1,5.5,6.7,7.2,2
+"Kitsumkalum","KitsumkalumBasicAllYr","BR",1,NA,NA,"At100",100,3.6,3.7,3,3.3,4,4.3,2
+"Kitsumkalum","KitsumkalumBasicAllYrNoInfill","BRni",2,NA,NA,"At100",100,3.5,3.6,2.9,3.2,3.9,4.3,2
+"Kitsumkalum","KitsumkalumKalman90","KF90",7,12,2001,"At100",100,4,4.3,2.6,3.1,5.3,6.4,2
+"Kitsumkalum","KitsumkalumKalman90","KF90",7,1,1990,"At100",100,8.3,8.3,5.9,6.8,9.7,10.8,2
+"Kitsumkalum","KitsumkalumKalmanAllYr","KF",4,18,1977,"At100",100,0.5,0.5,0.4,0.4,0.6,0.7,2
+"Kitsumkalum","KitsumkalumKalmanAllYr","KF",4,29,1988,"At100",100,15.2,15.1,12.3,13.7,16.5,17.8,2
+"Kitsumkalum","KitsumkalumAR190","AR190",6,NA,NA,"At1k",1000,5,5.1,4.1,4.5,5.6,6.2,3
+"Kitsumkalum","KitsumkalumAR1AllYr","AR1",3,NA,NA,"At1k",1000,3.6,3.6,3,3.3,4,4.3,3
+"Kitsumkalum","KitsumkalumBasic90","BR90",5,NA,NA,"At1k",1000,5.8,5.9,4.9,5.3,6.4,6.9,3
+"Kitsumkalum","KitsumkalumBasicAllYr","BR",1,NA,NA,"At1k",1000,3.5,3.5,3,3.2,3.8,4.2,3
+"Kitsumkalum","KitsumkalumBasicAllYrNoInfill","BRni",2,NA,NA,"At1k",1000,3.4,3.5,2.8,3.1,3.8,4.2,3
+"Kitsumkalum","KitsumkalumKalman90","KF90",7,12,2001,"At1k",1000,3.9,4.1,2.5,3,5.1,6.1,3
+"Kitsumkalum","KitsumkalumKalman90","KF90",7,1,1990,"At1k",1000,7.9,8,5.6,6.5,9.4,10.5,3
+"Kitsumkalum","KitsumkalumKalmanAllYr","KF",4,18,1977,"At1k",1000,0.5,0.5,0.4,0.4,0.5,0.6,3
+"Kitsumkalum","KitsumkalumKalmanAllYr","KF",4,29,1988,"At1k",1000,14.6,14.6,11.8,13.2,15.9,17.1,3
+"Kitwanga","KitwangaBasic01","BR01",2,NA,NA,"AtMinObs",125,2.7,3,1.5,1.9,3.6,4.7,1
+"Kitwanga","KitwangaBasicAllYr","BR",1,NA,NA,"AtMinObs",50,2.8,3.1,1.7,2.1,3.7,4.8,1
+"Kitwanga","KitwangaBasicAllYrUP","BRu",3,NA,NA,"AtMinObs",50,2.9,3.1,1.7,2.2,3.7,4.8,1
+"Kitwanga","KitwangaBasic01","BR01",2,NA,NA,"At100",100,2.7,3,1.5,1.9,3.6,4.8,2
+"Kitwanga","KitwangaBasicAllYr","BR",1,NA,NA,"At100",100,2.8,3.1,1.7,2.1,3.7,4.8,2
+"Kitwanga","KitwangaBasicAllYrUP","BRu",3,NA,NA,"At100",100,2.9,3.1,1.7,2.2,3.7,4.7,2
+"Kitwanga","KitwangaBasic01","BR01",2,NA,NA,"At1k",1000,2.4,2.7,1.4,1.8,3.2,4.2,3
+"Kitwanga","KitwangaBasicAllYr","BR",1,NA,NA,"At1k",1000,2.6,2.8,1.6,2,3.3,4.2,3
+"Kitwanga","KitwangaBasicAllYrUP","BRu",3,NA,NA,"At1k",1000,2.6,2.8,1.6,2,3.3,4.2,3
+"Kwinageese","KwinageeseBasic97","BR97",2,NA,NA,"AtMinObs",107,6.5,8,3.7,4.8,8.8,12.1,1
+"Kwinageese","KwinageeseBasicAllYr","BR",1,NA,NA,"AtMinObs",107,4.6,4.9,3.1,3.7,5.7,6.9,1
+"Kwinageese","KwinageeseBasicAllYrUP","BRu",3,NA,NA,"AtMinObs",107,4.5,4.8,3.1,3.7,5.6,6.8,1
+"Kwinageese","KwinageeseBasic97","BR97",2,NA,NA,"At100",100,6.5,8,3.7,4.8,8.9,12.1,2
+"Kwinageese","KwinageeseBasicAllYr","BR",1,NA,NA,"At100",100,4.6,4.9,3.1,3.7,5.7,6.9,2
+"Kwinageese","KwinageeseBasicAllYrUP","BRu",3,NA,NA,"At100",100,4.6,4.8,3.1,3.7,5.6,6.8,2
+"Kwinageese","KwinageeseBasic97","BR97",2,NA,NA,"At1k",1000,5.8,6.6,3.5,4.5,7.7,10,3
+"Kwinageese","KwinageeseBasicAllYr","BR",1,NA,NA,"At1k",1000,4.3,4.5,3,3.5,5.3,6.3,3
+"Kwinageese","KwinageeseBasicAllYrUP","BRu",3,NA,NA,"At1k",1000,4.3,4.5,3,3.5,5.2,6.2,3
+"Lakelse","LakelseAR198","AR198",6,NA,NA,"AtMinObs",2529,2.7,2.8,1.7,2.1,3.3,4.1,1
+"Lakelse","LakelseAR1AllYr","AR1",4,NA,NA,"AtMinObs",2529,2.5,2.5,2,2.2,2.8,3.1,1
+"Lakelse","LakelseAR1AllYrUP","AR1u",5,NA,NA,"AtMinObs",2529,2.5,2.5,2,2.2,2.8,3.1,1
+"Lakelse","LakelseBasic98","BR98",3,NA,NA,"AtMinObs",2529,2.3,2.5,1.7,2,2.9,3.4,1
+"Lakelse","LakelseBasicAllYr","BR",1,NA,NA,"AtMinObs",2529,2.4,2.4,2,2.2,2.6,2.9,1
+"Lakelse","LakelseBasicAllYrUP","BRu",2,NA,NA,"AtMinObs",2529,2.4,2.4,2,2.2,2.7,2.9,1
+"Lakelse","LakelseKalman98","KF98",9,2,1999,"AtMinObs",2529,1.2,1.2,0.9,1,1.4,1.7,1
+"Lakelse","LakelseKalman98","KF98",9,14,2011,"AtMinObs",2529,10.5,13.3,4.4,6.7,16.5,24.5,1
+"Lakelse","LakelseKalmanAllYr","KF",7,9,1968,"AtMinObs",2529,0.8,0.9,0.5,0.6,1,1.3,1
+"Lakelse","LakelseKalmanAllYr","KF",7,1,1960,"AtMinObs",2529,10.6,10.9,6.7,8.4,12.9,15.4,1
+"Lakelse","LakelseKalmanAllYrUP","KFu",8,9,1968,"AtMinObs",2529,0.8,0.9,0.5,0.6,1,1.3,1
+"Lakelse","LakelseKalmanAllYrUP","KFu",8,1,1960,"AtMinObs",2529,10.5,10.8,6.6,8.4,12.8,15.2,1
+"Lakelse","LakelseAR198","AR198",6,NA,NA,"At100",100,3.1,3.3,1.9,2.4,3.9,5,2
+"Lakelse","LakelseAR1AllYr","AR1",4,NA,NA,"At100",100,2.8,2.8,2.2,2.5,3.2,3.6,2
+"Lakelse","LakelseAR1AllYrUP","AR1u",5,NA,NA,"At100",100,2.8,2.9,2.2,2.5,3.2,3.6,2
+"Lakelse","LakelseBasic98","BR98",3,NA,NA,"At100",100,2.7,2.8,1.8,2.2,3.3,4.1,2
+"Lakelse","LakelseBasicAllYr","BR",1,NA,NA,"At100",100,2.7,2.7,2.2,2.4,3,3.3,2
+"Lakelse","LakelseBasicAllYrUP","BRu",2,NA,NA,"At100",100,2.7,2.7,2.2,2.4,3,3.3,2
+"Lakelse","LakelseKalman98","KF98",9,2,1999,"At100",100,1.6,1.6,1,1.2,1.9,2.3,2
+"Lakelse","LakelseKalman98","KF98",9,14,2011,"At100",100,13.4,17.9,5.2,8.2,22.1,34.3,2
+"Lakelse","LakelseKalmanAllYr","KF",7,9,1968,"At100",100,0.9,1,0.6,0.7,1.1,1.4,2
+"Lakelse","LakelseKalmanAllYr","KF",7,1,1960,"At100",100,11.9,12.3,7.5,9.4,14.6,17.4,2
+"Lakelse","LakelseKalmanAllYrUP","KFu",8,9,1968,"At100",100,0.9,1,0.6,0.7,1.1,1.4,2
+"Lakelse","LakelseKalmanAllYrUP","KFu",8,1,1960,"At100",100,11.8,12.2,7.4,9.4,14.5,17.2,2
+"Lakelse","LakelseAR198","AR198",6,NA,NA,"At1k",1000,2.9,3.1,1.9,2.3,3.7,4.6,3
+"Lakelse","LakelseAR1AllYr","AR1",4,NA,NA,"At1k",1000,2.7,2.7,2.1,2.4,3,3.4,3
+"Lakelse","LakelseAR1AllYrUP","AR1u",5,NA,NA,"At1k",1000,2.7,2.7,2.1,2.4,3,3.4,3
+"Lakelse","LakelseBasic98","BR98",3,NA,NA,"At1k",1000,2.5,2.7,1.7,2.1,3.2,3.8,3
+"Lakelse","LakelseBasicAllYr","BR",1,NA,NA,"At1k",1000,2.6,2.6,2.1,2.3,2.8,3.1,3
+"Lakelse","LakelseBasicAllYrUP","BRu",2,NA,NA,"At1k",1000,2.6,2.6,2.1,2.3,2.9,3.2,3
+"Lakelse","LakelseKalman98","KF98",9,2,1999,"At1k",1000,1.4,1.5,0.9,1.1,1.7,2.1,3
+"Lakelse","LakelseKalman98","KF98",9,14,2011,"At1k",1000,12.2,16,4.9,7.6,19.9,30.2,3
+"Lakelse","LakelseKalmanAllYr","KF",7,9,1968,"At1k",1000,0.9,0.9,0.6,0.7,1.1,1.4,3
+"Lakelse","LakelseKalmanAllYr","KF",7,1,1960,"At1k",1000,11.4,11.7,7.2,9,13.9,16.7,3
+"Lakelse","LakelseKalmanAllYrUP","KFu",8,9,1968,"At1k",1000,0.8,0.9,0.6,0.7,1.1,1.4,3
+"Lakelse","LakelseKalmanAllYrUP","KFu",8,1,1960,"At1k",1000,11.3,11.7,7.1,9,13.8,16.4,3
+"Lower Nass Sea & River Type","LNassSRTAR197","AR197",4,NA,NA,"AtMinObs",904,3.9,4.3,2.6,3.1,5,6.3,1
+"Lower Nass Sea & River Type","LNassSRTAR1AllYr","AR1",3,NA,NA,"AtMinObs",815,3.3,3.4,2.3,2.7,3.9,4.7,1
+"Lower Nass Sea & River Type","LNassSRTBasic97","BR97",2,NA,NA,"AtMinObs",904,4,4.2,2.8,3.3,4.8,5.9,1
+"Lower Nass Sea & River Type","LNassSRTBasicAllYr","BR",1,NA,NA,"AtMinObs",815,3.3,3.4,2.4,2.8,3.9,4.5,1
+"Lower Nass Sea & River Type","LNassSRTKalman97","KF97",6,2,1998,"AtMinObs",904,1.4,1.9,0.3,0.7,2.7,4,1
+"Lower Nass Sea & River Type","LNassSRTKalman97","KF97",6,8,2004,"AtMinObs",904,6.4,7.2,3.5,4.5,9,11.9,1
+"Lower Nass Sea & River Type","LNassSRTKalmanAllYr","KF",5,3,1984,"AtMinObs",815,0.9,1.1,0.4,0.6,1.5,2.2,1
+"Lower Nass Sea & River Type","LNassSRTKalmanAllYr","KF",5,12,1993,"AtMinObs",815,10.2,14.3,3.6,5.5,19.2,32.8,1
+"Lower Nass Sea & River Type","LNassSRTAR197","AR197",4,NA,NA,"At100",100,4,4.3,2.6,3.1,5.1,6.5,2
+"Lower Nass Sea & River Type","LNassSRTAR1AllYr","AR1",3,NA,NA,"At100",100,3.3,3.5,2.3,2.8,4,4.8,2
+"Lower Nass Sea & River Type","LNassSRTBasic97","BR97",2,NA,NA,"At100",100,4,4.3,2.8,3.3,4.9,6.1,2
+"Lower Nass Sea & River Type","LNassSRTBasicAllYr","BR",1,NA,NA,"At100",100,3.3,3.5,2.5,2.8,4,4.6,2
+"Lower Nass Sea & River Type","LNassSRTKalman97","KF97",6,2,1998,"At100",100,1.4,1.9,0.3,0.7,2.8,4.1,2
+"Lower Nass Sea & River Type","LNassSRTKalman97","KF97",6,8,2004,"At100",100,6.5,7.3,3.5,4.6,9.1,12,2
+"Lower Nass Sea & River Type","LNassSRTKalmanAllYr","KF",5,3,1984,"At100",100,0.9,1.2,0.4,0.6,1.5,2.2,2
+"Lower Nass Sea & River Type","LNassSRTKalmanAllYr","KF",5,12,1993,"At100",100,10.4,14.6,3.7,5.6,19.6,33.3,2
+"Lower Nass Sea & River Type","LNassSRTAR197","AR197",4,NA,NA,"At1k",1000,3.9,4.3,2.6,3.1,5,6.3,3
+"Lower Nass Sea & River Type","LNassSRTAR1AllYr","AR1",3,NA,NA,"At1k",1000,3.2,3.4,2.3,2.7,3.9,4.7,3
+"Lower Nass Sea & River Type","LNassSRTBasic97","BR97",2,NA,NA,"At1k",1000,4,4.2,2.8,3.3,4.8,5.9,3
+"Lower Nass Sea & River Type","LNassSRTBasicAllYr","BR",1,NA,NA,"At1k",1000,3.3,3.4,2.4,2.8,3.9,4.5,3
+"Lower Nass Sea & River Type","LNassSRTKalman97","KF97",6,2,1998,"At1k",1000,1.4,1.9,0.3,0.7,2.7,4,3
+"Lower Nass Sea & River Type","LNassSRTKalman97","KF97",6,8,2004,"At1k",1000,6.4,7.2,3.5,4.5,9,11.9,3
+"Lower Nass Sea & River Type","LNassSRTKalmanAllYr","KF",5,3,1984,"At1k",1000,0.9,1.1,0.4,0.6,1.4,2.2,3
+"Lower Nass Sea & River Type","LNassSRTKalmanAllYr","KF",5,12,1993,"At1k",1000,10.1,14.2,3.6,5.5,19.2,32.6,3
+"Mcdonell","McdonellBasic98","BR98",2,NA,NA,"AtMinObs",327,7.2,7.5,4.7,5.7,8.8,10.6,1
+"Mcdonell","McdonellBasicAllYr","BR",1,NA,NA,"AtMinObs",200,4.9,5,4,4.4,5.5,6,1
+"Mcdonell","McdonellBasicAllYrUP","BRu",3,NA,NA,"AtMinObs",200,4.9,5,4,4.4,5.4,6,1
+"Mcdonell","McdonellBasic98","BR98",2,NA,NA,"At100",100,7.8,8.2,5.1,6.2,9.7,11.8,2
+"Mcdonell","McdonellBasicAllYr","BR",1,NA,NA,"At100",100,5.1,5.1,4.1,4.5,5.6,6.2,2
+"Mcdonell","McdonellBasicAllYrUP","BRu",3,NA,NA,"At100",100,5,5.1,4.1,4.5,5.6,6.2,2
+"Mcdonell","McdonellBasic98","BR98",2,NA,NA,"At1k",1000,5.5,5.7,3.8,4.5,6.6,7.7,3
+"Mcdonell","McdonellBasicAllYr","BR",1,NA,NA,"At1k",1000,3.9,3.9,3.2,3.5,4.2,4.6,3
+"Mcdonell","McdonellBasicAllYrUP","BRu",3,NA,NA,"At1k",1000,3.9,3.9,3.3,3.5,4.2,4.6,3
+"Meziadin","MeziadinAR197","AR197",6,NA,NA,"AtMinObs",88128,3.4,3.5,2.7,3,4,4.6,1
+"Meziadin","MeziadinAR1AllYr","AR1",4,NA,NA,"AtMinObs",50000,4.9,5.1,3.9,4.4,5.6,6.4,1
+"Meziadin","MeziadinAR1AllYrUP","AR1u",5,NA,NA,"AtMinObs",50000,4.4,4.5,3.3,3.8,5.2,5.9,1
+"Meziadin","MeziadinBasic97","BR97",3,NA,NA,"AtMinObs",88128,3.7,3.8,2.9,3.2,4.2,5,1
+"Meziadin","MeziadinBasicAllYr","BR",1,NA,NA,"AtMinObs",50000,5,5.1,4.1,4.5,5.6,6.3,1
+"Meziadin","MeziadinBasicAllYrUP","BRu",2,NA,NA,"AtMinObs",50000,4.5,4.6,3.3,3.8,5.2,6,1
+"Meziadin","MeziadinKalman97","KF97",9,17,2013,"AtMinObs",88128,1.3,1.4,1,1.1,1.5,1.8,1
+"Meziadin","MeziadinKalman97","KF97",9,2,1998,"AtMinObs",88128,8.8,8.9,6.7,7.7,10,11.2,1
+"Meziadin","MeziadinKalmanAllYr","KF",7,32,2013,"AtMinObs",50000,1.5,1.6,1.1,1.3,1.8,2.1,1
+"Meziadin","MeziadinKalmanAllYr","KF",7,7,1988,"AtMinObs",50000,17.3,17.2,11.7,14.2,20,22.3,1
+"Meziadin","MeziadinKalmanAllYrUP","KFu",8,32,2013,"AtMinObs",50000,1.4,1.5,1.1,1.2,1.7,2.1,1
+"Meziadin","MeziadinKalmanAllYrUP","KFu",8,7,1988,"AtMinObs",50000,17.3,17.1,11.5,14.3,20,22.2,1
+"Meziadin","MeziadinAR197","AR197",6,NA,NA,"At100",100,5.3,5.9,3.9,4.5,6.5,8.3,2
+"Meziadin","MeziadinAR1AllYr","AR1",4,NA,NA,"At100",100,6.3,6.5,4.9,5.5,7.2,8.5,2
+"Meziadin","MeziadinAR1AllYrUP","AR1u",5,NA,NA,"At100",100,5.5,5.6,3.8,4.5,6.5,7.7,2
+"Meziadin","MeziadinBasic97","BR97",3,NA,NA,"At100",100,6,6.9,4.4,5,7.8,10.6,2
+"Meziadin","MeziadinBasicAllYr","BR",1,NA,NA,"At100",100,6.3,6.6,5.1,5.6,7.3,8.5,2
+"Meziadin","MeziadinBasicAllYrUP","BRu",2,NA,NA,"At100",100,5.5,5.7,3.8,4.5,6.6,7.9,2
+"Meziadin","MeziadinKalman97","KF97",9,17,2013,"At100",100,2.1,2.2,1.5,1.7,2.6,3.2,2
+"Meziadin","MeziadinKalman97","KF97",9,2,1998,"At100",100,14.1,14.6,10.2,11.9,16.6,19.8,2
+"Meziadin","MeziadinKalmanAllYr","KF",7,32,2013,"At100",100,1.9,2,1.4,1.6,2.3,2.8,2
+"Meziadin","MeziadinKalmanAllYr","KF",7,7,1988,"At100",100,22.2,22.2,15,18.3,25.8,29.2,2
+"Meziadin","MeziadinKalmanAllYrUP","KFu",8,32,2013,"At100",100,1.8,1.9,1.3,1.5,2.2,2.7,2
+"Meziadin","MeziadinKalmanAllYrUP","KFu",8,7,1988,"At100",100,21.9,21.9,14.5,18.1,25.6,29,2
+"Meziadin","MeziadinAR197","AR197",6,NA,NA,"At1k",1000,5.3,5.8,3.9,4.5,6.5,8.3,3
+"Meziadin","MeziadinAR1AllYr","AR1",4,NA,NA,"At1k",1000,6.2,6.5,4.9,5.4,7.2,8.5,3
+"Meziadin","MeziadinAR1AllYrUP","AR1u",5,NA,NA,"At1k",1000,5.4,5.6,3.7,4.5,6.5,7.6,3
+"Meziadin","MeziadinBasic97","BR97",3,NA,NA,"At1k",1000,6,6.9,4.3,5,7.7,10.5,3
+"Meziadin","MeziadinBasicAllYr","BR",1,NA,NA,"At1k",1000,6.3,6.6,5.1,5.6,7.2,8.5,3
+"Meziadin","MeziadinBasicAllYrUP","BRu",2,NA,NA,"At1k",1000,5.5,5.7,3.8,4.5,6.6,7.9,3
+"Meziadin","MeziadinKalman97","KF97",9,17,2013,"At1k",1000,2,2.2,1.5,1.7,2.5,3.2,3
+"Meziadin","MeziadinKalman97","KF97",9,2,1998,"At1k",1000,14,14.6,10.1,11.9,16.5,19.6,3
+"Meziadin","MeziadinKalmanAllYr","KF",7,32,2013,"At1k",1000,1.9,2,1.4,1.6,2.3,2.8,3
+"Meziadin","MeziadinKalmanAllYr","KF",7,7,1988,"At1k",1000,22.1,22.1,14.9,18.2,25.7,29.1,3
+"Meziadin","MeziadinKalmanAllYrUP","KFu",8,32,2013,"At1k",1000,1.8,1.9,1.3,1.5,2.2,2.7,3
+"Meziadin","MeziadinKalmanAllYrUP","KFu",8,7,1988,"At1k",1000,21.8,21.8,14.5,18,25.5,28.9,3
+"Morice","MoriceAR198","AR198",4,NA,NA,"AtMinObs",3476,4.3,4.4,3.1,3.7,5.1,5.8,1
+"Morice","MoriceAR1AllYr","AR1",3,NA,NA,"AtMinObs",232,5.6,5.8,4.3,4.9,6.5,7.3,1
+"Morice","MoriceBasic98","BR98",2,NA,NA,"AtMinObs",3476,4.8,4.8,3.7,4.2,5.4,6.1,1
+"Morice","MoriceBasicAllYr","BR",1,NA,NA,"AtMinObs",232,5.6,5.7,4.3,4.9,6.3,7.2,1
+"Morice","MoriceKalman98","KF98",6,9,2006,"AtMinObs",3476,2.5,2.9,1.2,1.6,4,5,1
+"Morice","MoriceKalman98","KF98",6,5,2002,"AtMinObs",3476,6.6,6.9,4.2,5.1,8.5,9.8,1
+"Morice","MoriceKalmanAllYr","KF",5,11,1970,"AtMinObs",232,0.3,0.4,0.3,0.3,0.4,0.5,1
+"Morice","MoriceKalmanAllYr","KF",5,32,1991,"AtMinObs",232,43.2,48.3,23.5,31.4,59.6,78.5,1
+"Morice","MoriceAR198","AR198",4,NA,NA,"At100",100,5.5,5.6,3.7,4.5,6.6,7.6,2
+"Morice","MoriceAR1AllYr","AR1",3,NA,NA,"At100",100,5.7,5.8,4.4,4.9,6.5,7.4,2
+"Morice","MoriceBasic98","BR98",2,NA,NA,"At100",100,6.1,6.3,4.7,5.3,7.1,8.2,2
+"Morice","MoriceBasicAllYr","BR",1,NA,NA,"At100",100,5.6,5.7,4.4,4.9,6.4,7.3,2
+"Morice","MoriceKalman98","KF98",6,9,2006,"At100",100,3.1,3.7,1.4,1.9,5.1,6.7,2
+"Morice","MoriceKalman98","KF98",6,5,2002,"At100",100,8.2,8.5,5.3,6.5,10.4,12.1,2
+"Morice","MoriceKalmanAllYr","KF",5,11,1970,"At100",100,0.3,0.4,0.3,0.3,0.4,0.5,2
+"Morice","MoriceKalmanAllYr","KF",5,32,1991,"At100",100,43.5,48.8,23.7,31.6,60.1,79.3,2
+"Morice","MoriceAR198","AR198",4,NA,NA,"At1k",1000,5.1,5.3,3.6,4.2,6.1,7.1,3
+"Morice","MoriceAR1AllYr","AR1",3,NA,NA,"At1k",1000,5.4,5.5,4.2,4.7,6.1,6.9,3
+"Morice","MoriceBasic98","BR98",2,NA,NA,"At1k",1000,5.7,5.9,4.4,5,6.6,7.6,3
+"Morice","MoriceBasicAllYr","BR",1,NA,NA,"At1k",1000,5.3,5.4,4.2,4.7,6,6.8,3
+"Morice","MoriceKalman98","KF98",6,9,2006,"At1k",1000,2.9,3.4,1.4,1.8,4.8,6.2,3
+"Morice","MoriceKalman98","KF98",6,5,2002,"At1k",1000,7.7,8.1,5,6.1,9.8,11.4,3
+"Morice","MoriceKalmanAllYr","KF",5,11,1970,"At1k",1000,0.3,0.3,0.2,0.3,0.4,0.5,3
+"Morice","MoriceKalmanAllYr","KF",5,32,1991,"At1k",1000,41.1,45.8,22.5,30,56.4,74.2,3
+"Motase","MotaseBasic98","BR98",2,NA,NA,"AtMinObs",6,3.3,3.5,2,2.6,4.1,5.1,1
+"Motase","MotaseBasicAllYr","BR",1,NA,NA,"AtMinObs",6,4.8,5,3.3,3.9,5.8,7,1
+"Motase","MotaseBasic98","BR98",2,NA,NA,"At100",100,2.9,3,1.8,2.3,3.5,4.3,2
+"Motase","MotaseBasicAllYr","BR",1,NA,NA,"At100",100,4.1,4.2,2.9,3.4,4.9,5.8,2
+"Motase","MotaseBasic98","BR98",2,NA,NA,"At1k",1000,0.8,0.9,0.6,0.7,1,1.2,3
+"Motase","MotaseBasicAllYr","BR",1,NA,NA,"At1k",1000,0.9,1,0.7,0.8,1.1,1.3,3
+"Nass","NassAR197","AR197",5,NA,NA,"AtMinObs",164747,2.8,2.8,2.3,2.5,3.1,3.5,1
+"Nass","NassAR1AllYr","AR1",2,NA,NA,"AtMinObs",127417,3.9,3.9,3.1,3.4,4.3,4.8,1
+"Nass","NassBasic97","BR97",4,NA,NA,"AtMinObs",164747,2.9,3,2.4,2.7,3.3,3.7,1
+"Nass","NassBasicAllYr","BR",1,NA,NA,"AtMinObs",127417,4,4.1,3.3,3.6,4.5,4.9,1
+"Nass","NassKalman97","KF97",6,17,2013,"AtMinObs",164747,1.3,1.4,1,1.1,1.6,2.1,1
+"Nass","NassKalman97","KF97",6,2,1998,"AtMinObs",164747,5.9,6,4.3,5.1,6.9,7.8,1
+"Nass","NassKalmanAllYr","KF",3,32,2013,"AtMinObs",127417,1.4,1.5,1.1,1.2,1.7,2,1
+"Nass","NassKalmanAllYr","KF",3,7,1988,"AtMinObs",127417,13.7,13.5,9,11.3,15.8,17.3,1
+"Nass","NassAR197","AR197",5,NA,NA,"At100",100,3.5,3.7,2.7,3,4.2,5.2,2
+"Nass","NassAR1AllYr","AR1",2,NA,NA,"At100",100,5.4,5.6,3.9,4.5,6.4,7.5,2
+"Nass","NassBasic97","BR97",4,NA,NA,"At100",100,3.9,4.6,2.9,3.2,5.2,7.2,2
+"Nass","NassBasicAllYr","BR",1,NA,NA,"At100",100,5.7,5.8,4,4.7,6.8,7.9,2
+"Nass","NassKalman97","KF97",6,17,2013,"At100",100,1.9,2.1,1.2,1.5,2.5,3.2,2
+"Nass","NassKalman97","KF97",6,2,1998,"At100",100,8,8.8,5.3,6.5,10.3,13.2,2
+"Nass","NassKalmanAllYr","KF",3,32,2013,"At100",100,2.1,2.3,1.5,1.8,2.6,3.1,2
+"Nass","NassKalmanAllYr","KF",3,7,1988,"At100",100,20,20,13.4,16.5,23.4,26.5,2
+"Nass","NassAR197","AR197",5,NA,NA,"At1k",1000,3.5,3.7,2.7,3,4.2,5.2,3
+"Nass","NassAR1AllYr","AR1",2,NA,NA,"At1k",1000,5.4,5.6,3.9,4.5,6.4,7.5,3
+"Nass","NassBasic97","BR97",4,NA,NA,"At1k",1000,3.9,4.6,2.9,3.2,5.1,7.1,3
+"Nass","NassBasicAllYr","BR",1,NA,NA,"At1k",1000,5.6,5.8,4,4.7,6.7,7.9,3
+"Nass","NassKalman97","KF97",6,17,2013,"At1k",1000,1.8,2.1,1.2,1.5,2.5,3.2,3
+"Nass","NassKalman97","KF97",6,2,1998,"At1k",1000,8,8.8,5.3,6.5,10.3,13.2,3
+"Nass","NassKalmanAllYr","KF",3,32,2013,"At1k",1000,2.1,2.2,1.5,1.8,2.5,3.1,3
+"Nass","NassKalmanAllYr","KF",3,7,1988,"At1k",1000,19.9,20,13.3,16.5,23.3,26.4,3
+"Pinkut","PinkutAR1AllYr","AR1",2,NA,NA,"AtMinObs",27964,4,4.2,3,3.4,4.8,5.8,1
+"Pinkut","PinkutBasicAllYr","BR",1,NA,NA,"AtMinObs",27964,3.8,4,3,3.4,4.5,5.4,1
+"Pinkut","PinkutKalmanAllYr","KF",3,44,2013,"AtMinObs",27964,2.2,2.4,1.3,1.7,2.9,3.7,1
+"Pinkut","PinkutKalmanAllYr","KF",3,11,1980,"AtMinObs",27964,6.8,7.6,4.3,5.3,9.1,11.9,1
+"Pinkut","PinkutAR1AllYr","AR1",2,NA,NA,"At100",100,4.3,4.7,3.1,3.6,5.4,6.8,2
+"Pinkut","PinkutBasicAllYr","BR",1,NA,NA,"At100",100,4.1,4.4,3.1,3.6,5,6.1,2
+"Pinkut","PinkutKalmanAllYr","KF",3,44,2013,"At100",100,2.4,2.7,1.4,1.8,3.2,4.2,2
+"Pinkut","PinkutKalmanAllYr","KF",3,11,1980,"At100",100,7.5,8.6,4.6,5.8,10.2,13.6,2
+"Pinkut","PinkutAR1AllYr","AR1",2,NA,NA,"At1k",1000,4.3,4.7,3.1,3.6,5.4,6.7,3
+"Pinkut","PinkutBasicAllYr","BR",1,NA,NA,"At1k",1000,4.1,4.4,3.1,3.5,5,6.1,3
+"Pinkut","PinkutKalmanAllYr","KF",3,44,2013,"At1k",1000,2.4,2.7,1.4,1.8,3.2,4.2,3
+"Pinkut","PinkutKalmanAllYr","KF",3,11,1980,"At1k",1000,7.5,8.5,4.6,5.7,10.2,13.6,3
+"Skeena","SkeenaAR1AllYr","AR1",3,NA,NA,"AtMinObs",298308,3.3,3.5,2.5,2.8,3.9,4.6,1
+"Skeena","SkeenaBasicAllYr","BR",1,NA,NA,"AtMinObs",298308,3.9,4.1,3.2,3.5,4.4,5.1,1
+"Skeena","SkeenaBasicAllYrUP","Bru",2,NA,NA,"AtMinObs",298308,3.2,3.4,2.5,2.8,3.8,4.5,1
+"Skeena","SkeenaKalmanAllYr","KF",4,44,2013,"AtMinObs",298308,2.2,2.3,1.4,1.7,2.8,3.4,1
+"Skeena","SkeenaKalmanAllYr","KF",4,12,1981,"AtMinObs",298308,4.2,4.5,3,3.5,5.1,6.3,1
+"Skeena","SkeenaAR1AllYr","AR1",3,NA,NA,"At100",100,3.8,4.3,2.8,3.2,4.9,6.2,2
+"Skeena","SkeenaBasicAllYr","BR",1,NA,NA,"At100",100,5.1,5.4,4,4.4,6,7.3,2
+"Skeena","SkeenaBasicAllYrUP","Bru",2,NA,NA,"At100",100,3.8,4.2,2.8,3.2,4.7,6.2,2
+"Skeena","SkeenaKalmanAllYr","KF",4,44,2013,"At100",100,2.6,2.8,1.6,2,3.4,4.4,2
+"Skeena","SkeenaKalmanAllYr","KF",4,12,1981,"At100",100,4.9,5.4,3.3,3.9,6.3,8.1,2
+"Skeena","SkeenaAR1AllYr","AR1",3,NA,NA,"At1k",1000,3.8,4.3,2.8,3.2,4.9,6.2,3
+"Skeena","SkeenaBasicAllYr","BR",1,NA,NA,"At1k",1000,5.1,5.4,4,4.4,6,7.3,3
+"Skeena","SkeenaBasicAllYrUP","Bru",2,NA,NA,"At1k",1000,3.8,4.2,2.8,3.2,4.7,6.2,3
+"Skeena","SkeenaKalmanAllYr","KF",4,44,2013,"At1k",1000,2.6,2.8,1.6,2,3.4,4.4,3
+"Skeena","SkeenaKalmanAllYr","KF",4,12,1981,"At1k",1000,4.9,5.4,3.3,3.9,6.3,8.1,3
+"SkeenaWild","SkeenaWildAR198","AR198",5,NA,NA,"AtMinObs",127041,2.6,2.7,1.9,2.2,3.1,3.7,1
+"SkeenaWild","SkeenaWildAR1AllYr","AR1",2,NA,NA,"AtMinObs",127041,2.6,2.7,1.9,2.2,3.1,3.7,1
+"SkeenaWild","SkeenaWildBasic98","BR98",4,NA,NA,"AtMinObs",127041,2.5,2.6,1.9,2.2,3,3.4,1
+"SkeenaWild","SkeenaWildBasicAllYr","BR",1,NA,NA,"AtMinObs",127041,2.5,2.6,1.9,2.2,3,3.4,1
+"SkeenaWild","SkeenaWildKalman98","KF98",6,44,2013,"AtMinObs",127041,1.3,1.4,0.8,1,1.7,2.1,1
+"SkeenaWild","SkeenaWildKalman98","KF98",6,14,1983,"AtMinObs",127041,4.1,4.4,2.8,3.4,5.2,6.4,1
+"SkeenaWild","SkeenaWildKalmanAllYr","KF",3,44,2013,"AtMinObs",127041,1.3,1.4,0.8,1,1.7,2.1,1
+"SkeenaWild","SkeenaWildKalmanAllYr","KF",3,14,1983,"AtMinObs",127041,4.1,4.4,2.8,3.4,5.2,6.4,1
+"SkeenaWild","SkeenaWildAR198","AR198",5,NA,NA,"At100",100,3.3,3.5,2.2,2.6,4.1,5.1,2
+"SkeenaWild","SkeenaWildAR1AllYr","AR1",2,NA,NA,"At100",100,3.3,3.5,2.2,2.6,4.1,5.1,2
+"SkeenaWild","SkeenaWildBasic98","BR98",4,NA,NA,"At100",100,3.2,3.3,2.2,2.6,3.9,4.8,2
+"SkeenaWild","SkeenaWildBasicAllYr","BR",1,NA,NA,"At100",100,3.2,3.3,2.2,2.6,3.9,4.8,2
+"SkeenaWild","SkeenaWildKalman98","KF98",6,44,2013,"At100",100,1.6,1.8,1,1.3,2.2,2.8,2
+"SkeenaWild","SkeenaWildKalman98","KF98",6,14,1983,"At100",100,5.2,5.6,3.3,4.1,6.8,8.5,2
+"SkeenaWild","SkeenaWildKalmanAllYr","KF",3,44,2013,"At100",100,1.6,1.8,1,1.3,2.2,2.8,2
+"SkeenaWild","SkeenaWildKalmanAllYr","KF",3,14,1983,"At100",100,5.2,5.6,3.3,4.1,6.8,8.5,2
+"SkeenaWild","SkeenaWildAR198","AR198",5,NA,NA,"At1k",1000,3.3,3.5,2.2,2.6,4.1,5.1,3
+"SkeenaWild","SkeenaWildAR1AllYr","AR1",2,NA,NA,"At1k",1000,3.3,3.5,2.2,2.6,4.1,5.1,3
+"SkeenaWild","SkeenaWildBasic98","BR98",4,NA,NA,"At1k",1000,3.2,3.3,2.2,2.6,3.9,4.7,3
+"SkeenaWild","SkeenaWildBasicAllYr","BR",1,NA,NA,"At1k",1000,3.2,3.3,2.2,2.6,3.9,4.7,3
+"SkeenaWild","SkeenaWildKalman98","KF98",6,44,2013,"At1k",1000,1.6,1.8,1,1.2,2.2,2.8,3
+"SkeenaWild","SkeenaWildKalman98","KF98",6,14,1983,"At1k",1000,5.2,5.6,3.3,4.1,6.7,8.5,3
+"SkeenaWild","SkeenaWildKalmanAllYr","KF",3,44,2013,"At1k",1000,1.6,1.8,1,1.2,2.2,2.8,3
+"SkeenaWild","SkeenaWildKalmanAllYr","KF",3,14,1983,"At1k",1000,5.2,5.6,3.3,4.1,6.7,8.5,3
+"Slamgeesh","SlamgeeshBasic98","BR98",1,NA,NA,"AtMinObs",93,3.2,3.4,2.2,2.7,4,4.7,1
+"Slamgeesh","SlamgeeshBasicAllYr","BR",1,NA,NA,"AtMinObs",93,3.2,3.4,2.2,2.7,4,4.7,1
+"Slamgeesh","SlamgeeshBasicAllYrUP","BRu",2,NA,NA,"AtMinObs",93,3.2,3.4,2.2,2.7,4,4.7,1
+"Slamgeesh","SlamgeeshBasic98","BR98",1,NA,NA,"At100",100,3.2,3.3,2.2,2.6,3.9,4.6,2
+"Slamgeesh","SlamgeeshBasicAllYr","BR",1,NA,NA,"At100",100,3.2,3.3,2.2,2.6,3.9,4.6,2
+"Slamgeesh","SlamgeeshBasicAllYrUP","BRu",2,NA,NA,"At100",100,3.2,3.3,2.2,2.6,3.9,4.6,2
+"Slamgeesh","SlamgeeshBasic98","BR98",1,NA,NA,"At1k",1000,0.5,0.6,0.3,0.4,0.7,0.9,3
+"Slamgeesh","SlamgeeshBasicAllYr","BR",1,NA,NA,"At1k",1000,0.5,0.6,0.3,0.4,0.7,0.9,3
+"Slamgeesh","SlamgeeshBasicAllYrUP","BRu",2,NA,NA,"At1k",1000,0.5,0.6,0.3,0.4,0.7,0.9,3
+"Sustut","SustutBasic00","BR00",2,NA,NA,"AtMinObs",212,4.9,5,3.9,4.4,5.5,6.1,1
+"Sustut","SustutBasicAllYr","BR",1,NA,NA,"AtMinObs",2,10.6,11.2,7.3,8.7,13.1,15.5,1
+"Sustut","SustutBasicAllYrUP","BRu",3,NA,NA,"AtMinObs",2,10.7,11.2,7.4,8.8,13,15.4,1
+"Sustut","SustutBasic00","BR00",2,NA,NA,"At100",100,5.2,5.3,4.2,4.7,5.9,6.6,2
+"Sustut","SustutBasicAllYr","BR",1,NA,NA,"At100",100,9.6,10,6.8,7.9,11.7,13.8,2
+"Sustut","SustutBasicAllYrUP","BRu",3,NA,NA,"At100",100,9.6,10,6.7,8,11.7,13.8,2
+"Sustut","SustutBasic00","BR00",2,NA,NA,"At1k",1000,3,3,2.6,2.8,3.3,3.6,3
+"Sustut","SustutBasicAllYr","BR",1,NA,NA,"At1k",1000,3.8,3.9,2.9,3.3,4.3,4.9,3
+"Sustut","SustutBasicAllYrUP","BRu",3,NA,NA,"At1k",1000,3.8,3.9,2.9,3.3,4.3,4.9,3
+"Swan/Stephens","SwanStephensAR198","AR98",5,NA,NA,"AtMinObs",3788,2,2.2,1.4,1.7,2.5,3.1,1
+"Swan/Stephens","SwanStephensAR1AllYr","AR1",4,NA,NA,"AtMinObs",2674,2.8,2.9,2.1,2.4,3.3,3.7,1
+"Swan/Stephens","SwanStephensAR1AllYrUP","AR1u",6,NA,NA,"AtMinObs",2674,2,2.1,1.5,1.7,2.4,2.9,1
+"Swan/Stephens","SwanStephensBasic98","BR98",2,NA,NA,"AtMinObs",3788,2,2.2,1.4,1.7,2.5,3,1
+"Swan/Stephens","SwanStephensBasicAllYr","BR",1,NA,NA,"AtMinObs",1206,3,3.1,2.5,2.7,3.4,3.8,1
+"Swan/Stephens","SwanStephensBasicAllYrUP","BRu",3,NA,NA,"AtMinObs",1206,2.5,2.6,1.9,2.2,2.9,3.4,1
+"Swan/Stephens","SwanStephensKalman98","KF98",8,11,2008,"AtMinObs",3788,1.9,2,1.2,1.5,2.4,3,1
+"Swan/Stephens","SwanStephensKalman98","KF98",8,1,1998,"AtMinObs",3788,3,3.6,1.7,2.2,4.4,6.3,1
+"Swan/Stephens","SwanStephensKalmanAllYr","KF",7,30,2008,"AtMinObs",2674,1.3,1.3,0.8,1,1.6,1.9,1
+"Swan/Stephens","SwanStephensKalmanAllYr","KF",7,9,1987,"AtMinObs",2674,7,8.4,4.2,5.3,9.6,13.7,1
+"Swan/Stephens","SwanStephensKalmanAllYrUP","KFu",9,30,2008,"AtMinObs",2674,1.3,1.3,0.8,1,1.5,1.8,1
+"Swan/Stephens","SwanStephensKalmanAllYrUP","KFu",9,5,1983,"AtMinObs",2674,5.7,6.4,3.1,4.2,7.8,10.3,1
+"Swan/Stephens","SwanStephensAR198","AR98",5,NA,NA,"At100",100,2.5,2.7,1.6,1.9,3.2,4,2
+"Swan/Stephens","SwanStephensAR1AllYr","AR1",4,NA,NA,"At100",100,3,3.1,2.3,2.6,3.5,4,2
+"Swan/Stephens","SwanStephensAR1AllYrUP","AR1u",6,NA,NA,"At100",100,2.1,2.2,1.5,1.8,2.6,3.1,2
+"Swan/Stephens","SwanStephensBasic98","BR98",2,NA,NA,"At100",100,2.5,2.7,1.7,2,3.1,3.9,2
+"Swan/Stephens","SwanStephensBasicAllYr","BR",1,NA,NA,"At100",100,3.1,3.2,2.5,2.8,3.5,3.9,2
+"Swan/Stephens","SwanStephensBasicAllYrUP","BRu",3,NA,NA,"At100",100,2.6,2.6,1.9,2.2,3,3.5,2
+"Swan/Stephens","SwanStephensKalman98","KF98",8,11,2008,"At100",100,2.4,2.6,1.4,1.8,3.2,4.1,2
+"Swan/Stephens","SwanStephensKalman98","KF98",8,1,1998,"At100",100,3.8,4.8,2,2.6,5.8,8.9,2
+"Swan/Stephens","SwanStephensKalmanAllYr","KF",7,30,2008,"At100",100,1.4,1.4,0.9,1.1,1.7,2,2
+"Swan/Stephens","SwanStephensKalmanAllYr","KF",7,9,1987,"At100",100,7.5,9.1,4.5,5.7,10.5,15,2
+"Swan/Stephens","SwanStephensKalmanAllYrUP","KFu",9,30,2008,"At100",100,1.4,1.4,0.9,1.1,1.7,2,2
+"Swan/Stephens","SwanStephensKalmanAllYrUP","KFu",9,5,1983,"At100",100,6.1,6.9,3.3,4.4,8.4,11.3,2
+"Swan/Stephens","SwanStephensAR198","AR98",5,NA,NA,"At1k",1000,2.3,2.5,1.5,1.9,3,3.8,3
+"Swan/Stephens","SwanStephensAR1AllYr","AR1",4,NA,NA,"At1k",1000,2.9,3,2.2,2.5,3.4,3.9,3
+"Swan/Stephens","SwanStephensAR1AllYrUP","AR1u",6,NA,NA,"At1k",1000,2.1,2.2,1.5,1.7,2.5,3,3
+"Swan/Stephens","SwanStephensBasic98","BR98",2,NA,NA,"At1k",1000,2.4,2.5,1.6,1.9,3,3.7,3
+"Swan/Stephens","SwanStephensBasicAllYr","BR",1,NA,NA,"At1k",1000,3,3.1,2.5,2.7,3.4,3.8,3
+"Swan/Stephens","SwanStephensBasicAllYrUP","BRu",3,NA,NA,"At1k",1000,2.5,2.6,1.9,2.2,2.9,3.4,3
+"Swan/Stephens","SwanStephensKalman98","KF98",8,11,2008,"At1k",1000,2.3,2.5,1.3,1.7,3,3.8,3
+"Swan/Stephens","SwanStephensKalman98","KF98",8,1,1998,"At1k",1000,3.6,4.5,1.9,2.5,5.4,8.1,3
+"Swan/Stephens","SwanStephensKalmanAllYr","KF",7,30,2008,"At1k",1000,1.3,1.4,0.8,1.1,1.7,2,3
+"Swan/Stephens","SwanStephensKalmanAllYr","KF",7,9,1987,"At1k",1000,7.3,8.9,4.4,5.5,10.2,14.5,3
+"Swan/Stephens","SwanStephensKalmanAllYrUP","KFu",9,30,2008,"At1k",1000,1.3,1.4,0.8,1.1,1.6,1.9,3
+"Swan/Stephens","SwanStephensKalmanAllYrUP","KFu",9,5,1983,"At1k",1000,6,6.7,3.2,4.3,8.2,10.9,3

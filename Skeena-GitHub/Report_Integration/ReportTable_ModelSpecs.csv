@@ -1,0 +1,137 @@
+"Stock","ReportSeq","ModelLabel","ReportLabel","ModelType","ReportDescription","n.chains","n.burnin","n.thin","n.samples","Kept"
+"Nass",1,"NassBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default priors.",2,80000,60,150000,2333
+"Nass",2,"NassAR1AllYr","AR1","AR1","AR1 fit with all available data. Default priors.",2,80000,60,150000,2333
+"Nass",3,"NassKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Default priors.",2,160000,80,450000,7250
+"Nass",4,"NassBasic97","BR97","Basic","Basic Ricker fit with data starting in 1998 (reviewed data only). Default uninformative priors.",2,80000,60,150000,2333
+"Nass",5,"NassAR197","AR197","AR1","AR1 fit with data starting in 1998 (reviewed data only).  Default uninformative priors.",2,80000,60,150000,2333
+"Nass",6,"NassKalman97","KF97","Kalman","Time-varying productivity fit data starting in 1998 (reviewed data only).  Default uninformative priors.",2,160000,80,450000,7250
+"Skeena",1,"SkeenaBasicAllYr","BR","Basic","Basic Ricker fit excluding pre-channel data. Informative capacity prior at sum of current channel loading targets plus estimated capacity below channels (557k) doubled to account for non-channel stocks' capacity .",2,80000,60,150000,2333
+"Skeena",2,"SkeenaBasicAllYrUP","Bru","Basic","Basic Ricker fit excluding pre-channel data. Default uninformative priors.",2,80000,60,150000,2333
+"Skeena",3,"SkeenaAR1AllYr","AR1","AR1","AR1 fit with all available data. Default priors.",2,80000,60,150000,2333
+"Skeena",4,"SkeenaKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Default priors.",2,160000,80,450000,7250
+"SkeenaWild",1,"SkeenaWildBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default priors.",2,80000,60,150000,2333
+"SkeenaWild",2,"SkeenaWildAR1AllYr","AR1","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"SkeenaWild",3,"SkeenaWildKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"SkeenaWild",4,"SkeenaWildBasic98","BR98","Basic","Basic Ricker fit with data starting in 1998 (reviewed data only). Default uninformative priors.",2,80000,60,150000,2333
+"SkeenaWild",5,"SkeenaWildAR198","AR198","AR1","AR1 fit with data starting in 1998 (reviewed data only).  Default uninformative priors.",2,80000,60,150000,2333
+"SkeenaWild",6,"SkeenaWildKalman98","KF98","Kalman","Time-varying productivity fit  with data starting in 1998 (reviewed data only).  Default uninformative priors.",2,160000,80,450000,7250
+"Meziadin",1,"MeziadinBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (175k,CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Meziadin",2,"MeziadinBasicAllYrUP","BRu","Basic","Basic Ricker fit with all available data. Default uninformative capacity and productivity prior.",2,80000,60,150000,2333
+"Meziadin",3,"MeziadinBasic97","BR97","Basic","Basic Ricker fit excluding pre-1997 (only use reviewed data). Informative capacity prior based on PR model (175k,CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Meziadin",7,"MeziadinKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Informative capacity prior based on PR model (175k,CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Meziadin",8,"MeziadinKalmanAllYrUP","KFu","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"Meziadin",9,"MeziadinKalman97","KF97","Kalman","Time-varying productivity fit excluding pre-1997 data (only use reviewed data).  Informative capacity prior based on PR model (175k,CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Meziadin",4,"MeziadinAR1AllYr","AR1","AR1","AR1 fit with all available data. Informative capacity prior based on PR model (175k,CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Meziadin",5,"MeziadinAR1AllYrUP","AR1u","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Meziadin",6,"MeziadinAR197","AR197","AR1","AR1 fit excluding pre-1997 data (only use reviewed data).  Informative capacity prior based on PR model (175k,CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Lower Nass Sea & River Type",1,"LNassSRTBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative capacity and productivity prior.",2,80000,60,150000,2333
+"Lower Nass Sea & River Type",2,"LNassSRTBasic97","BR97","Basic","Basic Ricker fit excluding pre-1997 data (only use reviewed data). Default uninformative priors.",2,80000,60,150000,2333
+"Lower Nass Sea & River Type",5,"LNassSRTKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"Lower Nass Sea & River Type",6,"LNassSRTKalman97","KF97","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"Lower Nass Sea & River Type",3,"LNassSRTAR1AllYr","AR1","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Lower Nass Sea & River Type",4,"LNassSRTAR197","AR197","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Alastair",1,"AlastairBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (23,437; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Alastair",2,"AlastairBasicAllYrUP","BRu","Basic","Basic Ricker fit with all available data. Default uninformative capacity and productivity prior.",2,80000,60,150000,2333
+"Alastair",3,"AlastairBasic98","BR98","Basic","Basic Ricker fit excluding pre-1998 (only use reviewed data). Informative capacity prior based on PR model (23,437; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Alastair",7,"AlastairKalmanAllYr","KF","Kalman","Time-varying productivity fit with all available data. Informative capacity prior based on PR model (23,437; CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Alastair",8,"AlastairKalmanAllYrUP","KFu","Kalman","Time-varying productivity fit with all available data. Default uninformative capacity and productivity prior.",2,160000,80,450000,7250
+"Alastair",9,"AlastairKalman98","KF98","Kalman","Time-varying productivity fit excluding pre-1998 (only use reviewed data). Informative capacity prior based on PR model (23,437; CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Alastair",4,"AlastairAR1AllYr","AR1","AR1","AR1 fit with all available data. Informative capacity prior based on PR model (23,437; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Alastair",5,"AlastairAR1AllYrUP","AR1u","AR1","AR1 fit with all available data. Default uninformative capacity and productivity prior.",2,80000,60,150000,2333
+"Alastair",6,"AlastairAR198","AR198","AR1","AR1 fit excluding pre-1998 data (only use reviewed data). Informative capacity prior based on PR model (23,437; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Babine Early Wild",1,"BabEWBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Early Wild",2,"BabEWBasic98","BR98","Basic","Basic Ricker fit excluding pre-1998 data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Early Wild",5,"BabEWKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"Babine Early Wild",6,"BabEWKalman98","KF98","Kalman","Time varying productivity fit excluding pre-1998 data. Default uninformative priors.",2,160000,80,450000,7250
+"Babine Early Wild",3,"BabEWAR1AllYr","AR1","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Early Wild",4,"BabEWAR198","AR198","AR1","AR1 fit excluding pre-1998 data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Mid Wild",1,"BabMWBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Mid Wild",2,"BabMWBasic98","BR98","Basic","Basic Ricker fit excluding pre-1998 data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Mid Wild",5,"BabMWKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"Babine Mid Wild",6,"BabMWKalman98","KF98","Kalman","Time varying productivity fit excluding pre-1998 data. Default uninformative priors.",2,160000,80,450000,7250
+"Babine Mid Wild",3,"BabMWAR1AllYr","AR1","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Mid Wild",4,"BabMWAR198","AR198","AR1","AR1 fit excluding pre-1998 data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Late Wild",1,"BabLWBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Late Wild",2,"BabLWBasic98","BR98","Basic","Basic Ricker fit excluding pre-1998 data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Late Wild",5,"BabLWKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"Babine Late Wild",6,"BabLWKalman98","KF98","Kalman","Time varying productivity fit excluding pre-1998 data. Default uninformative priors.",2,160000,80,450000,7250
+"Babine Late Wild",3,"BabLWAR1AllYr","AR1","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Babine Late Wild",4,"BabLWAR198","AR198","AR1","AR1 fit excluding pre-1998 data. Default uninformative priors.",2,80000,60,150000,2333
+"Fulton",1,"FultonBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Fulton",3,"FultonKalmanAllYr","KF","Kalman","Time-varying productivity fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Fulton",2,"FultonAR1AllYr","AR1","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Pinkut",1,"PinkutBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Pinkut",3,"PinkutKalmanAllYr","KF","Kalman","Time-varying productivity fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Pinkut",2,"PinkutAR1AllYr","AR1","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Kitsumkalum",1,"KitsumkalumBasicAllYr","BR","Basic","Basic Ricker fit with all available data, including two infilled brood years (1999,2013). Default uninformative priors.",2,80000,60,150000,2333
+"Kitsumkalum",2,"KitsumkalumBasicAllYrNoInfill","BRni","Basic","Basic Ricker fit with all available data, without any infill (1999 and 2013 BrYr missing). Default uninformative priors.",2,80000,60,150000,2333
+"Kitsumkalum",5,"KitsumkalumBasic90","BR90","Basic","Basic Ricker fit with data since 1990, including two infilled brood years (1999,2013). Default uninformative priors.",2,80000,60,150000,2333
+"Kitsumkalum",3,"KitsumkalumAR1AllYr","AR1","AR1","AR1 fit with all available data, including two infilled brood years (1999,2013). Default uninformativepriors.",2,80000,60,150000,2333
+"Kitsumkalum",6,"KitsumkalumAR190","AR190","AR1","AR1 fit with data since 1990, including two infilled brood years (1999,2013), including two infilled brood years (1999,2013). Default uninformativepriors.",2,80000,60,150000,2333
+"Kitsumkalum",4,"KitsumkalumKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data, including two infilled brood years (1999,2013). Default priors.",2,160000,80,450000,7250
+"Kitsumkalum",7,"KitsumkalumKalman90","KF90","Kalman","Time varying productivity fit with data since 1990, including two infilled brood years (1999,2013), including two infilled brood years (1999,2013). Default priors.",2,160000,80,450000,7250
+"Mcdonell",1,"McdonellBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (4,072 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Mcdonell",2,"McdonellBasic98","BR98","Basic","Basic Ricker fit with data starting 1998 (reviewed data only). Informative capacity prior based on PR model (4,072 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Mcdonell",3,"McdonellBasicAllYrUP","BRu","Basic","Basic Ricker fit with all data. Default uninformative priors.",2,80000,60,150000,2333
+"Lakelse",1,"LakelseBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (35,916 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Lakelse",3,"LakelseBasic98","BR98","Basic","Basic Ricker fit with data starting 1998 (reviewed data only). Informative capacity prior based on PR model (35,916 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Lakelse",2,"LakelseBasicAllYrUP","BRu","Basic","Basic Ricker fit with all data. Default uninformative priors.",2,80000,60,150000,2333
+"Lakelse",7,"LakelseKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Informative capacity prior based on PR model (35,916 ; CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Lakelse",8,"LakelseKalmanAllYrUP","KFu","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"Lakelse",9,"LakelseKalman98","KF98","Kalman","Time-varying productivity fit excluding pre-1998 data (only use reviewed data).  Informative capacity prior based on PR model (35,916 ; CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Lakelse",4,"LakelseAR1AllYr","AR1","AR1","AR1 fit with all available data. Informative capacity prior based on PR model (35,916 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Lakelse",5,"LakelseAR1AllYrUP","AR1u","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Lakelse",6,"LakelseAR198","AR198","AR1","AR1 fit excluding pre-1998 data (only use reviewed data).  Informative capacity prior based on PR model (35,916 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Swan/Stephens",1,"SwanStephensBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (28,501 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Swan/Stephens",2,"SwanStephensBasic98","BR98","Basic","Basic Ricker fit with data starting 1998 (reviewed data only). Informative capacity prior based on PR model (28,501 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Swan/Stephens",3,"SwanStephensBasicAllYrUP","BRu","Basic","Basic Ricker fit with all data. Default uninformative priors.",2,80000,60,150000,2333
+"Swan/Stephens",4,"SwanStephensAR1AllYr","AR1","AR1","AR1 fit with data starting 1979 (after data gap). Informative capacity prior based on PR model (28,501 ; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Swan/Stephens",5,"SwanStephensAR198","AR98","AR1","AR1 fit with data starting 1998  (reviewed data only). Informative capacity prior based on PR model (28,501 ;  CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Swan/Stephens",6,"SwanStephensAR1AllYrUP","AR1u","AR1","AR1 fit with data starting 1979 (after data gap). Default uninformative priors.",2,80000,60,150000,2333
+"Swan/Stephens",7,"SwanStephensKalmanAllYr","KF","Kalman","Time varying productivity fit with data starting 1979 (after data gap). Informative capacity prior based on PR model (28,501 ;  CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Swan/Stephens",8,"SwanStephensKalman98","KF98","Kalman","Time varying productivity fit with data starting 1998 (reviewed data only). Informative capacity prior based on PR model (28,501 ; CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Swan/Stephens",9,"SwanStephensKalmanAllYrUP","KFu","Kalman","Time varying productivity fit with data starting 1979 (after data gap). Default uninformative priors.",2,160000,80,450000,7250
+"Morice",1,"MoriceBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Morice",2,"MoriceBasic98","BR98","Basic","Basic Ricker fit excluding pre-1998 data. Default uninformative priors.",2,80000,60,150000,2333
+"Morice",5,"MoriceKalmanAllYr","KF","Kalman","Time varying productivity fit with all available data. Default uninformative priors.",2,160000,80,450000,7250
+"Morice",6,"MoriceKalman98","KF98","Kalman","Time varying productivity fit excluding pre-1998 data. Default uninformative priors.",2,160000,80,450000,7250
+"Morice",3,"MoriceAR1AllYr","AR1","AR1","AR1 fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Morice",4,"MoriceAR198","AR198","AR1","AR1 fit excluding pre-1998 data. Default uninformative priors.",2,80000,60,150000,2333
+"Bear",1,"BearBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (46,465; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Bear",2,"BearBasic98","BR98","Basic","Basic Ricker fit excluding pre-1998 data. Informative capacity prior based on PR model (46,465; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Bear",3,"BearBasicAllYrUP","BRu","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Bear",4,"BearAR1AllYr","AR1","AR1","AR1 fit with data starting 1984 (after data gap). Informative capacity prior based on PR model (46,465; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Bear",5,"BearAR198","AR98","AR1","AR1 fit with data starting 1998 (reviewed data only). Informative capacity prior based on PR model (46,465; CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Bear",6,"BearAR1AllYrUP","AR1u","AR1","AR1 fit with data starting 1984 (after data gap). Default uninformative priors.",2,80000,60,150000,2333
+"Bear",7,"BearKalmanAllYr","KF","Kalman","Time varying productivity fit with data starting 1984 (after data gap). Informative capacity prior based on PR model (46,465; CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Bear",8,"BearKalman98","KF98","Kalman","Time varying productivity fit with data starting 1998 (reviewed data only). Informative capacity prior based on PR model (46,465; CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Bear",9,"BearKalmanAllYrUP","KFu","Kalman","Time varying productivity fit with data starting 1984 (after data gap). Default uninformative priors.",2,160000,80,450000,7250
+"Kwinageese",1,"KwinageeseBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (39,269 ; CV = X, sum of Fred Wright and Kwinageese lake estimates). Uninformative productivity prior.",2,80000,60,150000,2333
+"Kwinageese",2,"KwinageeseBasic97","BR97","Basic","Basic Ricker fit with data starting 1997 (using only reviewed data). Informative capacity prior based on PR model (39,269 ; CV = X, sum of Fred Wright and Kwinageese lake estimates). Uninformative productivity prior.",2,80000,60,150000,2333
+"Kwinageese",3,"KwinageeseBasicAllYrUP","BRu","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Kitwanga",1,"KitwangaBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (36,984 ,CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Kitwanga",2,"KitwangaBasic01","BR01","Basic","Basic Ricker fit with data starting 2001 (implementation of counting weir). Informative capacity prior based on PR model (36,984 ,CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Kitwanga",3,"KitwangaBasicAllYrUP","BRu","Basic","Basic Ricker fit with all data. Default uninformative priors.",2,80000,60,150000,2333
+"Damdochax",1,"DamdochaxBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Informative capacity prior based on PR model (4,862 ,CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Damdochax",2,"DamdochaxBasic97","BR97","Basic","Basic Ricker fit with data starting 1997 (using only reviewed data). Informative capacity prior based on PR model (4,862;CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Damdochax",3,"DamdochaxBasicAllYrUP","BRu","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Damdochax",4,"DamdochaxAR1AllYr","AR1","AR1","AR1 fit with all data. Informative capacity prior based on PR model (4,862 , CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Damdochax",5,"DamdochaxAR197","AR97","AR1","AR1 fit with data starting 1998  (reviewed data only). Informative capacity prior based on PR model (4,862 , CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Damdochax",6,"DamdochaxAR1AllYrUP","AR1u","AR1","AR1 fit with all data. Default uninformative priors.",2,80000,60,150000,2333
+"Damdochax",7,"DamdochaxKalmanAllYr","KF","Kalman","Time varying productivity fit  with all data. Informative capacity prior based on PR model (4,862 ;  CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Damdochax",8,"DamdochaxKalman97","KF97","Kalman","Time varying productivity fit with data starting 1998 (reviewed data only). Informative capacity prior based on PR model (4,862; CV = X). Uninformative productivity prior.",2,160000,80,450000,7250
+"Damdochax",9,"DamdochaxKalmanAllYrUP","KFu","Kalman","Time varying productivity fit with all data. Default uninformative priors.",2,160000,80,450000,7250
+"Sustut",1,"SustutBasicAllYr","BR","Basic","Basic Ricker fit with all available data.  Informative capacity prior based on PR model (5498 ; CV = X, sum of Sustut and Johansen lake estimates). Uninformative productivity prior.",2,80000,60,150000,2333
+"Sustut",2,"SustutBasic00","BR00","Basic","Basic Ricker fit with data starting 2000 (implementation of counting weir). Informative capacity prior based on PR model (5498 ; CV = X, sum of Sustut and Johansen lake estimates). Uninformative productivity prior.",2,80000,60,150000,2333
+"Sustut",3,"SustutBasicAllYrUP","BRu","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Johnston",1,"JohnstonBasicAllYr","BR","Basic","Basic Ricker fit with all available data starting 1970 (excluding early outliers). Informative capacity prior based on PR model (4,125 ,CV = X). Uninformative productivity prior.",2,80000,60,150000,2333
+"Johnston",3,"JohnstonBasicAllYrUP","BRu","Basic","Basic Ricker fit with all available data starting 1970 (excluding early outliers). Default uninformative priors.",2,80000,60,150000,2333
+"Asitka",1,"AsitkaBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Asitka",2,"AsitkaBasic98","BR98","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Upper Nass River Type",1,"UNassRTBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Upper Nass River Type",2,"UNassRTBasic00","BR00","Basic","Basic Ricker fit with data starting 2000 (start of consistent enumeration by GFA). Default uninformative priors.",2,80000,60,150000,2333
+"Slamgeesh",1,"SlamgeeshBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Slamgeesh",1,"SlamgeeshBasic98","BR98","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Slamgeesh",2,"SlamgeeshBasicAllYrUP","BRu","Basic","Basic Ricker fit data starting 1998 (reviewed data only). Default uninformative priors.",2,80000,60,150000,2333
+"Motase",1,"MotaseBasicAllYr","BR","Basic","Basic Ricker fit with all available data. Default uninformative priors.",2,80000,60,150000,2333
+"Motase",2,"MotaseBasic98","BR98","Basic","Basic Ricker fit data starting 1998 (reviewed data only). Default uninformative priors.",2,80000,60,150000,2333
