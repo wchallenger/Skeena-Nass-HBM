@@ -1,32 +1,98 @@
+
+rm(list=ls())
 library(tidyverse)
 library(scales)
 
+base.run <- "~/GitHub/Fisheries/Skeena-Nass-HBM/Skeena-GitHub/HBM/RESULTS/2022-03-21/result_HBM_Skeena_m23.rds"
+jackknife.dir <- "~/GitHub/Fisheries/Skeena-Nass-HBM/Skeena-GitHub/HBM/jackknife/_archive/2022-02-15-shared"
+save.dir <- "~/GitHub/Fisheries/Skeena-TEST/figure"
 
-basecase <-  readRDS("../result_HBM_McAllister_m23.rds")
-basecase %>% count(Parm)
 
 
+basecase.run <-  readRDS(base.run)
+basecase.run$estimates %>% count(Parm)
+samps <- basecase.run$samples
+all.samps <- NULL
+for (chain in 1:length(samps)) {
+  n.it <- nrow(samps[[chain]])
+  all.samps <- rbind(
+    all.samps, 
+    as.data.frame(samps[[chain]]) %>%
+      mutate(
+        chain=chain,  
+        it = seq_len(n.it),
+        id = paste(chain, it, sep="-")
+      )
+  )
+}
+basecase <-all.samps %>%
+  # head %>%
+  select(id, starts_with("TE"), starts_with("intercept_new")) %>%
+  gather(key=Node, value=Value, -c(id)) %>%
+  mutate(
+    ParmClass = str_extract(Node, "[[:alpha:]_]+"),
+    YrIdx = str_extract(Node, "\\[[:digit:]+") %>% 
+      str_replace(., pattern ="\\[", replacement =  "" ) %>% 
+      as.numeric
+  ) %>% 
+  left_join(
+    x =.,
+    y = basecase.run$sr.data %>% select(year, Year),
+    by = c("YrIdx" = "year")
+  ) 
 
-load.dir <- "_archive"
-load.dir <- "."
+
+# Load Jackknife runs -----------------------------------------------------
+
+
+# load.dir <- "_archive"
+# load.dir <- "."
+load.dir <- jackknife.dir
 result <- all.samps <-  NULL
 for (r in 1:19){
   message("Loading run ", r)
   load.file <- file.path(load.dir, paste0("jacknife_",r,"_est.rds"))
-  est <- readRDS(load.file)
+  est <- readRDS(load.file) %>%
+    mutate(Excluded = paste("Run", r + 6, "-", Excluded))
   result <- bind_rows(result, est)
   load.file <- file.path(load.dir, paste0("jacknife_",r,"_samps.rds"))
   samps <-  readRDS(load.file)  %>%
     filter(ParmClass == "intercept_new") %>%
-     mutate(Excluded = est$Excluded %>% unique)
+     mutate(Excluded =  est$Excluded %>% unique)
   all.samps <- rbind(all.samps, samps)
 }
 
+jackknife.samps <- all.samps
+jackknife.est <- result
 
-all.samps %>%
+# Determine factor ordering by run number
+run.levels <- jackknife.est %>% 
+  select(Excluded) %>% 
+  unique %>%
+  mutate(
+    Run = str_extract(Excluded, "[:digit:]+") %>% as.numeric
+  ) %>%
+  arrange(Run)
+
+jackknife.samps <- jackknife.samps %>%
+  mutate(Excluded = factor(Excluded, levels = run.levels$Excluded))
+
+jackknife.est <- jackknife.est %>%
+  mutate(Excluded = factor(Excluded, levels = run.levels$Excluded))
+
+
+# Intercept Plot ----------------------------------------------------------
+
+
+p.int <- jackknife.samps %>%
   filter(ParmClass == "intercept_new") %>%
   ggplot(., aes(x=Value)) +
-  geom_density(aes(color = Excluded, fill=Excluded), alpha=0.1) +
+  geom_density(
+    data=filter(basecase, ParmClass == "intercept_new") %>% mutate(`Base Case` = "Base Case"), 
+    mapping = aes(x=Value), 
+    fill="grey35"
+  ) +
+  geom_density(aes(color = Excluded)) +  #fill=Excluded , alpha=0.15
   coord_cartesian(xlim = c(0,5)) +
   theme_classic(14) +
   theme(
@@ -36,21 +102,32 @@ all.samps %>%
     legend.box.margin = margin(1,1,1,1, unit = "pt")
   ) +
   labs(
-    title = "Productivity Hyper-prior",
+    # title = "Productivity Hyper-prior",
     y = "Density",
-    x = expression(paste("Intercept (", alpha, ")"))
+    # x = expression(paste("Intercept (", alpha, ")"))
+    x = expression(paste("Ricker ", a, ""))
   )
+p.int
 
 
-result %>% filter(Parm == "TE") %>% 
+out.file <- file.path(save.dir, "Appendix-HBM-productivity-jackknife.pdf")
+ggsave(out.file, width=9, height=6.5, plot=p.int)
+
+
+# Shared Year Effects -----------------------------------------------------
+
+
+
+p.TE <- jackknife.est %>% filter(Parm == "TE") %>% 
   mutate(Year = StkID + 1960 - 1) %>%
   ggplot(., aes(x=Year, y=Mean)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   geom_line(aes(color = Excluded)) +
   geom_line(
-    data = basecase %>% filter(Parm == "TE"), 
-    mapping = aes(x= StkID + 1960 - 1, y=Mean), 
-    size = 0.75
+    data = basecase.run$estimates %>% filter(Parm == "TE"), 
+    mapping = aes(x= Year, y=mean), 
+    size = 0.75,
+    color = "grey35"
   ) +
   # geom_line(aes(color = Excluded)) +
   scale_x_continuous(breaks = seq(1960, 2020, by=5)) +
@@ -58,3 +135,7 @@ result %>% filter(Parm == "TE") %>%
   labs(
     y = "Shared Year Effect"
   )
+
+p.TE
+out.file <- file.path(save.dir, "Appendix-HBM-yeareffect-jackknife.pdf")
+ggsave(out.file, width=9, height=6.5, plot=p.TE)
