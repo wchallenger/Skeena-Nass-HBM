@@ -84,5 +84,5 @@ model{
   mu_a<-exp(lmu_a)
   tau_a~dgamma(0.5,0.5)
   cv_a <- sd_a/mu_a
-  #interceptnew ~ dlnorm(lmu_a,tau_a)
+  intercept_new ~ dlnorm(lmu_a,tau_a)
 }
