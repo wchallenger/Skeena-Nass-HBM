@@ -46,9 +46,9 @@ smax.tab <-  lake.meta %>%
 
 smax.area <- lake.meta  %>%
   # filter(!str_detect(Stks, "Fulton, Pinkut")) %>%
-  filter(Basin == "Skeena") %>%
+  filter(Basin == "Skeena") %>% 
   mutate(
-    nStks = ifelse(Lake == "Babine",5,1),   # McAllister adjustment used on Babine only
+    nStks = ifelse(Lake == "Babine",1,1),   # McAllister adjustment used on Babine only
     SmaxAdj = Smax_Spn/nStks,
     Smax.Area = SmaxAdj/Area_km2
     ) %>%
