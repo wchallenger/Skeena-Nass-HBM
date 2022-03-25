@@ -1,11 +1,6 @@
 message("Running HBM JAGS model...")
 
-# mcmc.set <- list(
-#   thin = 10,
-#   iter = 100000,
-#   burnin = 20000,
-#   chains = 6
-# )
+
 
 mod.ver <- str_extract(basename(mod.file), "m[:digit:]+")
 run.ver <- str_extract(basename(run.name), "m[:digit:]+")
@@ -53,8 +48,9 @@ if (str_detect(mod.file, "^KormanEnglish")) {
   if (mod.ver %in% paste0("m", c(23:24, 26:28))) {
     jags.dat$Smaxmax = smax.dat$Smaxmax
   }
-  parms <-  c("tau_a", "tau_a_x", "intercept", "intercept_x", "intercept_c", "intercept_new", "slope", "slope_x", "se",  "CC", "Smax", "Smsy","Umsy")
-  
+  if (!exists('parms')) {
+    parms <-  c("tau_a", "tau_a_x", "intercept", "intercept_x", "intercept_c", "intercept_new", "slope", "slope_x", "se",  "CC", "Smax", "Smsy","Umsy")
+  }
   if (mod.ver %in%  paste0("m",c(7:8, 23:24, 25, 28))) {
     parms = c(parms, "TE")
   }
@@ -118,22 +114,39 @@ message("Process time: ", endtime[['elapsed']])
 
 samps <- as.mcmc(jagsfit.p)
 
+# stop()
 # Diagnostics -------------------------------------------------------------
 if (exists('diagnostics')) {
   
   # Gelman and Rubin's convergence diagnostic
-  
-  print(gelman.diag(samps, multivariate = TRUE))
-  
+  if ("gelman-rubin" %in% diagnostics) {
+    gelman.rubin.diag <- gelman.diag(samps, multivariate = TRUE)
+    print(gelman.rubin.diag)
+  }
+ 
+  if ("gelman-rubin plot" %in% diagnostics) {
+    save.name <- str_replace_all(run.name, "[[:space:](]+","_")
+    save.name <-  str_replace(save.name, "[)]", "")
+    save.name <- paste0("gelman-rubin--",save.name, ".pdf")
+    
+    out.dir <- file.path(save.dir, "diagnostics")
+    if (!dir.exists(out.dir)) dir.create(out.dir, recursive = T)
+    
+    pdf(file = file.path(out.dir, save.name), width=8, height = 11)
+      par(mfrow = c(5,4))
+      gelman.plot(results.obj$samples, ylim = c(0.9, 1.1), auto.layout = FALSE)
+    dev.off()
+  }
   # Posterior densities, trace plots and auto-correlation diagnostics
   # Showing only derived variables
   # mcmcplot(samps,  parms = c("CC","Smsy", "Umsy"), dir = "diagnostics")
   
+  if ("traceplots" %in% diagnostics ) {
+    out.dir <- file.path(save.dir, "traceplots", run.name )
   
-  out.dir <- file.path("HBM", "diagnostics", run.name )
-  
-  if (!dir.exists(out.dir)) dir.create(out.dir)
-  mcmcplot(samps,  regex = c("intercept\\[", "slope\\[","Smsy"), dir = out.dir)
+    if (!dir.exists(out.dir)) dir.create(out.dir, recursive = T)
+    mcmcplot(samps,  regex = c("intercept\\[", "slope\\[","Smsy"), dir = out.dir)
+  }
 }
 # Summaries Statistics ------------------------------------------------
 
@@ -182,4 +195,12 @@ results.obj <- list(
   estimates = est, 
   samples = samps
 )
+if (exists('gelman.rubin.diag')) {
+  results.obj$gelman.rubin  <-  gelman.rubin.diag
+}
+
 saveRDS(results.obj, file = file.path(save.dir, out.file))
+message("Run results save to:\n  ",file.path(save.dir, out.file))
+
+
+rm(list = c("jagsfit.p", "est", "samps", "gelman.rubin.diag"))
