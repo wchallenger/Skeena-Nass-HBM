@@ -10,8 +10,8 @@ library(openxlsx)
 
 
 est <- rbind(
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m24.rds"))$estimates %>% mutate(RunName = "Code Error")
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m24.rds"))$estimates %>% mutate(RunName = "Code Error")
 ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
@@ -37,8 +37,8 @@ app.tables[['Run 1']] <- left_join(
 
 
 est <- rbind(
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m25.rds"))$estimates %>% mutate(RunName = "No Bound")
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m25.rds"))$estimates %>% mutate(RunName = "No Bound")
 ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
@@ -83,8 +83,8 @@ app.tables[['Run 2 Umsy']] <- left_join(
 
 
 est <- rbind(
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m26.rds"))$estimates %>% mutate(RunName = "No TE")
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m26.rds"))$estimates %>% mutate(RunName = "No TE")
 ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
@@ -128,8 +128,8 @@ app.tables[['Run 3 Umsy']] <- left_join(
 
 
 est <- rbind(
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m27.rds"))$estimates %>% mutate(RunName = "nonHBM")
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m27.rds"))$estimates %>% mutate(RunName = "nonHBM")
 ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
@@ -172,8 +172,8 @@ app.tables[['Run 4 Umsy']] <- left_join(
 
 
 est <- rbind(
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m28.rds"))$estimates %>% mutate(RunName = "Normal Prior")
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m28.rds"))$estimates %>% mutate(RunName = "Normal Prior")
 ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
@@ -216,8 +216,8 @@ app.tables[['Run 5 Umsy']] <- left_join(
 # Sensitivity Run 6 -------------------------------------------------------
 
 est <- rbind(
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m29.rds"))$estimates %>% mutate(RunName = "Vague Prior")
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m29.rds"))$estimates %>% mutate(RunName = "Vague Prior")
 ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 

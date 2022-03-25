@@ -22,7 +22,7 @@ for (r in seq_along(result.files)) {
   run <- names(result.files)[r]
   message("Processing Run:", run)
   
-  mod.result <- readRDS(file.path("HBM", "RESULTS", ver, result.files[r]))
+  mod.result <- readRDS(file.path(save.dir, result.files[r]))
   
   HBM.results[[run]] <- list()
   

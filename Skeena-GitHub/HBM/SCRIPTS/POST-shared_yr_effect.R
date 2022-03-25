@@ -1,5 +1,5 @@
 message("Creating shared year effect plots")
-mod.result <- readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))
+mod.result <- readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))
 samps <- mod.result$samples
 
 TE.est <- mod.result$estimates %>% filter(Parm == "TE")

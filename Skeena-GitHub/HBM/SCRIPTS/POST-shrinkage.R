@@ -6,8 +6,8 @@ message("Creating shrinkage table and plot")
 
 
 est <- rbind(
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23_nonHBM.rds"))$estimates %>% mutate(RunName = "nonHBM"),
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "HBM")
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m23_nonHBM.rds"))$estimates %>% mutate(RunName = "nonHBM"),
+  readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "HBM")
  ) 
 
 

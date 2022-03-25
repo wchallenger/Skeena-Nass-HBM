@@ -12,7 +12,7 @@ library(scales)
 # Get Base Case samples -------------------------------------------------------
 
 
-basecase.run <-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))
+basecase.run <-  readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))
 # basecase.run$estimates %>% count(Parm)
 
 samps <- basecase.run$samples
