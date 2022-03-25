@@ -30,7 +30,9 @@ model{
      slopex[i] ~ dlnorm(ms[i],taus[i]) I(msmin[i], )
   # save prior dens. func. for the slope 
   intercept[i] ~ dlnorm(0.5,1) # prior on Ricker a parameter
-  interceptx[i] ~ dlnorm(0.5,1)
+  intercept_c[i] <- intercept[i] + ((se[i]*se[i]) / 2)   # bias corrected version, does not enter the likelihood
+  
+
   Smax[i] <- 1/slope[i] #calculate Smax from the Ricker b
        se[i]~dunif(0.05,10)  #prior on likelihood function sigma
       tau[i]<-pow(se[i],-2)	#computation of tau corrected from K+E

@@ -40,7 +40,9 @@ model{
      slopex[i] ~ dlnorm(ms[i],taus[i]) I(msmin[i], )
   # save prior dens. func. for the slope 
   intercept[i] ~ dlnorm(lmu_a,tau_a)
-  interceptx[i] ~ dlnorm(lmu_a,tau_a)
+  intercept_c[i] <- intercept[i] + ((se[i]*se[i]) / 2)   # bias corrected version, does not enter the likelihood
+  intercept_x[i] ~ dlnorm(lmu_a,tau_a)
+ 
   #   intercept[i] ~ dnorm(intercmn,interctau) I(0.0000001, )
   # prior density function for Ricker a parameter
    # save prior density function for intercept

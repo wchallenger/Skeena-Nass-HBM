@@ -43,7 +43,7 @@ est <- rbind(
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
 
-app.tables[['Run 2']] <- left_join(
+app.tables[['Run 2 Smsy']] <- left_join(
   x = est %>% filter(Parm == "Smsy") %>%
     select(RunName, Stock, mean) %>%
     mutate(RunName = paste(RunName, "mean")) %>%
@@ -60,7 +60,23 @@ app.tables[['Run 2']] <- left_join(
 ) %>%
   mutate( Stock = str_replace(Stock, "^Total$", "Sum Smsy across stocks") )
 
-# app.tables[['Run 2']]
+
+app.tables[['Run 2 Umsy']] <- left_join(
+  x = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, mean) %>%
+    mutate(RunName = paste(RunName, "mean")) %>%
+    spread(RunName, mean) %>%
+    # adorn_totals("row") %>%
+    mutate(`Diff mean` = (`No Bound mean` - `Base Case mean`)/`Base Case mean`),
+  y = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, sd) %>%
+    mutate(RunName = paste(RunName, "SD")) %>%
+    spread(RunName, sd) %>%
+    # adorn_totals("row") %>%
+    mutate(`Diff SD` = (`No Bound SD` - `Base Case SD`)/`Base Case SD`),
+  by = "Stock"
+) 
+
 
 
 # Sensitivity Run 3 -------------------------------------------------------
@@ -73,7 +89,7 @@ est <- rbind(
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
 
-app.tables[['Run 3']] <- left_join(
+app.tables[['Run 3 Smsy']] <- left_join(
   x = est %>% filter(Parm == "Smsy") %>%
     select(RunName, Stock, mean) %>%
     mutate(RunName = paste(RunName, "mean")) %>%
@@ -91,7 +107,21 @@ app.tables[['Run 3']] <- left_join(
   mutate( Stock = str_replace(Stock, "^Total$", "Sum Smsy across stocks") )
 
 
-# app.tables[['Run 3']]
+app.tables[['Run 3 Umsy']] <- left_join(
+  x = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, mean) %>%
+    mutate(RunName = paste(RunName, "mean")) %>%
+    spread(RunName, mean) %>%  
+    # adorn_totals("row") %>%
+    mutate(`Diff mean` = (`No TE mean` - `Base Case mean`)/`Base Case mean`),
+  y = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, sd) %>%
+    mutate(RunName = paste(RunName, "SD")) %>%
+    spread(RunName, sd) %>%  
+    # adorn_totals("row") %>%
+    mutate(`Diff SD` = (`No TE SD` - `Base Case SD`)/`Base Case SD`),
+  by = "Stock"
+) 
 
 
 # Sensitivity Run 4 -------------------------------------------------------
@@ -99,31 +129,44 @@ app.tables[['Run 3']] <- left_join(
 
 est <- rbind(
   readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m23.rds"))$estimates %>% mutate(RunName = "Base Case"),
-  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m27.rds"))$estimates %>% mutate(RunName = "No nonHBM")
+  readRDS(file.path("HBM", "RESULTS", ver, "result_HBM_Skeena_m27.rds"))$estimates %>% mutate(RunName = "nonHBM")
 ) %>%
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
 
-app.tables[['Run 4']] <- left_join(
+app.tables[['Run 4 Smsy']] <- left_join(
   x = est %>% filter(Parm == "Smsy") %>%
     select(RunName, Stock, mean) %>%
     mutate(RunName = paste(RunName, "mean")) %>%
     spread(RunName, mean) %>%  
     adorn_totals("row") %>%
-    mutate(`Diff mean` = (`No nonHBM mean` - `Base Case mean`)/`Base Case mean`),
+    mutate(`Diff mean` = (`nonHBM mean` - `Base Case mean`)/`Base Case mean`),
   y = est %>% filter(Parm == "Smsy") %>%
     select(RunName, Stock, sd) %>%
     mutate(RunName = paste(RunName, "SD")) %>%
     spread(RunName, sd) %>%  
     adorn_totals("row") %>%
-    mutate(`Diff SD` = (`No nonHBM SD` - `Base Case SD`)/`Base Case SD`),
+    mutate(`Diff SD` = (`nonHBM SD` - `Base Case SD`)/`Base Case SD`),
   by = "Stock"
 ) %>%
   mutate( Stock = str_replace(Stock, "^Total$", "Sum Smsy across stocks") )
 
 
-# app.tables[['Run 4']]
-
+app.tables[['Run 4 Umsy']] <- left_join(
+  x = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, mean) %>%
+    mutate(RunName = paste(RunName, "mean")) %>%
+    spread(RunName, mean) %>%  
+    # adorn_totals("row") %>%
+    mutate(`Diff mean` = (`nonHBM mean` - `Base Case mean`)/`Base Case mean`),
+  y = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, sd) %>%
+    mutate(RunName = paste(RunName, "SD")) %>%
+    spread(RunName, sd) %>%  
+    # adorn_totals("row") %>%
+    mutate(`Diff SD` = (`nonHBM SD` - `Base Case SD`)/`Base Case SD`),
+  by = "Stock"
+)
 
 # Sensitivity Run 5 -------------------------------------------------------
 
@@ -135,7 +178,7 @@ est <- rbind(
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
 
-app.tables[['Run 5']] <- left_join(
+app.tables[['Run 5 Smsy']] <- left_join(
   x = est %>% filter(Parm == "Smsy") %>%
     select(RunName, Stock, mean) %>%
     mutate(RunName = paste(RunName, "mean")) %>%
@@ -153,9 +196,21 @@ app.tables[['Run 5']] <- left_join(
   mutate( Stock = str_replace(Stock, "^Total$", "Sum Smsy across stocks") )
 
 
-# app.tables[['Run 5']]
-
-
+app.tables[['Run 5 Umsy']] <- left_join(
+  x = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, mean) %>%
+    mutate(RunName = paste(RunName, "mean")) %>%
+    spread(RunName, mean) %>%  
+    # adorn_totals("row") %>%
+    mutate(`Diff mean` = (`Normal Prior mean` - `Base Case mean`)/`Base Case mean`),
+  y = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, sd) %>%
+    mutate(RunName = paste(RunName, "SD")) %>%
+    spread(RunName, sd) %>%  
+    # adorn_totals("row") %>%
+    mutate(`Diff SD` = (`Normal Prior SD` - `Base Case SD`)/`Base Case SD`),
+  by = "Stock"
+)
 
 
 # Sensitivity Run 6 -------------------------------------------------------
@@ -167,7 +222,7 @@ est <- rbind(
   mutate(Type = str_extract(Model, "m[:digit:]+"))
 
 
-app.tables[['Run 6']] <- left_join(
+app.tables[['Run 6 Smsy']] <- left_join(
   x = est %>% filter(Parm == "Smsy") %>%
     select(RunName, Stock, mean) %>%
     mutate(RunName = paste(RunName, "mean")) %>%
@@ -185,7 +240,21 @@ app.tables[['Run 6']] <- left_join(
   mutate( Stock = str_replace(Stock, "^Total$", "Sum Smsy across stocks") )
 
 
-# app.tables[['Run 6']]
+app.tables[['Run 6 Umsy']] <- left_join(
+  x = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, mean) %>%
+    mutate(RunName = paste(RunName, "mean")) %>%
+    spread(RunName, mean) %>%  
+    # adorn_totals("row") %>%
+    mutate(`Diff mean` = (`Vague Prior mean` - `Base Case mean`)/`Base Case mean`),
+  y = est %>% filter(Parm == "Umsy") %>%
+    select(RunName, Stock, sd) %>%
+    mutate(RunName = paste(RunName, "SD")) %>%
+    spread(RunName, sd) %>%  
+    # adorn_totals("row") %>%
+    mutate(`Diff SD` = (`Vague Prior SD` - `Base Case SD`)/`Base Case SD`),
+  by = "Stock"
+)
 
 
 

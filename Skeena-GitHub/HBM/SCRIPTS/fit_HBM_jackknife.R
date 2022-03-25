@@ -1,6 +1,7 @@
 # Used for jackknife fitting
 
 mod.ver <- str_extract(basename(mod.file), "m[:digit:]+")
+
 # Prepare JAGS Data -------------------------------------------------------
 if (exists('jags.dat')) rm(jags.dat)
 
@@ -45,34 +46,11 @@ if (str_detect(mod.file, "^KormanEnglish")) {
   }
   
   
-  parms <-  c("intercept_new", "intercept", "slope", "intercmn", "intercsd", "CC", "Smsy", "Umsy", "Smax")
-  
+  parms <-  c("intercept_new", "intercept", "intercept_c",  "slope", "CC", "Smsy", "Smax","Umsy")
   if (mod.ver %in%  paste0("m",c(7:8, 23:24, 25, 28))) {
     parms = c(parms, "TE")
   }
 }
-
-
-
-# DEV: Fit Stepwise ------------------------------------------------------------
-# The first option lets you hand fit each step from compiling, burn-in, to 
-# sampling from the posterior.  This can be useful for debugging.
-# ptm = proc.time()
-  # jags.m <- jags.model(
-  #   file = file.path(jags.dir, mod.file),
-  #   data=jags.dat,
-  #   n.chains=2,
-  #   n.adapt=1000
-  # )
-
-# # Burnin
-# update(jags.m, n.iter=10000) 
-# 
-#
-# samps <- coda.samples(jags.m, parms, n.iter = 20000, thin = 10 )
-# 
-# (endtime = proc.time()-ptm)
-
 
 
 
@@ -100,73 +78,71 @@ message("Process time: ", endtime[['elapsed']])
 samps <- as.mcmc(jagsfit.p)
 
 
-# Diagnostics -------------------------------------------------------------
-if (exists('diagnostics')) {
-  
-  if (diagnostics$gelman) {
-    # Gelman and Rubin's convergence diagnostic
-    gelman <- try(gelman.diag(samps, multivariate = TRUE))
-    
-  }
-  # Posterior densities, trace plots and auto-correlation diagnostics
-  # Showing only derived variables
-  # mcmcplot(samps,  parms = c("CC","Smsy", "Umsy"), dir = "diagnostics")
-  
-  
-  out.dir <- file.path("HBM", "diagnostics", run.ver )
-  
-  if (!dir.exists(out.dir)) dir.create(out.dir)
-  mcmcplot(samps,  parms = c("slope","CC","Smsy", "Umsy"), dir = out.dir)
-}
 
 
 # Summaries Statistics ------------------------------------------------
 message("Summarizing and saving output...")
 
-MCMCsummary(jagsfit.p, round = 2) %>% as_tibble
-x <- summary(samps)
+# MCMCsummary(jagsfit.p, round = 2) %>% as_tibble
+# x <- summary(samps)
+# 
+# # reorganize estimates for queries
+# est <- cbind(
+#   as.data.frame(x$statistics),
+#   as.data.frame(x$quantiles)
+# ) %>%
+#   rownames_to_column("Node") %>%
+#   mutate(
+#     Parm = str_replace(Node, "\\[[[:digit:],]+\\]", ""),
+#     StkID = as.numeric(str_replace(str_extract(Node, "\\[[:digit:]+"), "\\[", ""))
+#   )%>%
+#   left_join(
+#     x =.,
+#     y = smax.dat %>% select(ID, Stock, CU.orig ) %>% rename(CU = CU.orig),
+#     by = c("StkID" = "ID")
+#   ) %>%
+#   arrange(Parm, StkID) %>%
+#   mutate(
+#     CV = SD/Mean,
+#     Model = str_replace(mod.file, "\\.txt", ""),
+#     # Run = stock.dat[j[[i]], ] %>% select(Stock) %>% unlist %>% paste(collapse=", ") %>% paste("Excluded:",.),
+#     Run = i,
+#     Excluded = stock.dat[j[[i]], ] %>% select(Stock) %>% unlist %>% paste(collapse=", ")
+#   ) %>%
+#   mutate( Description = paste("Jacknife run excluding:", Excluded)) %>% 
+#   select(CU, StkID, Stock, Node, Parm, Run,Excluded, Mean, SD, `Time-series SE`, `2.5%`, `50%`, `97.5%`, CV, Model, Description) %>%
+#   as_tibble
 
-# reorganize estimates for queries
-est <- cbind(
-  as.data.frame(x$statistics),
-  as.data.frame(x$quantiles)
-) %>%
+est <- MCMCsummary(samps, probs = c(0.025, 0.10, 0.25, 0.5, 0.75, 0.90, 0.975)) %>%
   rownames_to_column("Node") %>%
+  as_tibble %>%
   mutate(
     Parm = str_replace(Node, "\\[[[:digit:],]+\\]", ""),
-    StkID = as.numeric(str_replace(str_extract(Node, "\\[[:digit:]+"), "\\[", ""))
-  )%>%
+    Idx = as.numeric(str_replace(str_extract(Node, "\\[[:digit:]+"), "\\[", "")),
+    StkIdx = ifelse(Parm %in% c("CC", "intercept", "intercept_x", "intercept_c", "slope", "slope_x", "se", "Smax") | str_detect(Parm, "msy"), Idx, NA),
+    YrIdx = ifelse(Parm %in% "TE", Idx, NA)
+  ) %>% 
+  
   left_join(
     x =.,
-    y = smax.dat %>% select(ID, Stock, CU.orig ) %>% rename(CU = CU.orig),
-    by = c("StkID" = "ID")
+    y = smax.dat %>% select(ID, Basin, Stock),
+    by = c("StkIdx" = "ID")
   ) %>%
-  arrange(Parm, StkID) %>%
+  # Left join Year
+  left_join(
+    x =.,
+    y = sr.dat %>% select(year, Year) %>% unique,
+    by = c("YrIdx" = "year")
+  ) %>% 
+  arrange(Parm, StkIdx) %>%
+  select(Node,Parm, Basin, Stock, Year,  mean:n.eff) %>%
   mutate(
-    CV = SD/Mean,
+    CV = sd/mean,
     Model = str_replace(mod.file, "\\.txt", ""),
-    # Run = stock.dat[j[[i]], ] %>% select(Stock) %>% unlist %>% paste(collapse=", ") %>% paste("Excluded:",.),
-    Run = i,
+    Run = i+offset,
     Excluded = stock.dat[j[[i]], ] %>% select(Stock) %>% unlist %>% paste(collapse=", ")
-  ) %>%
-  mutate( Description = paste("Jacknife run excluding:", Excluded)) %>% 
-  select(CU, StkID, Stock, Node, Parm, Run,Excluded, Mean, SD, `Time-series SE`, `2.5%`, `50%`, `97.5%`, CV, Model, Description) %>%
-  as_tibble
+  )
 
-
-
-# Display estimates by type
-
-# Fundamental parameters
-# est %>% filter(Parm %in% c("intercept", "slope", "intercmn", "intercsd"))
-# est %>% filter(Parm == "a")
-# est %>% filter(Parm == "b")
-# est %>% filter(Parm %in% c("intercmn", "intercsd"))
-
-# Derived Parameters
-# est %>% filter(Parm == "CC")
-# est %>% filter(Parm == "Smsy")
-# est %>% filter(Parm == "Umsy")
 
 # Save  R data object
 out.file <- paste0("jacknife_",i,"_est.rds")
@@ -197,7 +173,8 @@ all.samps %>% count(chain)
 all.samps <- all.samps %>%
   # head %>%
   # select(c(id, starts_with("psimu["))) %>%
-  gather(key=Node, value=Value, -c(id, chain, id)) %>%
+  select(-c(chain,it)) %>%   # chain number included in contained in ID
+  gather(key=Node, value=Value, -c(id)) %>%
   mutate(
     ParmClass = str_extract(Node, "[[:alpha:]_]+"),
     StkID = str_extract(Node, "\\[[:digit:]+") %>% 
@@ -216,5 +193,4 @@ all.samps <- all.samps %>%
 out.file <- paste0("jacknife_",i,"_samps.rds")
 saveRDS(all.samps, file = file.path(save.dir, out.file))
 # 
-# all.samps %>% filter(ParmClass == "intercept_new") %>%
-# ggplot(., aes(x=Value)) + geom_density()
+

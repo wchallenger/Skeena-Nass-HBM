@@ -53,7 +53,7 @@ if (str_detect(mod.file, "^KormanEnglish")) {
   if (mod.ver %in% paste0("m", c(23:24, 26:28))) {
     jags.dat$Smaxmax = smax.dat$Smaxmax
   }
-  parms <-  c("tau_a", "tau_a_x", "intercept", "intercept_x", "intercept_c", "intercept_new", "slope", "slope_x", "se",  "CC", "Smsy", "Smax")
+  parms <-  c("tau_a", "tau_a_x", "intercept", "intercept_x", "intercept_c", "intercept_new", "slope", "slope_x", "se",  "CC", "Smax", "Smsy","Umsy")
   
   if (mod.ver %in%  paste0("m",c(7:8, 23:24, 25, 28))) {
     parms = c(parms, "TE")
@@ -139,7 +139,7 @@ if (exists('diagnostics')) {
 
 
 
-est <- MCMCsummary(samps, probs = c(0.025, 0.25, 0.5, 0.75, 0.975)) %>%
+est <- MCMCsummary(samps, probs = c(0.025, 0.10, 0.25, 0.5, 0.75, 0.90, 0.975)) %>%
   rownames_to_column("Node") %>%
   as_tibble %>%
   mutate(

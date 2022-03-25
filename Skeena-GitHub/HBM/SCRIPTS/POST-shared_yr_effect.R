@@ -91,12 +91,14 @@ app.plots[['TE RM4']] <- ggplot(TE.rm4, aes(x=Year, y=mean)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   scale_x_continuous(breaks = seq(1960,2022, by=5)) +
   labs(
-    title = "Skeena Shared Year Effect (4 year rolling mean)",
-    subtitle = "Error bars indicate 95% Credible Intervals",
+    # title = "Skeena Shared Year Effect (4 year rolling mean)",
+    # subtitle = "Error bars indicate 95% Credible Intervals",
     y = "Shared Year Effect Estimate"
   )
 out.file <- file.path(output.dir, "Appendix-HBM-common_year_eff_rm4.pdf")
 ggsave(out.file, width=9, height=6.5, plot=app.plots[['TE RM4']])
+out.file <- file.path(output.dir, "Appendix-HBM-common_year_eff_rm4.png")
+ggsave(out.file, width=9, height=6.5, plot=app.plots[['TE RM4']], dpi = 300)
 
 
 
@@ -108,16 +110,38 @@ app.plots[['TE RM5']] <- ggplot(TE.rm5, aes(x=Year, y=mean)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   scale_x_continuous(breaks = seq(1960,2022, by=5)) +
   labs(
-    title = "Skeena Shared Year Effect (5 year rolling mean)",
-    subtitle = "Error bars indicate 95% Credible Intervals",
+    # title = "Skeena Shared Year Effect (5 year rolling mean)",
+    # subtitle = "Error bars indicate 95% Credible Intervals",
     y = "Shared Year Effect Estimate"
   )
 
 out.file <- file.path(output.dir, "Appendix-HBM-common_year_eff_rm5.pdf")
 ggsave(out.file, width=9, height=6.5, plot=app.plots[['TE RM5']])
+out.file <- file.path(output.dir, "Appendix-HBM-common_year_eff_rm5.png")
+ggsave(out.file, width=9, height=6.5, plot=app.plots[['TE RM5']], dpi = 300)
 
 
 
+
+library(grid)
+library(gridExtra)
+
+# create and displayb arrangement
+grid.arrange(
+  g <- arrangeGrob(
+    app.plots[['TE RM4']]  + theme(axis.title = element_blank()) + labs(title = "A) 4-year rolling mean"),
+    app.plots[['TE RM5']] + theme(axis.title = element_blank())+ labs(title = "B) 5-year rolling mean"), 
+    nrow=2, ncol=1,
+    as.table = F,
+    left = textGrob("Estimated Common Year Effect", rot=90,  gp=gpar(fontsize=15)),
+    bottom = textGrob("Year",  gp=gpar(fontsize=15)), 
+    clip=F
+  ))
+out.file <- file.path(output.dir, "Appendix-HBM-common_year_eff.png")
+ggsave(filename = out.file, width = 9, height=9, plot=g, dpi = 300)
+
+out.file <- file.path(output.dir, "Appendix-HBM-common_year_eff.pdf")
+ggsave(filename = out.file, width = 9, height=9, plot=g)
 
 
 
