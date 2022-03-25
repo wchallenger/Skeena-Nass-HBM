@@ -1,6 +1,6 @@
-# create shrinkage table
+message("Creating shrinkage table and plot")
 
-ver
+# ver
 
 # Sensitivity Run 1 -------------------------------------------------------
 
@@ -12,7 +12,7 @@ est <- rbind(
 
 
 
-result[['Shrinkage']] <- left_join(
+app.tables[['Shrinkage']] <- left_join(
   x = est %>% filter(Parm == "intercept") %>%
     select(RunName, Stock, `50%`) %>%
     mutate(RunName = paste(RunName, "median")) %>%
@@ -28,11 +28,11 @@ result[['Shrinkage']] <- left_join(
     `Shrinkage` = ( `HBM median` - `nonHBM median`)/`nonHBM median`,
     `Diff SD` = ( `HBM SD` - `nonHBM SD`)/`nonHBM SD`
   )
-result[['Shrinkage']]
+app.tables[['Shrinkage']]
 
 
-
-result[['Shrinkage']]  %>%
+# generate plot
+app.plots[['Shrinkage']] <- app.tables[['Shrinkage']]  %>%
   select(Stock, `nonHBM median`, `HBM median`) %>%
   gather(key=Model, value = Median, ends_with("median")) %>%
   mutate(
@@ -49,22 +49,26 @@ result[['Shrinkage']]  %>%
 
 
 
-result[['Shrinkage']] <- left_join(
-  x = est %>% filter(Parm == "intercept") %>%
-    select(RunName, Stock, mean) %>%
-    mutate(RunName = paste(RunName, "mean")) %>%
-    spread(RunName, mean) ,
-  y = est %>% filter(Parm == "intercept") %>%
-    select(RunName, Stock, sd) %>%
-    mutate(RunName = paste(RunName, "SD")) %>%
-    spread(RunName, sd) ,
-  by = "Stock"
-) %>%  
-  select(Stock, `nonHBM mean`, `Base Case mean`, `nonHBM SD`, `Base Case SD`) %>%
-  mutate(
-    `Shrinkage` = ( `Base Case mean` - `nonHBM mean`)/`nonHBM mean`,
-    `Diff SD` = ( `Base Case SD` - `nonHBM SD`)/`nonHBM SD`
-  )
+
+# Comparing means ---------------------------------------------------------
+
+
+# app.tables[['Shrinkage']] <- left_join(
+#   x = est %>% filter(Parm == "intercept") %>%
+#     select(RunName, Stock, mean) %>%
+#     mutate(RunName = paste(RunName, "mean")) %>%
+#     spread(RunName, mean) ,
+#   y = est %>% filter(Parm == "intercept") %>%
+#     select(RunName, Stock, sd) %>%
+#     mutate(RunName = paste(RunName, "SD")) %>%
+#     spread(RunName, sd) ,
+#   by = "Stock"
+# ) %>%  
+#   select(Stock, `nonHBM mean`, `Base Case mean`, `nonHBM SD`, `Base Case SD`) %>%
+#   mutate(
+#     `Shrinkage` = ( `Base Case mean` - `nonHBM mean`)/`nonHBM mean`,
+#     `Diff SD` = ( `Base Case SD` - `nonHBM SD`)/`nonHBM SD`
+#   )
 
 
 

@@ -1,8 +1,8 @@
 # Generate 
 
-source("~/GitHub/Fisheries/Skeena-Nass-HBM/Skeena-GitHub/HBM/FUNCTIONS/ComputeTimeVaryingAlpha.fn.R")
+source(file.path(fun.dir, "ComputeTimeVaryingAlpha.fn.R"))
 
-ver <- "2022-03-24"
+# ver <- "2022-03-24"
 
 result.files <- list(
   'Base Case' = "result_HBM_Skeena_m23.rds",
@@ -40,10 +40,10 @@ for (r in seq_along(result.files)) {
    
     # HBM.results[[run]][['estimates']] %>% count(VarType)
   
-  message("  Deriving time varying alpha")
+  message("  Deriving time varying alpha...")
   HBM.results[[run]][['time.var.alpha']] <- ComputeTimeVaryingAlpha(mod.result)
   
 }
 
-out.file <- file.path(save.dir, "HBM_results.rds")
+out.file <- file.path(output.dir, "HBM_results.rds")
 saveRDS(HBM.results, out.file)
