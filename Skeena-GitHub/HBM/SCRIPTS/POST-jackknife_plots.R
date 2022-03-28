@@ -54,6 +54,11 @@ result <- all.samps <-  NULL
 for (r in 1:19){
   message("Loading jackknife run ", r)
   load.file <- file.path(load.dir, paste0("jacknife_",r,"_est.rds"))
+  if (!file.exists(load.file)) {
+    message("Jackknife results file not available: ", load.file )
+    warning("Jackknife results file not available: ", load.file )
+    next
+  }
   est <- readRDS(load.file) %>%
     mutate(Excluded = paste("Run", r + 6, "-", Excluded))
   result <- bind_rows(result, est)
