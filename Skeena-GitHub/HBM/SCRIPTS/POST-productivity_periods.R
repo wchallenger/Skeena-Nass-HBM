@@ -10,6 +10,7 @@ basin <- mod.result$basin
 # smax.dat <- mod.result$smax.data
 samps <- mod.result$samples
 sr.dat <- mod.result$sr.data
+smax.dat <- mod.result$smax.data 
 stocks <- unique(sr.dat$Stock)
 
 # combine chains
