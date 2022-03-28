@@ -1,3 +1,6 @@
+# 
+# https://stackoverflow.com/questions/41657817/ggplot-equivalent-of-gelman-plot-mcmc-diagnostic-in-r
+# 
 diagnostics = c("gelman-rubin plot", "gelman-rubin", "traceplots")
 parms <-  c("intercept", "slope")
 
@@ -14,10 +17,9 @@ out.file = "result_HBM_Skeena_m23_reduced.rds"
 source(file.path(script.dir, paste0("PREP_", basin, "_HBM.R")))
 
 
-diagnostics <- c("gelman-rubin", "traceplots")
 source(file.path(script.dir, "FIT_HBM.R"))
 
-
+restuls.obj <- readRDS(file.path(save.dir, out.file))
 out.file = file.path(save.dir, "gelman-rubin-plots--Skeena_basecase.pdf")
 pdf(file = out.file, width=8, height = 11)
 par(mfrow = c(5,4))
