@@ -9,6 +9,11 @@ lake.meta <- read.csv(file.path(data.dir, "LakeInfo_Main_WithSR_Smax.csv")) %>% 
 # analyses
 source(file.path(script.dir, smax.script))
 
+smax.tab <- smax.tab %>% mutate(
+  Stock = str_replace(Stock, "^Motase[:space:]+$", "Motase")
+)
+
+
 # Adjust scaling
 smax.tab <- smax.tab %>% mutate(
   prSmax = prSmax/sr.scale,
@@ -59,9 +64,14 @@ if (nrow(check)>0) message("Smax priors have changed for ", paste(check$Stock, c
 # Stock Recruit Data
 
 stock.info <- read.csv(file.path(data.dir, "StockInfo_Main.csv")) %>% as_tibble
+stock.data <- read.csv(file.path(data.dir, "StockData_Main.csv")) %>% 
+  as_tibble %>%
+  mutate(
+    Stock = str_replace(Stock, "^Motase[:space:]+$", "Motase")
+  )
 
 sr.tab <-  left_join(
-  x = read.csv(file.path(data.dir, "StockData_Main.csv")),
+  x = stock.data,
   y = stock.info %>% select(Stock, Basin, LifeHistory),
   by = "Stock"
 ) %>% as_tibble %>%
@@ -92,4 +102,10 @@ sr.tab <- sr.tab %>% filter(lnRSobs < 4)
 # # Extract CU id to stock name
 # stock.lookup <-  sr.dat %>% select(CU, Stock) %>% unique
 # 
+
+
+
+# Make sure the two data sets align ---------------------------------------
+
+
 
