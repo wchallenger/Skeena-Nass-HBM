@@ -7,12 +7,13 @@ source(file.path(fun.dir, "ComputeTimeVaryingAlpha.fn.R"))
 result.files <- list(
   'Base Case' = "result_HBM_Skeena_m23.rds",
   'nonHBM' = "result_HBM_Skeena_m23_nonHBM.rds",
-  'Senitivity Run 1' = "result_HBM_Skeena_m24.rds",
-  'Senitivity Run 2' = "result_HBM_Skeena_m25.rds",
-  'Senitivity Run 3' = "result_HBM_Skeena_m26.rds",
-  'Senitivity Run 4' = "result_HBM_Skeena_m27.rds",
-  'Senitivity Run 5' = "result_HBM_Skeena_m28.rds",
-  'Senitivity Run 6' = "result_HBM_Skeena_m29.rds"
+  'Sensitivity Run 1' = "result_HBM_Skeena_m24.rds",
+  'Sensitivity Run 2' = "result_HBM_Skeena_m25.rds",
+  'Sensitivity Run 3' = "result_HBM_Skeena_m26.rds",
+  'Sensitivity Run 4' = "result_HBM_Skeena_m27.rds",
+  'Sensitivity Run 5' = "result_HBM_Skeena_m28.rds",
+  'Sensitivity Run 6' = "result_HBM_Skeena_m29.rds",
+  'Sensitivity Run 26' = "result_HBM_Skeena_m23_pinkut_fulton_kitwanga.rds"
 )
 
 
@@ -45,5 +46,10 @@ for (r in seq_along(result.files)) {
   
 }
 
-out.file <- file.path(output.dir, "HBM_results.rds")
+
+HBM.results[['Year Effects RM4']] <- TE.rm4
+HBM.results[['Year Effects RM5']] <- TE.rm5
+
+
+out.file <- file.path(save.dir, "HBM_results.rds")
 saveRDS(HBM.results, out.file)
