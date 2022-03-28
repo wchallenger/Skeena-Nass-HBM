@@ -58,7 +58,7 @@ if (str_detect(mod.file, "^KormanEnglish")) {
 }
 
 
-
+# stop()
 # DEV: Fit Stepwise ------------------------------------------------------------
 # The first option lets you hand fit each step from compiling, burn-in, to 
 # sampling from the posterior.  This can be useful for debugging.
@@ -134,7 +134,7 @@ if (exists('diagnostics')) {
     
     pdf(file = file.path(out.dir, save.name), width=8, height = 11)
       par(mfrow = c(5,4))
-      gelman.plot(results.obj$samples, ylim = c(0.9, 1.1), auto.layout = FALSE)
+      gelman.plot(samps, ylim = c(0.9, 1.1), auto.layout = FALSE)
     dev.off()
   }
   # Posterior densities, trace plots and auto-correlation diagnostics
@@ -203,4 +203,5 @@ saveRDS(results.obj, file = file.path(save.dir, out.file))
 message("Run results save to:\n  ",file.path(save.dir, out.file))
 
 
-rm(list = c("jagsfit.p", "est", "samps", "gelman.rubin.diag"))
+rm(list = c("jagsfit.p", "est", "samps", "parms"))
+if (exists("gelman.rubin.diag")) rm(gelman.rubin.diag)
