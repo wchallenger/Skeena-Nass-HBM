@@ -1,7 +1,9 @@
+library(tidyverse)
+library(zoo)
 message("Creating shared year effect plots")
 mod.result <- readRDS(file.path(save.dir, "result_HBM_Skeena_m23.rds"))
 samps <- mod.result$samples
-
+sr.dat <- mod.result$sr.data
 TE.est <- mod.result$estimates %>% filter(Parm == "TE")
 
 
@@ -90,6 +92,7 @@ app.plots[['TE RM4']] <- ggplot(TE.rm4, aes(x=Year, y=mean)) +
   geom_point(data = TE.est, color="grey50") +
   geom_hline(yintercept = 0, linetype = "dashed") +
   scale_x_continuous(breaks = seq(1960,2022, by=5)) +
+  theme_classic(14) +
   labs(
     # title = "Skeena Shared Year Effect (4 year rolling mean)",
     # subtitle = "Error bars indicate 95% Credible Intervals",
@@ -109,6 +112,7 @@ app.plots[['TE RM5']] <- ggplot(TE.rm5, aes(x=Year, y=mean)) +
   geom_point(data = TE.est, color="grey50") +
   geom_hline(yintercept = 0, linetype = "dashed") +
   scale_x_continuous(breaks = seq(1960,2022, by=5)) +
+  theme_classic(14) +
   labs(
     # title = "Skeena Shared Year Effect (5 year rolling mean)",
     # subtitle = "Error bars indicate 95% Credible Intervals",
