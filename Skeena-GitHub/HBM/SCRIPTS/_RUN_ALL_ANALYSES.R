@@ -15,8 +15,14 @@ base.dir <- "."  # assumed working directory is set to project root.
 base.dir <- "~/GitHub/Fisheries/Skeena-Nass-HBM/Skeena-GitHub"
 
 # Settings ----------------------------------------------------------------
-ver <- as.character(Sys.Date())
+# ver <- as.character(Sys.Date()) # New run
+
 # ver <- "2022-03-24"
+# ver <- "2022-03-26"  # Using most up-to-date sandbox repo data
+
+# Run that removes enhanced stocks
+ver <- "2022-03-26-noenhanced"
+exclude <- c("Pinkut", "Fulton")
 
 
 # data.dir <- file.path(base.dir, "DATA")
@@ -44,17 +50,30 @@ if (!dir.exists(save.dir)) {
   # Prepare main analysis data set used across all analyses
   source(file.path(script.dir, "PREP-analysis_data.R"))
   
+  if (exists('exclude')) {
+    sr.tab <- sr.tab %>% filter(Stock %in% exclude == FALSE)
+    smax.tab <- smax.tab %>% filter(Stock %in% exclude == FALSE)
+  }
+  
   # Determine convergence of basecase for fundamental parameters
   source(file.path(script.dir, "RUN-basecase_diagnostics.R"))
   
   # Run basecase, the main sensitivity analyese, and nonHBM model for shrinkage
+  diagnostics = c("gelman-rubin")
   source(file.path(script.dir, "RUN-basecase_nonHBM_runs1-6.R"))
   
   # Run drop 1 or more stocks jackknife 
   source(file.path(script.dir, "RUN-jackknife_runs.R"))
   
+  # Run 26
+  source(file.path(script.dir, "RUN-26_pinkut_fulton_kitwanga.R"))
+  
+  rm(smax.dat, sr.dat)
+  
 } else {
-  message("Reloading previous run")
+  # Prepare main analysis data set used across all analyses
+  source(file.path(script.dir, "PREP-analysis_data.R"))
+  message("Reloading results from previous run")
 }
 
 # Post processing: appendix Tables  ----------------------------------------------
