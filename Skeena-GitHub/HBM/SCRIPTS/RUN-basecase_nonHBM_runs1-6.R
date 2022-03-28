@@ -155,7 +155,7 @@ runs[['McAllister m23 Skeena Shrinkage']] <- list(
 
 
 # Run Analyses ------------------------------------------------------------
-diagnostics = TRUE
+# diagnostics = TRUE
 for (r in seq_along(runs)) {
   
   message("Fitting run '", names(runs)[r],"'")
