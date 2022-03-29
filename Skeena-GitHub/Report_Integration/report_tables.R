@@ -6,9 +6,12 @@ setwd("~/GitHub/Fisheries/Skeena-Nass-HBM/Skeena-GitHub")
 
 # result.ver <- "2022-03-16"
 # result.ver <- "2022-03-16-trial"
-result.ver <- "2022-03-17"
-sr.scale = 1e6
-mod.result <- readRDS(file.path("HBM", "RESULTS", result.ver, "result_HBM_McAllister_m23.rds"))
+# result.ver <- "2022-03-17"
+# sr.scale = 1e6
+# mod.result <- readRDS(file.path("HBM", "RESULTS", result.ver, "result_HBM_McAllister_m23.rds"))
+result.ver <- "2022-03-26"
+sr.scale = 1
+mod.result <- readRDS(file.path("HBM", "RESULTS", result.ver, "result_HBM_Skeena_m23.rds"))
 
 
 input.dir <- "Report_Integration"
@@ -338,16 +341,5 @@ for (type in c("ModelSpecs", "ModelFits", "CapacityPar", "ProductivityPar", "Pro
 
 
 
-# 
-# data.dir <- "PATH/TO/FILES" 
-# 
-# for (type in c("ModelSpecs", "ModelFits", "CapacityPar", "ProductivityPar", "ProductivityPar_RpSVersion")) {
-#    temp <- bind_rows(
-#     read.csv(file.path(data.dir, paste0("ReportTable_", type, ".csv"))),
-#     report.tables[[type]]
-#   )
-#   out.file <- file.path(data.dir, paste0("ReportTable_", type, ".csv"))
-#   write_csv(temp, out.file)
-# }
 
 
