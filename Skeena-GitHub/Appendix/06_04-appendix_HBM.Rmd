@@ -7,14 +7,24 @@ library(tidyverse)
 library(csasdown)
 
 HBM.results <- readRDS("data/HBM/HBM_appendix_tables.rds")
+
+pasteList <- function(x, suffix=NULL) {
+  n <- length(x)
+  if (!is.null(suffix)) x <- paste0(x, suffix)
+  if(n == 1) return(x)
+  a <- paste(head(x, n=(n-1)), collapse = ", ")
+  paste(c(a, tail(x, 1)), collapse = ", and ")
+}
 # str(HBM.results)
 
 # TASKS
 # - Standardize terms: lognormal or log-normal,  capitalize Normal?
 # - methods - include JAGS
-# -[ ] intro to senstivity
+# - [ ] prettyNum
+# -[ ] intro to sensitivity
 # - [ ] Citations
 # - [ ] shrinkage 
+# - [ ] Umsy definition
 ```
 
 <!-- 
@@ -73,6 +83,7 @@ where $\sigma_{max,s}$  is the prior standard deviation in the natural logarithm
 cap <- "Prior median values for stock-specific $S_\\textrm{max}$ and the prior standard deviation in the natural logarithm of $S_\\textrm{max}$ (i.e., $\\sigma_{\\textrm{max},s}$) based on results from previous lake productivity analyses.  The two instances where three stocks are listed in the same line, the available mean $S_\\textrm{max}$ values were added since the individual rearing lakes for these stocks were geographically very close together and the stock-recruit data for these stocks were thus combined into a single time series of stock-recruit data for stock-recruit parameter estimation."
 # data.frame(Yes = 1:10, No = LETTERS[11:20]) %>%
 HBM.results$Smax %>%
+  filter(Basin == "Skeena") %>%
   mutate(prSmax = round(prSmax)) %>%
   rename(
     `$S_{\\textrm{max},s}$` = prSmax,
@@ -153,9 +164,11 @@ where $\tau_T$  is the prior precision in the common shared year effect that is 
   
 The prior for $\sigma_T$ was chosen to be mildly informative with the prior central tendency and prior precision set at values to allow the data to inform a large range of values and accommodate potentially large interannual variation in common shared year effects. 
 
+The estimated common shared year effects are expected to represent average deviations from Ricker model stock-productivity predictions across stocks in a given year.  The common shared year effect could potentially result from better than average or worse than average survival rates from natural mortality within a given year experienced by the stocks in either freshwater or saltwater.  However, it could also result from run reconstruction errors, for example, underestimation or overestimation of the total catch. 
+
 ## Model Fitting
 
-The MCMC algorithms applied for posterior integration of the HBM included WinBUGS 1.4.3 and JAGS and practically identical parameter estimates were obtained between the two software packages.    Under initial implementations the burn-in was achieved within about 10,000 iterations and well-pronounced posterior density functions were obtained for parameter estimates.    However, under both software packages, for some of the stocks, the MCMC chains could stray very rarely to extreme low values for the Ricker $\beta$ parameter or extreme high values for the Ricker a parameter.  Extreme low values for the Ricker $\beta$ parameter map out to extreme high values, e.g., ten times the value of the posterior mode, for derived parameters such as the average unfished spawner abundance, $S_0$, or spawning stock abundance associated with the maximum sustainable yield, $S_{msy}$.  Such extreme outlier values were considered to be well outside of the support of the data and may be artifacts of the operation of the MCMC algorithms applied. 
+The MCMC algorithms applied for posterior integration of the HBM included WinBUGS 1.4.3 and JAGS and practically identical parameter estimates were obtained between the two software packages.    Under the initial WinBUGS implementations the burn-in was achieved within about 10,000 iterations and well-pronounced posterior density functions were obtained for parameter estimates.   However, under both software packages, for some of the stocks, the MCMC chains could stray very rarely to extreme low values for the Ricker $\beta$ parameter or extreme high values for the Ricker a parameter.  Extreme low values for the Ricker $\beta$ parameter map out to extreme high values, e.g., ten times the value of the posterior mode, for derived parameters such as the average unfished spawner abundance, $S_0$, or spawning stock abundance associated with the maximum sustainable yield, $S_{msy}$.  Such extreme outlier values were considered to be well outside of the support of the data and may be artifacts of the operation of the MCMC algorithms applied. 
 
 To prevent the inclusion of extreme outlier values, a minimum boundary was applied to the prior for the Ricker $\beta$ parameter.  The prior minimum value for the Ricker $\beta$ parameter was established as follows.  An upper bound on the value for $S_\textrm{max}$ was obtained for each stock as five times the prior central tendency specified for $S_\textrm{max}$:  
 
@@ -187,11 +200,26 @@ To provide approximations of how productivity could be varying systematically ov
 
 \begin{equation}
   a_{s,y,n}=a_s+\frac{1}{n}\cdot\sum_{i=y-n+1}^{y}T_i
+  (\#eq:timevarprod)
 \end{equation}
+
+
+Final estimates of the posterior distributions were derive in JAGS by running six 
+independent chains with differen starting points for 100,000 MCMC iterations 
+after a burn-in of 20,000. Posterior samples were thinned keeping every 10th 
+sample in order to reduce auto-correlation in both fundamental and derived 
+parameters. Convergence was assess through a combination of diagnostic plots (e.g., traceplots, posterior distributions and Gelman-Rubin-Brooks plots) and criterion such as Rhat, Gelman and Rubin's 
+potential scale reduction factor [@GelmanRubin1992], including the multivariate version [@BrooksGelman1998], and Geweke's diagnostic [@Geweke1992]. In all cases plots showed goods sampling
+from the posterior with little to no autocorrelation and all diagnostic 
+criterion were within ranges that are generally associated with 
+convergence (i.e., Rhat < 1.05, Gelman-Rubin within [0.99, 1.01], and Geweke within [-2,2]).
+
+
+
 
 ## Sensitivity Analyses {#app:HBMFits-2}
 
-Some additional model runs were implemented to evaluate some different features of the HBM.  See Table \@ref(tab:SensitivityRuns) for brief descriptions of these additional model runs. We term the model run using above described specifications for the HBM the “base case”.  Note that the results reported below were obtained from earlier WinBUGS 1.4.3 code versions of the HBM which included a simpler approximation for computing Smsy [i.e., from Table 7.2 of @HilbornWalters1992] than was used in the main body of the report.  The results from these additional runs are summarized further below.   
+Some additional model runs were implemented to evaluate some different features of the HBM.  See Table \@ref(tab:SensitivityRuns) for brief descriptions of these additional model runs. We term the model run using above described specifications for the HBM the ''base case''.  Note that the results reported below were obtained from earlier WinBUGS 1.4.3 code versions of the HBM which included a simpler approximation for computing \Smsy [i.e., from Table 7.2 of @HilbornWalters1992] than was used in the main body of the report.  The results from these additional runs are summarized further below.   
 
 
   
@@ -200,16 +228,17 @@ Some additional model runs were implemented to evaluate some different features 
 cap <- "Description of sensitivity runs to evalute the sensitivity of estimation results to model structure and some key inputs."
 
 data.frame(
-  `Run` = c(seq(1,6), "7-24", "25"), 
+  `Run` = c(seq(1,6), "7-24", "25", "26"), 
   Description = c(
     "HBM base case but including Korman and English’s (2013) coding in computing precision in the likelihood function from $\\sigma$",
     "Same as HBM base case but with no prior lower bounds on $\\beta$.",
     "Same as HBM base case but leaving out common shared year effects.",
-    "Non-hierarchical model run with no common shared year effect but including the same $S_{\\textrm{max}}$ prior information as in the base case HBM.",
-    "Same as HBM base case but normal priors on $S_{\\textrm{max}}$ instead of the base case lognormal prior on Ricker $\\beta$.",
+    "Non-hierarchical model run with no common shared year effect but including the same \\Smax prior information as in the base case HBM.",
+    "Same as HBM base case but normal priors on \\Smax instead of the base case lognormal prior on Ricker $\\beta$.",
     "Same as HBM base case but with vague Ricker $\\beta$ priors, but including the prior lower bound on Ricker $\\beta$.",
     "Leave out stock-recruit data in the HBM, one stock at a time.",
-    "Leave out stock-recruit data for the Babine Enhanced stocks in the HBM, i.e., Pinkut and Fulton."
+    "Leave out stock-recruit data for the Babine Enhanced stocks in the HBM (i.e., Pinkut and Fulton).",
+    "Same as HBM base case but leave out Babine Enhanced stocks (i.e., Pinkut and Fulton) and apply vague \\Smax priors to Bear, Kitwanga, and Sustut."
   ),
   check.names = FALSE
 ) %>%
@@ -221,7 +250,7 @@ data.frame(
     align = c("l", "l"),
     caption = cap, #paste("(tab:SensitivityRuns)", cap)
   ) %>%
-  kableExtra::row_spec(seq(1,7), hline_after = TRUE) %>%
+  kableExtra::row_spec(seq(1,8), hline_after = TRUE) %>%
   kableExtra::column_spec(2, width = "12cm")
 ```
 
@@ -237,10 +266,10 @@ pinkut <- round((HBM.results$Shrinkage %>% filter(Stock == "Pinkut") %>% select(
 fulton <- round((HBM.results$Shrinkage %>% filter(Stock == "Fulton") %>% select(Shrinkage) %>% unlist)*100 )
 other <- HBM.results$Shrinkage %>% filter(Stock %in% c("Kitwanga", "Pinkut", "Fulton" == FALSE)) %>% select(Shrinkage) %>% unlist %>% range
 other <-round(other*100,1)
-sig.sd <- (HBM.results$`Shrinkage`$Diff.SD * -100) %>% range() %>% round(digits = 1)  # % reduction
+sig.sd <- (HBM.results$Shrinkage$`Diff.SD` * -100) %>% range() %>% round(digits = 1)  # % reduction
 ```
 
-In both the non-HBM and HBM models a common shared year effect was estimated to make the shrinkage analysis valid.  Under the non-HBM the prior for the Ricker $a$ parameter for each stock was similarly lognormal, had $a$ prior median of $\log(0.5)$ and precision of 1.  Under the non-HBM a moderate amount of shrinkage can be seen (Figure \@ref(fig:HBMShrinkage)). For example the Asitka stock which had the highest posterior median value for the Ricker $a$ parameter under both models showed a `r -shrink[1]`% decrease in the Ricker $a$ parameter (Table Z.Z).  This was the largest percentage decrease among the Skeena sockeye salmon stocks included in the HBM.  In contrast the Kitwanga stock which had the second lowest posterior median for the Ricker $a$ parameter under the non-HBM showed the largest increase of `r kitwanga`% when going from the non-HBM to the HBM.  In contrast the Pinkut and Fulton stocks which had posterior medians for Ricker a under the non-HBM close to the middle range of the Posterior median estimates showed very little shrinkage, i.e., `r pinkut`% and `r fulton`%, respectively (Figure \@ref(fig:HBMShrinkage), Table Z.Z).  For all of the 18 Skeena sockeye salmon stocks the posterior SDs for the Ricker $a$ parameter were all smaller, i.e., `r sig.sd[1]`% to `r sig.sd[2]`% smaller, under the HBM than under the non-HBM (Table Z.Z).
+In both the non-HBM and HBM models a common shared year effect was estimated to make the shrinkage analysis valid.  Under the non-HBM the prior for the Ricker $a$ parameter for each stock was similarly lognormal, had $a$ prior median of $\log(0.5)$ and precision of 1.  Under the non-HBM a moderate amount of shrinkage can be seen (Figure \@ref(fig:HBMShrinkage)). For example the Asitka stock which had the highest posterior median value for the Ricker $a$ parameter under both models showed a `r -shrink[1]`% decrease in the Ricker $a$ parameter (Table \@ref(tab:HBMShrinkageVal)).  This was the largest percentage decrease among the Skeena sockeye salmon stocks included in the HBM.  In contrast the Kitwanga stock which had the second lowest posterior median for the Ricker $a$ parameter under the non-HBM showed the largest increase of `r kitwanga`% when going from the non-HBM to the HBM.  In contrast the Pinkut and Fulton stocks which had posterior medians for Ricker a under the non-HBM close to the middle range of the Posterior median estimates showed very little shrinkage, i.e., `r pinkut`% and `r fulton`%, respectively (Figure \@ref(fig:HBMShrinkage), Table \@ref(tab:HBMShrinkageVal)).  For all of the 18 Skeena sockeye salmon stocks the posterior SDs for the Ricker $a$ parameter were all smaller, i.e., `r sig.sd[1]`% to `r sig.sd[2]`% smaller, under the HBM than under the non-HBM (Table \@ref(tab:HBMShrinkageVal)).
 
 
 
@@ -249,10 +278,10 @@ cap <- "Shrinkage plot for posterior median values for the Ricker $a$ parameter 
 ```
 ```{r HBMShrinkage, echo=FALSE, fig.width=7, fig.cap=cap}
 HBM.results$Shrinkage %>%
-  select(Stock, nonHBM.median, HBM.median) %>%
+  select(Stock, ends_with("median")) %>%
   gather(key=Model, value = Median, ends_with("median")) %>%
   mutate(
-    Model = str_replace(Model, "\\.median", "") %>% factor(levels = c("nonHBM", "HBM"))
+    Model = str_replace(Model, "[\\.[:space:]]median", "") %>% factor(levels = c("nonHBM", "HBM"))
   ) %>%
   ggplot(., aes(x=Model, y = Median)) +
   geom_point(aes(color = Stock)) +
@@ -270,6 +299,10 @@ cap <- "Posterior median estimates and standard deviations (SD) for the Ricker $
 
 HBM.results[['Shrinkage']] %>%
   mutate(
+    nonHBM.median = round(nonHBM.median, 3),
+    HBM.median= round(HBM.median, 3),
+    nonHBM.SD = round(nonHBM.SD, 3),
+    HBM.SD = round(HBM.SD, 3),
     Shrinkage = paste0(round(Shrinkage * 100,1), "\\%"),
     Diff.SD = paste0(round(Diff.SD * 100,1), "\\%")
   ) %>%
@@ -290,6 +323,79 @@ HBM.results[['Shrinkage']] %>%
   kableExtra::column_spec(2:7, width = "1.5cm")
 ```
 
+### Common Shared Year effect
+
+The common shared year effects represent average deviations from Ricker model stock-productivity predictions across stocks in a given year (Figure \@ref(fig:HBMYrEff)). Estimates varied from year to year with many years being close to the Ricker model predictions, while other years showing notable positive and negative deviations The 1994 common shared year effect represented the largest deviation from Ricker stock-productivity predictions, with a strong reduction in productivity. The 4-year and 5-year rolling means provide smoothed representations of estimated common shared year effects within four and five year blocks and make it easier to visualize potential common shared trends in stock productivity than plots of annual estimates.  The common shared year effects derive from the average of stock productivity deviates across the stocks where stock-recruit data are available in a given year and acquire credibility through commonality in annual productivity deviates across several of the stocks.  In contrast, Kalman filter representations of time varying productivity rely on apparent time series of deviates from Ricker-model predictions of long-term average productivity based on data from a single stock.  The Kalman filter approach does not allow any potential statistical representation of common patterns in productivity deviates between stocks in larger watershed. Also in contrast to the common-shared year effect approach the Kalman filter approach cannot be applied to stock-recruit data time series where there are one or more missing years of data within a time series.
+
+```{r, echo=FALSE}
+cap <- "Estimated common shared year effect shared across the 18 Skeena stocks with a 4-year rolling mean (A) and a 5-year rolling mean (B) overlaid. Points indicate mean with error bars indicating the 95\\% credible intervals, while line and shading indicates the mean and 95\\% credible intervals for the rolling mean."
+```
+```{r HBMYrEff, fig.width=7.5, fig.cap=cap}
+include_graphics("data/HBM/Appendix-HBM-common_year_eff.pdf")
+```
+
+While these yearly deviations, whether from common shared year effects or Kalman filter, could represent improved or diminished survival in the fresh or saltwater system, they could also represent an under or overestimation in total catch, and there is currently no way to distinguish between authentic shared survival rate effects and run reconstruction error effects. As such, negative or positive year effects cannot be directly attributed to either an environmental or run reconstruction effect as the two will be confounded. As such, time varying productivity should be viewed as a method to improve model fitting, but does not provide objective criteria that can be used to set or judge management responses.
+
+To evaluate the sensitivity of reference points to estimated changes in productivity, high and low productivity periods were identified and the posterior predictive distributions for \Smsy and \Umsy were computed based on the common shared year effects in these blocks of years based on estimates of time varying productivity by stock (see equation \@ref(eq:timevarprod)).  The years showing the largest mostly positive common shared year effects included 1980-1992 (Fig. \@ref(fig:HBMYrEff)).  The years showing the lowest mostly negative common shared year effects included 1999-2014 (Fig. \@ref(fig:HBMYrEff)).  Smsy and Umsy estimates were significantly lower in the latter block of years with the posterior means for Smsy and also Umsy ranging between 21% and 50% lower than those estimates in the high productivity period from 1980-1992 (Tables \@ref(tab:SmsyProd) and \@ref(tab:UmsyProd)).  The 95% credible intervals for the percentage differences for both Smsy and Umsy included only negative values (Tables \@ref(tab:SmsyProd) and \@ref(tab:UmsyProd)).  
+
+```{r SmsyProd, echo=FALSE}
+cap <- "Comparison of stock-specific \\Smsy in high (i.e., 1980-1992) and low (i.e., 1999-2014) periods of productivity and the percentage differnce between periods."
+
+HBM.results[['Smsy Productivity']] %>%
+  mutate(
+    High = round(High),
+    Low = round(Low),
+    Diff      = ifelse(is.na(Diff), NA, paste0(round(Diff*100), "\\%")),
+    Diff_2.5  = ifelse(is.na(Diff), NA, paste0(round(Diff_2.5*100), "\\%")),
+    Diff_97.5 = ifelse(is.na(Diff), NA, paste0(round(Diff_97.5*100), "\\%"))
+  ) %>%
+  # select(Low, High, Diff, Diff_2.5, Diff_97.5) %>%
+  rename(
+    `High` = High,
+    `Low` = Low,
+    `\\% Diff` = Diff,
+    `Lower CI` = Diff_2.5,
+    `Upper CI` =Diff_97.5
+  ) %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 5)),
+    caption = cap #paste("(ref:tabSenRun1)", cap)
+  ) %>%
+  kableExtra::column_spec(2:5, width = "1.5cm")
+```
+
+```{r UmsyProd, echo=FALSE}
+cap <- "Comparison of stock-specific \\Umsy in high (i.e., 1980-1992) and low (i.e., 1999-2014) periods of productivity and the percentage differnce between periods."
+
+HBM.results[['Umsy Productivity']] %>%
+  mutate(
+    High = round(High),
+    Low = round(Low),
+    Diff      = ifelse(is.na(Diff), NA, paste0(round(Diff*100), "\\%")),
+    Diff_2.5  = ifelse(is.na(Diff), NA, paste0(round(Diff_2.5*100), "\\%")),
+    Diff_97.5 = ifelse(is.na(Diff), NA, paste0(round(Diff_97.5*100), "\\%"))
+  ) %>%
+  # select(Low, High, Diff, Diff_2.5, Diff_97.5) %>%
+  rename(
+    `High` = High,
+    `Low` = Low,
+    `\\% Diff` = Diff,
+    `Lower CI` = Diff_2.5,
+    `Upper CI` =Diff_97.5
+  ) %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 5)),
+    caption = cap #paste("(ref:tabSenRun1)", cap)
+  ) %>%
+  kableExtra::column_spec(2:5, width = "1.5cm")
+```
+
 \newpage
 ### Sensitivity Run 1:  Effect of Korman and English’s (2013) coding error for their HBM. {#app:HBMFits-2-1}
 ```{r, echo=FALSE}
@@ -306,6 +412,10 @@ cap <- "Posterior means and posterior standard deviations for $\\sigma$ from the
 
 HBM.results[['Run 1']] %>%
   mutate(
+    Base.Case.mean = round(Base.Case.mean, 3),
+    Code.Error.mean = round(Code.Error.mean, 3),
+    Base.Case.SD = round(Base.Case.SD, 3),
+    Code.Error.SD = round(Code.Error.SD, 3),
     Diff.mean = paste0(round(Diff.mean*100), "\\%"),
     Diff.SD = paste0(round(Diff.SD * 100), "\\%")
   ) %>%
@@ -336,19 +446,21 @@ HBM.results[['Run 1']] %>%
 
 When there was no prior lower bound included the Ricker $\beta$ parameter by stock, the estimates of $S_\textrm{max}$ and MSY-based reference points included some extremely high MCMC chain values that were way out in the tails of the Markov chains and very far removed from the range of values with support from the data; for these stocks, posterior means, medians, and probability interval values were highly sensitive to the inclusion of these extreme outlier values in the chains (see Table \@ref(tab:SenRun2) for some example results for $S_\textrm{MSY}$).  It is common in implementations of MCMC implementations such as WinBUGS to set bounds on key variables in the model to prevent extreme outlier values in the chains from affecting the posterior calculations [e.g., @MeyerMillar1999; @MichielsensMcAllister2004].  It is thus recommended that prior lower bounds on the Ricker $\beta$ parameter be implemented for each stock to eliminate this source of bias.
 
+The $U_\textrm{MSY}$ estimates from the HBM were relatively insensitive to lifting the prior maximum bound on $S_\textrm{max}$ (Table \@ref(tab:SenRun2Umsy)).  
+
 
 <!-- TABLE X.A Sensitivity Run 2 -->
 ```{r SenRun2, echo=FALSE, results='asis'}
 cap <- "Posterior means and posterior standard deviations for Smsy from the base case and model run where no prior upper bounds were placed on Smax."
 
-HBM.results[['Run 2']] %>%
+HBM.results[['Run 2 Smsy']] %>%
   mutate(
     Base.Case.mean = round(Base.Case.mean),
     No.Bound.mean = round(No.Bound.mean),
     Base.Case.SD = round(Base.Case.SD),
     No.Bound.SD = round(No.Bound.SD),
-    Diff.mean = paste0(Diff.mean*100, "\\%"),
-    Diff.SD = paste0(Diff.SD * 100, "\\%")
+    Diff.mean = paste0(round(Diff.mean*100,1), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 1), "\\%")
   ) %>%
   rename(
     `Base Case mean $S_\\textrm{MSY}$` = Base.Case.mean,
@@ -365,30 +477,64 @@ HBM.results[['Run 2']] %>%
     align = c("l", rep("r", 6)),
     caption = cap, #paste("(ref:tabSenRun2)", cap)
   ) %>%
+  kableExtra::row_spec(18, hline_after = TRUE) %>%
+  kableExtra::column_spec(2:7, width = "1.5cm")
+```
+
+
+```{r SenRun2Umsy, echo=FALSE, results='asis'}
+cap <- "Posterior means and posterior standard deviations for Umsy from the base case and model run where no prior upper bounds were placed on Smax."
+
+HBM.results[['Run 2 Umsy']] %>%
+  mutate(
+    Base.Case.mean = round(Base.Case.mean,3),
+    No.Bound.mean = round(No.Bound.mean,3),
+    Base.Case.SD = round(Base.Case.SD,3),
+    No.Bound.SD = round(No.Bound.SD,3),
+    Diff.mean = paste0(round(Diff.mean*100,1), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 1), "\\%")
+  ) %>%
+  rename(
+    `Base Case mean $U_\\textrm{MSY}$` = Base.Case.mean,
+    `No Bound mean $U_\\textrm{MSY}$` = No.Bound.mean,
+    `\\% Diff` = Diff.mean,
+    `Base Case SD($U_\\textrm{MSY}$)` = Base.Case.SD,
+    `No Bound SD($U_\\textrm{MSY}$)` = No.Bound.SD,
+    `\\% Diff ` = Diff.SD
+  ) %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 6)),
+    caption = cap, #paste("(ref:tabSenRun2)", cap)
+  ) %>%
   kableExtra::column_spec(2:7, width = "1.5cm")
 ```
 
 ### Sensitivity Run 3: Same as HBM base case but leaving out common shared year effects
 
 ```{r, echo=FALSE}
-sig.mean <- (HBM.results[['Run 3']]$Diff.mean * 100)  %>% range() %>% round
-sig.sd <- (HBM.results[['Run 3']]$Diff.SD * 100) %>% range()  %>% round
+sig.mean <- (HBM.results[['Run 3 Smsy']]$Diff.mean * 100)  %>% range() %>% round
+sig.sd <- (HBM.results[['Run 3 Smsy']]$Diff.SD * 100) %>% range()  %>% round
 ```
 
 Significant, strong common shared year effects were estimated for numerous years in the 1960-2014 brood year time series.  Separating out this effect provided more precise estimates of Ricker stock recruit parameters for several of the stocks and more precise estimates of management quantities of interest.  This also allowed for common shared systematic change in stock productivity to be estimated.  The posterior means for the Smsy reference point by stock for example were between about `r sig.mean[1]`% and `r sig.mean[2]`% different between runs when common shared year effects were excluded versus accounted for (Table \@ref(tab:SenRun3)).  When no common shared year effect was included in the HBM, estimates of Ricker stock-recruit parameters and associated management parameters for several of the stocks were on average less precisely estimated with posterior SDs being up to about `r sig.sd[2]`% larger for $S_\textrm{msy}$ for several of the stocks.
+
+The $U_\textrm{MSY}$ estimates from the HBM were to removing common shared year effects from the HBM (Table \@ref(tab:SenRun3Umsy)).  
 
 <!-- TABLE X.B Sensitivity Run 2 -->
 ```{r SenRun3, echo=FALSE, results='asis'}
 cap <- "Posterior means and posterior standard deviations for Smsy from the base case and model run where no prior upper bounds were placed on Smax."
 
-HBM.results[['Run 3']] %>%
+HBM.results[['Run 3 Smsy']] %>%
   mutate(
     Base.Case.mean = round(Base.Case.mean),
     No.TE.mean = round(No.TE.mean),
     Base.Case.SD = round(Base.Case.SD),
     No.TE.SD = round(No.TE.SD),
-    Diff.mean = paste0(Diff.mean*100, "\\%"),
-    Diff.SD = paste0(Diff.SD * 100, "\\%")
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
   ) %>%
   rename(
   	`Base Case mean $S_\\textrm{MSY}$` = Base.Case.mean,
@@ -405,34 +551,70 @@ HBM.results[['Run 3']] %>%
     align = c("l", rep("r", 6)),
     caption = cap #paste("(ref:tabSenRun3)", cap)
   ) %>%
+  kableExtra::row_spec(18, hline_after = TRUE) %>%
   kableExtra::column_spec(2:7, width = "1.5cm")
 ```
 
 
+```{r SenRun3Umsy, echo=FALSE, results='asis'}
+cap <- "Posterior means and posterior standard deviations for Umsy from the base case and model run where no prior upper bounds were placed on Smax."
+
+HBM.results[['Run 3 Umsy']] %>%
+  mutate(
+    Base.Case.mean = round(Base.Case.mean, 3),
+    No.TE.mean = round(No.TE.mean, 3),
+    Base.Case.SD = round(Base.Case.SD, 3),
+    No.TE.SD = round(No.TE.SD, 3),
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
+  ) %>%
+  rename(
+  	`Base Case mean $U_\\textrm{MSY}$` = Base.Case.mean,
+  	`No \\newline $T_y$ \\newline mean $U_\\textrm{MSY}$` = No.TE.mean,
+  	`\\% Diff` = Diff.mean,
+  	`Base Case SD($U_\\textrm{MSY}$)` = Base.Case.SD,
+  	`No \\newline $T_y$ \\newline SD($U_\\textrm{MSY}$)` = No.TE.SD,
+  	`\\% Diff ` = Diff.SD
+  ) %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 6)),
+    caption = cap #paste("(ref:tabSenRun3)", cap)
+  ) %>%
+  kableExtra::column_spec(2:7, width = "1.5cm")
+```
+
 ### Sensitivity Run 4: Non-hierarchical model run with no common shared year effect but including the same $S_\textrm{max}$ prior information as in the base case HBM
 
 ```{r, echo=FALSE}
-sig.mean <- (HBM.results[['Run 4']]$Diff.mean * 100) %>% range()  %>% round
-sig.sd <- (HBM.results[['Run 4']]$Diff.SD * 100) %>% range()  %>% round
+sig.mean <- (HBM.results[['Run 4 Smsy']]$Diff.mean * 100) %>% range()  %>% round
+sig.sd <- (HBM.results[['Run 4 Smsy']]$Diff.SD * 100) %>% range()  %>% round
 
-smsy.diff <- filter(HBM.results[['Run 4']], Stock == "Sum Smsy across stocks") %>% select(Diff.mean, Diff.SD) %>% unlist * 100 %>% round
+smsy.diff <- filter(HBM.results[['Run 4 Smsy']], Stock == "Sum Smsy across stocks") %>% select(Diff.mean, Diff.SD) %>% unlist * 100 %>% round
+
+umsy.diff <- HBM.results[['Run 4 Umsy']] %>% select(Diff.SD) %>% unlist %>% max
+umsy.diff <- round(umsy.diff*100)
 ```
 
 
 When a nonhierarchical Bayesian model(nonHBM) with no common shared year effects was run, estimates of Ricker stock-recruit parameters and associated management parameters for several of the stocks were on average less precisely estimated with posterior SD in Smsy for example on average being about `r sig.sd[1]`% to `r sig.sd[2]`% different between the nonHBM and HBM runs (Table \@ref(tab:SenRun4)).  Percentage differences between the nonHBM and HBM for posterior mean estimates for Smsy parameters ranged by stock between `r sig.mean[1]`% and `r sig.mean[2]`%.  These results indicate that on average Ricker and msy-based parameter estimates are more precisely estimated with the HBM and results for some quantities for some stocks can differ considerably.  However, the sum of the $S_\textrm{MSY}$ estimates across stocks was only about `r smsy.diff['Diff.mean']`% larger under the non-hierarchical model but the posterior SD in the $S_\textrm{MSY}$ values summed over the Skeena River stocks was `r smsy.diff['Diff.SD']`% larger than that for the HBM (Table \@ref(tab:SenRun4)).
 
+The posterior means for  $U_\textrm{MSY}$ were relatively insensitive to fitting a nonHBM, but the posterior SDs for $U_\textrm{MSY}$ mostly increased by up to `r umsy.diff`% larger than those under the HBM  (Table \@ref(tab:SenRun4Umsy)).  
+
 <!-- TABLE X.C Sensitivity Run 4 -->
 ```{r SenRun4, echo=FALSE, results='asis'}
 cap <- "Posterior means and posterior standard deviations for $S_\\textrm{MSY}$ from the base case HBM and nonHBM run."
 
-HBM.results[['Run 4']] %>%
+HBM.results[['Run 4 Smsy']] %>%
   mutate(
     Base.Case.mean = round(Base.Case.mean),
     nonHBM.mean = round(nonHBM.mean),
     Base.Case.SD = round(Base.Case.SD),
     nonHBM.SD = round(nonHBM.SD),
-    Diff.mean = paste0(Diff.mean*100, "\\%"),
-    Diff.SD = paste0(Diff.SD * 100, "\\%")
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
   ) %>%
   rename(
   	`Base Case mean $S_\\textrm{MSY}$` = Base.Case.mean,
@@ -449,29 +631,63 @@ HBM.results[['Run 4']] %>%
     align = c("l", rep("r", 6)),
     caption = cap 
   ) %>%
+  kableExtra::row_spec(18, hline_after = TRUE) %>%
   kableExtra::column_spec(2:7, width = "1.5cm")
 ```
+
+```{r SenRun4Umsy, echo=FALSE, results='asis'}
+cap <- "Posterior means and posterior standard deviations for $U_\\textrm{MSY}$ from the base case HBM and nonHBM run."
+
+HBM.results[['Run 4 Umsy']] %>%
+  mutate(
+    Base.Case.mean = round(Base.Case.mean, 3),
+    nonHBM.mean = round(nonHBM.mean, 3),
+    Base.Case.SD = round(Base.Case.SD, 3),
+    nonHBM.SD = round(nonHBM.SD, 3),
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
+  ) %>%
+  rename(
+  	`Base Case mean $U_\\textrm{MSY}$` = Base.Case.mean,
+  	`nonHBM \\newline mean $U_\\textrm{MSY}$` = nonHBM.mean,
+  	`\\% Diff` = Diff.mean,
+  	`Base Case SD($U_\\textrm{MSY}$)` = Base.Case.SD,
+  	`nonHBM \\newline SD($U_\\textrm{MSY}$)` = nonHBM.SD,
+  	`\\% Diff ` = Diff.SD
+  ) %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 6)),
+    caption = cap 
+  ) %>%
+  kableExtra::column_spec(2:7, width = "1.5cm")
+```
+
 
 ### Sensitivity Run 5: Normal priors on Smax in the HBM instead of the lognormal prior on Ricker $\beta$
 
 ```{r, echo=FALSE}
-sig.mean <- (HBM.results[['Run 5']]$Diff.mean * 100) %>% range()  %>% round
-sig.sd <- (HBM.results[['Run 5']]$Diff.SD * 100) %>% range()  %>% round
+sig.mean <- (HBM.results[['Run 5 Smsy']]$Diff.mean * 100) %>% range()  %>% round
+sig.sd <- (HBM.results[['Run 5 Smsy']]$Diff.SD * 100) %>% range()  %>% round
 ```
 
 When a normal prior for $S_\textrm{max}$ was applied instead of a lognormal prior on the Ricker $\beta$ parameter in the HBM, but otherwise using the same input information from the lake productivity analyses, the posterior estimates for several of the quantities became less precise and posterior estimates differed markedly for some of the quantities.  Posterior SDs for $S_\textrm{MSY}$ were for example much larger on average, e.g., between about `r sig.sd[1]`% and `r sig.sd[2]`% larger (Table \@ref(tab:SenRun5)).  Posterior mean estimates for $S_\textrm{MSY}$ differed between the two model runs by `r sig.mean[1]`% to `r sig.mean[2]`%.  Though it appears the same information is used in a normal prior for $S_\textrm{max}$, this prior on average loses information about the Ricker $\beta$ parameter compared to a prior for the Ricker $\beta$ parameter that uses the same $S_\textrm{max}$ information. 
 
+The $U_\textrm{MSY}$ estimates from the HBM were relatively insensitive to replacing the lognormal prior for the Ricker $\beta$ parameter with a normal prior for  $S_\textrm{max}$ (Table \@ref(tab:SenRun5Umsy)). 
+
 ```{r SenRun5, echo=FALSE, results='asis'}
 cap <- "Posterior means and posterior standard deviations for $S_\\textrm{MSY}$ from the base case and model run with a Normal priors on $S_\\textrm{max}$."
 
-HBM.results[['Run 5']] %>%
+HBM.results[['Run 5 Smsy']] %>%
   mutate(
     Base.Case.mean = round(Base.Case.mean),
     Normal.Prior.mean = round(Normal.Prior.mean),
     Base.Case.SD = round(Base.Case.SD),
     Normal.Prior.SD = round(Normal.Prior.SD),
-    Diff.mean = paste0(Diff.mean*100, "\\%"),
-    Diff.SD = paste0(Diff.SD * 100, "\\%")
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
   ) %>%
   rename(
   	`Base Case mean $S_\\textrm{MSY}$` = Base.Case.mean,
@@ -488,29 +704,68 @@ HBM.results[['Run 5']] %>%
     align = c("l", rep("r", 6)),
     caption = cap 
   ) %>%
+  kableExtra::row_spec(18, hline_after = TRUE) %>%
+  kableExtra::column_spec(2:7, width = "1.5cm")
+```
+
+
+
+```{r SenRun5Umsy, echo=FALSE, results='asis'}
+cap <- "Posterior means and posterior standard deviations for $U_\\textrm{MSY}$ from the base case and model run with a Normal priors on $S_\\textrm{max}$."
+
+HBM.results[['Run 5 Umsy']] %>%
+  mutate(
+    Base.Case.mean = round(Base.Case.mean, 3),
+    Normal.Prior.mean = round(Normal.Prior.mean, 3),
+    Base.Case.SD = round(Base.Case.SD, 3),
+    Normal.Prior.SD = round(Normal.Prior.SD, 3),
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
+  ) %>%
+  rename(
+  	`Base Case mean $U_\\textrm{MSY}$` = Base.Case.mean,
+  	`Normal Prior mean $U_\\textrm{MSY}$` = Normal.Prior.mean,
+  	`\\% Diff` = Diff.mean,
+  	`Base Case SD($U_\\textrm{MSY}$)` = Base.Case.SD,
+  	`Normal Prior SD($U_\\textrm{MSY}$)` = Normal.Prior.SD,
+  	`\\% Diff ` = Diff.SD
+  )  %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 6)),
+    caption = cap 
+  ) %>%
   kableExtra::column_spec(2:7, width = "1.5cm")
 ```
 
 
 ### Sensitivity Run 6: Application of vague Ricker $\beta$ priors in the HBM, but including the prior lower bound on $\beta$
 ```{r, echo=FALSE}
-sig.mean <- (HBM.results[['Run 6']]$Diff.mean * 100) %>% range() %>% round
-sig.sd <- (HBM.results[['Run 6']]$Diff.SD * 100) %>% range() %>% round
+sig.mean <- (HBM.results[['Run 6 Smsy']]$Diff.mean * 100) %>% range() %>% round
+sig.sd <- (HBM.results[['Run 6 Smsy']]$Diff.SD * 100) %>% range() %>% round
+
+umsy.diff <- HBM.results[['Run 6 Umsy']] %>% select(Diff.mean) %>% unlist %>% max
+umsy.diff <- round(umsy.diff*100)
 ```
 
-When a vague prior was applied for the Ricker $\beta$ prior for all 18 Skeena sockeye salmon stocks in the HBM, posterior estimates for the abundance-based management quantities were less precise on average with posterior SDs, e.g., for $S_\textrm{MSY}$ ranging between `r sig.sd[1]`% to `r sig.sd[2]`% larger under the vague priors (Table \@ref(tab:SenRun6)).  Posterior means for $S_\textrm{MSY}$ estimates in the HBM that used vague priors for the Ricker $\beta$ parameter were between about `r sig.mean[1]`% and `r sig.mean[2]`% different from those obtained under the mixture of informed and vague priors in the base case HBM.  The use of informative priors for the Ricker $\beta$ parameter based on prior information on $S_\textrm{max}$ via the lake productivity analyses thus combined with the data to provide more precise stock-recruit parameter estimates that in some cases differed from the less precise estimates given by the stock-recruit data.  
+When a vague prior was applied for the Ricker $\beta$ prior for all 18 Skeena sockeye salmon stocks in the HBM, posterior estimates for the abundance-based management quantities were less precise on average with posterior SDs, e.g., for \Smsy ranging between `r sig.sd[1]`% to `r sig.sd[2]`% larger under the vague priors (Table \@ref(tab:SenRun6)).  Posterior means for $S_\textrm{MSY}$ estimates in the HBM that used vague priors for the Ricker $\beta$ parameter were between about `r sig.mean[1]`% and `r sig.mean[2]`% different from those obtained under the mixture of informed and vague priors in the base case HBM.  The use of informative priors for the Ricker $\beta$ parameter based on prior information on $S_\textrm{max}$ via the lake productivity analyses thus combined with the data to provide more precise stock-recruit parameter estimates that in some cases differed from the less precise estimates given by the stock-recruit data.  
+
+
+The $U_\textrm{MSY}$ estimates from the HBM were relatively insensitive to prior for all Ricker $\beta$ parameter vague priors though for a few of the stocks the posterior means were up to `r umsy.diff`% larger (Table \@ref(tab:SenRun6Umsy)). 
 
 ```{r SenRun6, echo=FALSE, results='asis'}
 cap <- "Posterior means and posterior standard deviations for $S_\\textrm{MSY}$ from the base case and model run with a Normal priors on $S_\\textrm{max}$."
 
-HBM.results[['Run 6']] %>%
+HBM.results[['Run 6 Smsy']] %>%
   mutate(
     Base.Case.mean = round(Base.Case.mean),
     Vague.Prior.mean = round(Vague.Prior.mean),
     Base.Case.SD = round(Base.Case.SD),
     Vague.Prior.SD = round(Vague.Prior.SD),
-    Diff.mean = paste0(Diff.mean*100, "\\%"),
-    Diff.SD = paste0(Diff.SD * 100, "\\%")
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
   ) %>%
   rename(
   	`Base Case mean $S_\\textrm{MSY}$` = Base.Case.mean,
@@ -527,16 +782,46 @@ HBM.results[['Run 6']] %>%
     align = c("l", rep("r", 6)),
     caption = cap 
   ) %>%
+  kableExtra::row_spec(18, hline_after = TRUE) %>%
   kableExtra::column_spec(2:7, width = "1.5cm")
 ```
 
+```{r SenRun6Umsy, echo=FALSE, results='asis'}
+cap <- "Posterior means and posterior standard deviations for $U_\\textrm{MSY}$ from the base case and model run with a Normal priors on $S_\\textrm{max}$."
+
+HBM.results[['Run 6 Umsy']] %>%
+  mutate(
+    Base.Case.mean = round(Base.Case.mean, 3),
+    Vague.Prior.mean = round(Vague.Prior.mean, 3),
+    Base.Case.SD = round(Base.Case.SD, 3),
+    Vague.Prior.SD = round(Vague.Prior.SD, 3),
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
+  ) %>%
+  rename(
+  	`Base Case mean $U_\\textrm{MSY}$` = Base.Case.mean,
+  	`Vague $\\beta$ Prior mean $U_\\textrm{MSY}$` = Vague.Prior.mean,
+  	`\\% Diff` = Diff.mean,
+  	`Base Case SD($U_\\textrm{MSY}$)` = Base.Case.SD,
+  	`Vague $\\beta$ Prior SD($U_\\textrm{MSY}$)` = Vague.Prior.SD,
+  	`\\% Diff ` = Diff.SD
+  )  %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 6)),
+    caption = cap 
+  ) %>%
+  kableExtra::column_spec(2:7, width = "1.5cm")
+```
 
 ### Sensitivity Runs 7-25.  Leave out stock-recruit data in the HBM, one stock at a time
 
-To evaluate the relative influence of each stock-recruit data set from each stock, the HBM was run dropping out the stock-recruit data for one stock at a time.  In run 25 the stock-recruit data for both of the Babine Enhanced stocks (i.e., Fulton and Pinkut) were left out of the HBM.  The posterior predictive distribution for the Ricker $a$ parameter for an “unsampled” stock was computed for each of these runs (see equation \@ref(eq:unsamp)).  The posterior predictive distributions were plotted under each of the HBM runs 7-25 and under the base case HBM shows that the posterior predictive distributions were very similar between all HBM runs 7-25 and the base case HBM run (Figure \@ref(fig:jackProd)).  The posterior mean estimates of the time series of common shared year effects also did not change their sign or markedly change in magnitude when the stock-recruit data from one of the stocks or both of the Babine enhanced stocks were removed from the HBM (Figure \@ref(fig:jackTE)).  These results indicate that the stock-recruit data from no one stock and from both of the enhanced Babine sockeye salmon stocks had a noticeable influence on the HBM results.  
+To evaluate the relative influence of each stock-recruit data set from each stock, the HBM was run dropping out the stock-recruit data for one stock at a time.  In run 25 the stock-recruit data for both of the Babine Enhanced stocks (i.e., Fulton and Pinkut) were left out of the HBM.  The posterior predictive distribution for the Ricker $a$ parameter for an “unsampled” stock was computed for each of these runs (see equation \@ref(eq:unsamp)).  The posterior predictive distributions were plotted under each of the HBM runs 7-25 and under the base case HBM shows that the posterior predictive distributions were very similar between all HBM runs 7-25 and the base case HBM run (Figure \@ref(fig:jackProd)).  The posterior mean estimates of the time series of common shared year effects also did not change their sign or markedly change in magnitude when the stock-recruit data from one of the stocks or both of the Babine enhanced stocks were removed from the HBM (Figure \@ref(fig:jackTE)).  These results indicate that the stock-recruit data from no one stock and from both of the enhanced Babine sockeye salmon stocks had a substantive influence on the HBM results.  
 
 ```{r, echo=FALSE}
-cap <- "Posterior predictive distributions for the Ricker $a$ parameter when the sockeye salmon stock-recruit data from one stock at a time was dropped from the HBM for the Skeena watershed (runs 7-24) and the stock-recruit data were dropped for both of the Babine Enhanced sockeye salmon stocks, i.e., both Pinkut and Fulton (run 25). Base Case posterior predictive distribution is coloured dark grey, with colours used for runs 7-25."
+cap <- "Posterior predictive distributions for the Ricker $a$ parameter when the sockeye salmon stock-recruit data from one stock at a time was dropped from the HBM for the Skeena watershed (runs 7-24) and the stock-recruit data were dropped for both of the Babine Enhanced sockeye salmon stocks, i.e., both Pinkut and Fulton (run 25). Base case posterior predictive distribution is coloured dark grey, with colours used for runs 7-25."
 ```
 ```{r jackProd,   fig.cap=cap}
 include_graphics("data/HBM/Appendix-HBM-Productivity-jackknife.pdf")
@@ -544,8 +829,103 @@ include_graphics("data/HBM/Appendix-HBM-Productivity-jackknife.pdf")
 
 
 ```{r, echo=FALSE}
-cap <- "Posterior mean estimates for the common shared year effect when the sockeye salmon stock-recruit data from one stock at a time was dropped from the HBM for the Skeena watershed (runs 7-24) and the stock-recruit data were dropped for both of the Babine Enhanced sockeye salmon stocks, i.e., both Pinkut and Fulton (run 25). Base Case posterior predictive distribution is coloured dark grey, with colours used for runs 7-25."
+cap <- "Posterior mean estimates for the common shared year effect when the sockeye salmon stock-recruit data from one stock at a time was dropped from the HBM for the Skeena watershed (runs 7-24) and the stock-recruit data were dropped for both of the Babine Enhanced sockeye salmon stocks, i.e., both Pinkut and Fulton (run 25). Base case posterior predictive distribution is coloured dark grey, with colours used for runs 7-25."
 ```
 ```{r jackTE,   fig.cap=cap}
 include_graphics("data/HBM/Appendix-HBM-yeareffect-jackknife.pdf")
+```
+
+
+
+
+### Sensitivity Run 26: Removal of enhanced stocks and vague Ricker $\beta$ priors for select stocks.
+```{r, echo=FALSE}
+sig.mean <- (HBM.results[['Run 26 Smsy']]$Diff.mean * 100) %>% range() %>% round
+sig.sd <- (HBM.results[['Run 26 Smsy']]$Diff.SD * 100) %>% range() %>% round
+
+
+smsy.diff <- HBM.results[['Run 26 Smsy']] %>% 
+  # select(Stock, Diff.mean, Diff.SD) %>% 
+  arrange (Diff.mean) %>%
+  mutate(Base.Case.CV = round(Base.Case.SD /Base.Case.mean*100)) %>%
+   mutate(Run.26.CV = round(Run.26.SD /Run.26.mean*100)) %>%
+  mutate(Perc.Diff =  round(Diff.mean*100), Perc.SD =  round(Diff.SD*100)) %>%
+  arrange(Stock)
+smsy.diff2 <- smsy.diff %>% filter(Stock %in% c("Bear", "Kitwanga", "Sustut"))
+
+umsy.diff <- HBM.results[['Run 26 Umsy']] %>% select(Stock, Diff.mean) %>% 
+  arrange (Diff.mean) %>% 
+  mutate(Perc =  round(Diff.mean*100)) %>%
+  tail(n=2) %>%
+  arrange(Stock)
+# umsy.diff <- round(umsy.diff*100)
+```
+
+For the final sensitivity run (hereafter, 'run 26') the enhanced stocks were removed and vague priors were applied to the Ricker $\beta$ prior for Bear, Kitwanga and Sustut, which were stocks highlighted as stocks of interest when the HBM results were compared to results form single stock models.  Estimates of the posterior mean for the abundance-based management quantity \Smsy were generally similar to the base case (i.e., less than 10% change) for stocks where the \Smax prior was not changed relative to the base case. The exception was Babine Late Wild, which had a `r filter(smsy.diff, Stock %in% c("Babine Late Wild"))$Perc.Diff`% reduction in the \Smsy estimate, however Babine Late Wild also had the highest posterior SD estimate of all stocks with a CV of `r filter(smsy.diff, Stock %in% c("Babine Late Wild"))$Base.Case.CV`% and `r filter(smsy.diff, Stock %in% c("Babine Late Wild"))$Run.26.CV`% for  base case and run 26 respectively. For Bear, Kitwanga, and Sustut applying a vague prior resulted in declines in the posterior mean of \Smsy  from `r max(smsy.diff2$Perc.Diff)`% to `r min(smsy.diff2$Perc.Diff)`% relative to the base case. Precision in \Smsy estimates varied from stock to stock ranging from a `r -sig.sd[1]`% reduction in the posterior SD to an increase of  `r sig.sd[2]`% relative to the base case (Table \@ref(tab:SenRun26)). For Bear, and Sustut the posterior SD was reduced (`r pasteList(-filter(smsy.diff, Stock %in% c("Bear", "Sustut"))$Perc.SD, "\\%")` respectively), while for Kitwanga the Posterior SD was increased by `r filter(smsy.diff, Stock %in% c("Kitwanga"))$Perc.SD`%. For stocks where changes were not applied to the \Smax  prior changes to the posterior SD ranged from  `r filter(smsy.diff, Stock %in% c("Bear", "Sustut", "Kitwanga") == FALSE)$Perc.SD %>% min`% to `r filter(smsy.diff, Stock %in% c("Bear", "Sustut", "Kitwanga") == FALSE)$Perc.SD %>% max`%.
+
+
+The \Umsy posterior estimates  were relatively insensitive to these changes implemented in run 26 (i.e., under 10% change in the posterior mean), the exceptions were `r pasteList(umsy.diff$Stock[1:2])` which had posterior means that were   `r pasteList(umsy.diff$Perc[1:2], "\\%")` larger (Table \@ref(tab:SenRun26Umsy)). 
+
+```{r SenRun26, echo=FALSE, results='asis'}
+cap <- "Posterior means and posterior standard deviations for \\Smsy from the base case and model run where enhanced stocks were removed and vague \\Smax priors  were used for Bear, Kitwanga, and Sustut."
+
+HBM.results[['Run 26 Smsy']] %>%
+  filter(Stock %in% c("Pinkut","Fulton") == FALSE) %>%
+  mutate(
+    Base.Case.mean = round(Base.Case.mean),
+    Run.26.mean = round(Run.26.mean),
+    Base.Case.SD = round(Base.Case.SD),
+    Run.26.SD = round(Run.26.SD),
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
+  ) %>%
+  rename(
+  	`Base Case mean \\Smsy` = Base.Case.mean,
+  	`Run 26 mean \\Smsy` = Run.26.mean,
+  	`\\% Diff` = Diff.mean,
+  	`Base Case SD(\\Smsy)` = Base.Case.SD,
+  	`Run 26 SD(\\Smsy)` = Run.26.SD,
+  	`\\% Diff ` = Diff.SD
+  )  %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 6)),
+    caption = cap 
+  ) %>%
+  kableExtra::row_spec(18, hline_after = TRUE) %>%
+  kableExtra::column_spec(2:7, width = "1.5cm")
+```
+
+
+```{r SenRun26Umsy, echo=FALSE, results='asis'}
+cap <- "Posterior means and posterior standard deviations for \\Umsy from the base case and model run where enhanced stocks were removed and vague \\Smax priors were used for Bear, Kitwanga, and Sustut."
+
+HBM.results[['Run 26 Umsy']] %>%
+  filter(Stock %in% c("Pinkut","Fulton") == FALSE) %>%
+  mutate(
+    Base.Case.mean = round(Base.Case.mean, 3),
+    Run.26.mean = round(Run.26.mean, 3),
+    Base.Case.SD = round(Base.Case.SD, 3),
+    Run.26.SD = round(Run.26.SD, 3),
+    Diff.mean = paste0(round(Diff.mean*100,0), "\\%"),
+    Diff.SD = paste0(round(Diff.SD * 100, 0), "\\%")
+  ) %>%
+  rename(
+  	`Base Case mean \\Umsy` = Base.Case.mean,
+  	`Run 26 mean \\Umsy` = Run.26.mean,
+  	`\\% Diff` = Diff.mean,
+  	`Base Case SD(\\Umsy)` = Base.Case.SD,
+  	`Run 26 SD(\\Umsy)` = Run.26.SD,
+  	`\\% Diff ` = Diff.SD
+  )  %>%
+  csas_table(
+    format = "latex",
+    escape = FALSE, 
+    font_size = 10,
+    align = c("l", rep("r", 6)),
+    caption = cap 
+  ) %>%
+  kableExtra::column_spec(2:7, width = "1.5cm")
 ```
